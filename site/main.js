@@ -33,9 +33,16 @@ async function init() {
           <p class="section-label">Operating model</p>
           <h2>Turn chaos into motion.</h2>
           <p>
-            This board is built to stay useful: structured updates in, visible priorities out, less drift in the middle.
+            Keep the board clean, make the next move obvious, and strip away just enough clutter that momentum can survive real life.
           </p>
         </article>
+      </section>
+
+      <section class="grid four-up">
+        ${renderListCard('Now', current.data.primaryFocus)}
+        ${renderListCard('Next', current.data.next || [])}
+        ${renderListCard('Blockers', current.data.blockers || [])}
+        ${renderListCard('Wins', current.data.wins || [])}
       </section>
 
       <section class="grid three-up">
@@ -106,6 +113,19 @@ async function init() {
         </div>
       </section>
     </main>
+  `
+}
+
+function renderListCard(title, items = []) {
+  const safeItems = items.length ? items : ['Nothing loaded yet.']
+
+  return `
+    <article class="card mini-card">
+      <p class="section-label">${title}</p>
+      <ul>
+        ${safeItems.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </article>
   `
 }
 

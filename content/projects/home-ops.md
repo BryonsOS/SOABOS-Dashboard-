@@ -4,8 +4,8 @@ title: Home Ops
 status: active
 priority: medium
 area: home-family
-summary: Build a calmer operating system for family logistics, recurring responsibilities, and the invisible work that keeps home life moving.
-nextAction: Turn recurring household coordination into a visible, low-friction system.
+summary: Build a calmer system for family logistics, recurring responsibilities, and the work that usually disappears into the background.
+nextAction: Turn recurring household coordination into a visible system that does not feel heavy to maintain.
 lastUpdated: 2026-03-29
 links:
   owner: Bobby lane

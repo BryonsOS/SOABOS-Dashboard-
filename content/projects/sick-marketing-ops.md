@@ -4,8 +4,8 @@ title: Sick Marketing Ops
 status: active
 priority: high
 area: work
-summary: Support the marketing and e-commerce side of Sick through better visibility, stronger execution, and more consistent follow-through.
-nextAction: Keep turning live tasks into cleaner systems around emails, sales awareness, and content experiments.
+summary: Help the marketing and e-commerce side of Sick stay sharper, more organized, and easier to move.
+nextAction: Turn recurring marketing work into a clearer system around email, sales visibility, and useful experiments.
 lastUpdated: 2026-03-29
 links:
   team: Sick

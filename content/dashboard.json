@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "SOABOS Dashboard",
-    "tagline": "A live operating board for Bryon’s real work, projects, and priorities.",
-    "description": "Public-facing where it can be, practical where it matters: one clean place to see what is active, what matters next, and where momentum is building.",
+    "tagline": "A clean operating board for real life, real work, and what moves next.",
+    "description": "One place to see what is active, what is coming up, what is blocked, and where momentum is actually building.",
     "owner": "Bryon"
   },
   "stats": {

@@ -4,8 +4,8 @@ title: SOABOS Dashboard
 status: active
 priority: high
 area: systems
-summary: Build a public home base that turns scattered notes, projects, and priorities into one visible operating board.
-nextAction: Tighten the publishing flow and keep replacing generic scaffold content with real operating details.
+summary: Build a public home base that makes active work, real priorities, and the next move easier to see.
+nextAction: Add more real operating detail without making the public board feel cluttered or overexposed.
 lastUpdated: 2026-03-29
 links:
   repo: https://github.com/BryonsOS/SOABOS-Dashboard-

@@ -2,8 +2,8 @@
   "dashboard": {
     "site": {
       "title": "SOABOS Dashboard",
-      "tagline": "A live operating board for Bryon’s real work, projects, and priorities.",
-      "description": "Public-facing where it can be, practical where it matters: one clean place to see what is active, what matters next, and where momentum is building.",
+      "tagline": "A clean operating board for real life, real work, and what moves next.",
+      "description": "One place to see what is active, what is coming up, what is blocked, and where momentum is actually building.",
       "owner": "Bryon"
     },
     "stats": {
@@ -23,13 +23,27 @@
       "title": "Current Focus",
       "lastUpdated": "2026-03-29T00:00:00.000Z",
       "primaryFocus": [
-        "Turn SOABOS Dashboard into a clean public operating board",
-        "Replace placeholder copy with real current projects and priorities",
-        "Make publishing reliable enough that updates can ship without cleanup drama"
+        "Build a public dashboard that actually reflects real life and work",
+        "Keep the board simple enough to update and sharp enough to use",
+        "Turn active projects into visible next moves instead of mental clutter"
       ],
-      "currentState": "building in public"
+      "currentState": "building in public",
+      "next": [
+        "Add Now / Next / Blockers / Wins to the homepage",
+        "Keep tightening the voice so it sounds like Bryon, not a template",
+        "Continue replacing generic content with real current priorities"
+      ],
+      "blockers": [
+        "Public-safe framing still needs to be balanced against useful detail",
+        "Repo git identity still needs to be set correctly for future commits"
+      ],
+      "wins": [
+        "The dashboard now publishes from a cleaner source structure",
+        "Real projects, areas, and goals have replaced most of the placeholder shell",
+        "The board is starting to feel like an operating system instead of a mockup"
+      ]
     },
-    "content": "This dashboard is meant to show real motion, not fake productivity theater.\n\nThe point is simple: make it obvious what Bryon is building, what is active right now, and what needs the next push."
+    "content": "This board is here to make the next move obvious.\n\nNot everything needs to be public. But the right things should be visible enough to keep momentum alive."
   },
   "projects": [
     {
@@ -55,8 +69,8 @@
         "status": "active",
         "priority": "high",
         "area": "events",
-        "summary": "Keep booked DJ events organized from paperwork and scheduling through prep, communication, and execution.",
-        "nextAction": "Build a cleaner event-by-event prep view so nothing important gets buried.",
+        "summary": "Keep DJ events tight from the first detail to the day-of execution.",
+        "nextAction": "Build a cleaner event prep view so important details stay visible before go time.",
         "lastUpdated": "2026-03-29T00:00:00.000Z",
         "links": {
           "support": "booking-agent-led"
@@ -87,8 +101,8 @@
         "status": "active",
         "priority": "medium",
         "area": "home-family",
-        "summary": "Build a calmer operating system for family logistics, recurring responsibilities, and the invisible work that keeps home life moving.",
-        "nextAction": "Turn recurring household coordination into a visible, low-friction system.",
+        "summary": "Build a calmer system for family logistics, recurring responsibilities, and the work that usually disappears into the background.",
+        "nextAction": "Turn recurring household coordination into a visible system that does not feel heavy to maintain.",
         "lastUpdated": "2026-03-29T00:00:00.000Z",
         "links": {
           "owner": "Bobby lane"
@@ -103,8 +117,8 @@
         "status": "active",
         "priority": "high",
         "area": "work",
-        "summary": "Support the marketing and e-commerce side of Sick through better visibility, stronger execution, and more consistent follow-through.",
-        "nextAction": "Keep turning live tasks into cleaner systems around emails, sales awareness, and content experiments.",
+        "summary": "Help the marketing and e-commerce side of Sick stay sharper, more organized, and easier to move.",
+        "nextAction": "Turn recurring marketing work into a clearer system around email, sales visibility, and useful experiments.",
         "lastUpdated": "2026-03-29T00:00:00.000Z",
         "links": {
           "team": "Sick"
@@ -135,8 +149,8 @@
         "status": "active",
         "priority": "high",
         "area": "systems",
-        "summary": "Build a public home base that turns scattered notes, projects, and priorities into one visible operating board.",
-        "nextAction": "Tighten the publishing flow and keep replacing generic scaffold content with real operating details.",
+        "summary": "Build a public home base that makes active work, real priorities, and the next move easier to see.",
+        "nextAction": "Add more real operating detail without making the public board feel cluttered or overexposed.",
         "lastUpdated": "2026-03-29T00:00:00.000Z",
         "links": {
           "repo": "https://github.com/BryonsOS/SOABOS-Dashboard-",
@@ -263,6 +277,14 @@
         "kind": "setup"
       },
       "content": "Created the initial repo structure for a public dashboard that can track goals, projects, areas, and current focus.\n\nEstablished a content-first model so future updates can be made by editing structured files rather than manually changing the website for every small change."
+    },
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Added sharper operating language and next-move structure",
+        "kind": "refinement"
+      },
+      "content": "Started shaping the dashboard around a more usable rhythm: what matters now, what happens next, what is in the way, and what already moved forward."
     },
     {
       "data": {

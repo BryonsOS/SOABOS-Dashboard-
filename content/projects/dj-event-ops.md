@@ -4,8 +4,8 @@ title: DJ Event Ops
 status: active
 priority: high
 area: events
-summary: Keep booked DJ events organized from paperwork and scheduling through prep, communication, and execution.
-nextAction: Build a cleaner event-by-event prep view so nothing important gets buried.
+summary: Keep DJ events tight from the first detail to the day-of execution.
+nextAction: Build a cleaner event prep view so important details stay visible before go time.
 lastUpdated: 2026-03-29
 links:
   support: booking-agent-led
