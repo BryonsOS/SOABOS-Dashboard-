@@ -38,6 +38,16 @@ Projects and goals should default to one of:
 - structured enough to automate later
 - public-safe by default
 
+## Deployment
+
+The repo includes a GitHub Actions workflow for GitHub Pages deployment.
+
+Expected published URL:
+
+- `https://bryonsos.github.io/SOABOS-Dashboard-/`
+
+After the first workflow run, enable **Settings → Pages → Build and deployment → GitHub Actions** if GitHub has not already defaulted to it.
+
 ## Next step
 
-Scaffold the first dashboard app in `site/` and connect it to the content model.
+Continue expanding the content model and visual sections so future conversations can update the dashboard through structured files.

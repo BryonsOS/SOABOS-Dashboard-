@@ -1,0 +1,86 @@
+{
+  "dashboard": {
+    "site": {
+      "title": "SOABOS Dashboard",
+      "tagline": "Visible motion for Bryon’s life, work, and projects.",
+      "description": "A public operating board for goals, projects, current focus, and progress.",
+      "owner": "Bryon"
+    },
+    "stats": {
+      "projects": 1,
+      "goals": 1,
+      "status": "Active"
+    },
+    "sections": {
+      "showAreas": true,
+      "showGoals": true,
+      "showProjects": true,
+      "showUpdates": true
+    }
+  },
+  "current": {
+    "data": {
+      "title": "Current Focus",
+      "lastUpdated": "2026-03-29T00:00:00.000Z",
+      "primaryFocus": [
+        "Stand up the SOABOS Dashboard structure",
+        "Turn the dashboard into a visual source of truth for life and work"
+      ],
+      "currentState": "building"
+    },
+    "content": "This dashboard is the public-facing operating board for Bryon's goals, projects, and progress.\n\nIt should stay simple, visual, and motion-oriented."
+  },
+  "projects": [
+    {
+      "data": {
+        "slug": "soabos-dashboard",
+        "title": "SOABOS Dashboard",
+        "status": "active",
+        "priority": "high",
+        "area": "systems",
+        "summary": "Build a public personal hub that tracks projects, goals, life areas, and visible progress in one clean dashboard.",
+        "nextAction": "Scaffold the site app and connect it to the content structure.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "repo": "git@github.com:BryonsOS/SOABOS-Dashboard-.git"
+        }
+      },
+      "content": "## Why it exists\n\nTo replace scattered tools and mental clutter with one visible system that shows what is active, where progress is happening, and what comes next.\n\n## Current direction\n\n- content-first architecture\n- public-safe data only\n- website rendered from structured files\n- easy to maintain through conversation-driven updates"
+    }
+  ],
+  "goals": [
+    {
+      "data": {
+        "slug": "system-visibility",
+        "title": "Keep life and work visible",
+        "status": "active",
+        "horizon": "ongoing",
+        "area": "systems",
+        "summary": "Build and maintain a dashboard that keeps priorities, progress, and next actions visible from start to finish.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "The goal is not more notes. The goal is a cleaner operating picture."
+    }
+  ],
+  "areas": [
+    {
+      "data": {
+        "slug": "systems",
+        "title": "Systems",
+        "summary": "Dashboards, workflows, organization, and tools that reduce chaos and keep motion visible.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area holds the operating systems behind Bryon's work and life visibility."
+    }
+  ],
+  "updates": [
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Initial dashboard scaffold",
+        "kind": "setup"
+      },
+      "content": "Created the initial repo structure for a public dashboard that can track goals, projects, areas, and current focus.\n\nEstablished a content-first model so future updates can be made by editing structured files rather than manually changing the website for every small change."
+    }
+  ]
+}
