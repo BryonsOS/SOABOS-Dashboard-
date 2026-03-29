@@ -5,57 +5,57 @@ async function init() {
   const { dashboard, current, projects, goals, areas, updates } = content
 
   const app = document.querySelector('#app')
+  const sortedProjects = [...projects].sort(sortProjects)
 
   app.innerHTML = `
     <main class="shell">
       <section class="hero card">
-        <p class="eyebrow">${dashboard.site.title}</p>
-        <h1>${dashboard.site.tagline}</h1>
-        <p class="lede">${dashboard.site.description}</p>
+        <div class="hero-copy">
+          <p class="eyebrow">${dashboard.site.title}</p>
+          <h1>A clean operating board for real life and real work.</h1>
+          <p class="lede">See what’s active, what’s blocked, and what moves next.</p>
+        </div>
         <div class="hero-meta">
           <span>Owner: ${dashboard.site.owner}</span>
-          <span>State: ${current.data.currentState}</span>
-          <span>Updated: ${current.data.lastUpdated}</span>
+          <span>Mode: ${current.data.currentState}</span>
+          <span>${formatRelativeOrAbsoluteDate(current.data.lastUpdated)}</span>
         </div>
       </section>
 
-      <section class="grid two-up">
-        <article class="card">
+      <section class="grid lead-grid">
+        <article class="card action-card action-card-primary">
+          <p class="section-label">Move next</p>
+          <h2>${(current.data.next && current.data.next[0]) || 'Choose the clearest next move and keep it visible.'}</h2>
+          <p>${current.content}</p>
+        </article>
+
+        <article class="card action-card">
           <p class="section-label">Current focus</p>
           <h2>${current.data.title}</h2>
           <ul>
             ${current.data.primaryFocus.map((item) => `<li>${item}</li>`).join('')}
           </ul>
-          <p>${current.content}</p>
-        </article>
-
-        <article class="card">
-          <p class="section-label">Operating model</p>
-          <h2>Turn chaos into motion.</h2>
-          <p>
-            Keep the board clean, make the next move obvious, and strip away just enough clutter that momentum can survive real life.
-          </p>
         </article>
       </section>
 
-      <section class="grid four-up">
-        ${renderListCard('Now', current.data.primaryFocus)}
-        ${renderListCard('Next', current.data.next || [])}
-        ${renderListCard('Blockers', current.data.blockers || [])}
-        ${renderListCard('Wins', current.data.wins || [])}
+      <section class="priority-grid">
+        ${renderListCard('Now', current.data.primaryFocus, 'now')}
+        ${renderListCard('Next', current.data.next || [], 'next')}
+        ${renderListCard('Blockers', current.data.blockers || [], 'blockers')}
+        ${renderListCard('Wins', current.data.wins || [], 'wins')}
       </section>
 
-      <section class="grid three-up">
-        <article class="card stat">
-          <span class="stat-label">Projects</span>
+      <section class="grid three-up stats-grid">
+        <article class="card stat stat-inline">
+          <span class="stat-label">Active projects</span>
           <strong>${dashboard.stats.projects}</strong>
         </article>
-        <article class="card stat">
-          <span class="stat-label">Goals</span>
+        <article class="card stat stat-inline">
+          <span class="stat-label">Active goals</span>
           <strong>${dashboard.stats.goals}</strong>
         </article>
-        <article class="card stat">
-          <span class="stat-label">Overall status</span>
+        <article class="card stat stat-inline stat-status">
+          <span class="stat-label">System status</span>
           <strong>${dashboard.stats.status}</strong>
         </article>
       </section>
@@ -66,7 +66,7 @@ async function init() {
           <h2>What’s in motion</h2>
         </div>
         <div class="grid two-up">
-          ${projects.map(renderProjectCard).join('')}
+          ${sortedProjects.map(renderProjectCard).join('')}
         </div>
       </section>
 
@@ -116,11 +116,11 @@ async function init() {
   `
 }
 
-function renderListCard(title, items = []) {
+function renderListCard(title, items = [], tone = 'default') {
   const safeItems = items.length ? items : ['Nothing loaded yet.']
 
   return `
-    <article class="card mini-card">
+    <article class="card mini-card mini-card-${tone}">
       <p class="section-label">${title}</p>
       <ul>
         ${safeItems.map((item) => `<li>${item}</li>`).join('')}
@@ -132,11 +132,17 @@ function renderListCard(title, items = []) {
 function renderProjectCard(item) {
   return `
     <article class="card project-card">
-      <p class="section-label">${item.data.status}</p>
+      <div class="project-topline">
+        <p class="section-label">${item.data.status}</p>
+        <span class="project-priority">${capitalize(item.data.priority)} priority</span>
+      </div>
       <h3>${item.data.title}</h3>
-      <p>${item.data.summary}</p>
-      <p class="meta"><strong>Next:</strong> ${item.data.nextAction}</p>
-      <p class="meta"><strong>Area:</strong> ${item.data.area} · <strong>Priority:</strong> ${item.data.priority}</p>
+      <p class="project-summary">${item.data.summary}</p>
+      <div class="project-next">
+        <span class="project-next-label">Next move</span>
+        <p>${item.data.nextAction}</p>
+      </div>
+      <p class="meta project-meta"><strong>Area:</strong> ${humanizeToken(item.data.area)}</p>
       ${renderLinks(item.data.links)}
     </article>
   `
@@ -148,7 +154,7 @@ function renderGoalCard(item) {
       <p class="section-label">${item.data.status}</p>
       <h3>${item.data.title}</h3>
       <p>${item.data.summary}</p>
-      <p class="meta"><strong>Horizon:</strong> ${item.data.horizon} · <strong>Area:</strong> ${item.data.area}</p>
+      <p class="meta"><strong>Horizon:</strong> ${item.data.horizon} · <strong>Area:</strong> ${humanizeToken(item.data.area)}</p>
     </article>
   `
 }
@@ -167,7 +173,7 @@ function renderAreaCard(item) {
 function renderUpdateCard(item) {
   return `
     <article class="card">
-      <p class="section-label">${item.data.date}</p>
+      <p class="section-label">${formatRelativeOrAbsoluteDate(item.data.date)}</p>
       <h3>${item.data.title}</h3>
       <p class="meta">${item.data.kind}</p>
       <p>${item.content}</p>
@@ -197,7 +203,7 @@ function renderLinks(links = {}) {
 }
 
 function renderLink(label, href) {
-  const safeLabel = label.replace(/[-_]/g, ' ')
+  const safeLabel = humanizeToken(label)
   const isExternal = /^https?:\/\//i.test(href)
 
   if (isExternal) {
@@ -205,6 +211,39 @@ function renderLink(label, href) {
   }
 
   return `<span class="chip chip-muted">${safeLabel}: ${href}</span>`
+}
+
+function humanizeToken(value = '') {
+  return value
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (letter) => letter.toUpperCase())
+}
+
+function capitalize(value = '') {
+  return value ? value.charAt(0).toUpperCase() + value.slice(1) : ''
+}
+
+function sortProjects(a, b) {
+  const rank = { high: 0, medium: 1, low: 2 }
+  return (rank[a.data.priority] ?? 9) - (rank[b.data.priority] ?? 9) || a.data.title.localeCompare(b.data.title)
+}
+
+function formatRelativeOrAbsoluteDate(value) {
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const target = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const diffDays = Math.round((today - target) / 86400000)
+
+  if (diffDays === 0) return 'Updated today'
+  if (diffDays === 1) return 'Updated yesterday'
+
+  return `Updated ${date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  })}`
 }
 
 init()
