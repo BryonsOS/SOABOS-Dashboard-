@@ -69,6 +69,19 @@ Recommended publish flow:
 
 The build now computes project/goal counts from content automatically so the homepage stats stay in sync as the dashboard grows.
 
+### Clean command set
+
+From the repo root:
+
+- `./publish.sh` — build, stage, commit, and push with a clean interactive-style publish flow
+- `./publish.sh "your message"` — same flow with a custom commit message
+- `../scripts/publish-dashboard` or `/root/.openclaw/workspace/scripts/publish-dashboard` — short alias wrapper for publishing
+
+From `site/`:
+
+- `npm run dev-dashboard`
+- `npm run build-dashboard`
+
 ## Next step
 
 Keep replacing scaffold content with real operating details and expand the visible sections only when they help Bryon make decisions faster.
