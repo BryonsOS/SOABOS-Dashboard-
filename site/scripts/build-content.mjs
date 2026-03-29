@@ -15,8 +15,17 @@ const goals = readCollection(path.join(contentDir, 'goals'))
 const areas = readCollection(path.join(contentDir, 'areas'))
 const updates = readCollection(path.join(contentDir, 'updates'))
 
+const computedStats = {
+  projects: projects.length,
+  goals: goals.length,
+  status: dashboard.stats?.status || inferOverallStatus(projects, goals)
+}
+
 const bundle = {
-  dashboard,
+  dashboard: {
+    ...dashboard,
+    stats: computedStats
+  },
   current,
   projects,
   goals,
@@ -40,4 +49,15 @@ function readMarkdown(filePath) {
     data: parsed.data,
     content: parsed.content.trim()
   }
+}
+
+function inferOverallStatus(projects, goals) {
+  const values = [...projects, ...goals].map((item) => String(item.data.status || '').toLowerCase())
+
+  if (values.includes('blocked')) return 'Blocked'
+  if (values.includes('active')) return 'Active'
+  if (values.includes('queued')) return 'Queued'
+  if (values.includes('paused')) return 'Paused'
+  if (values.length && values.every((value) => value === 'complete')) return 'Complete'
+  return 'Building'
 }

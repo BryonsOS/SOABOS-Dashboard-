@@ -1,11 +1,11 @@
 ---
 slug: system-visibility
-title: Keep life and work visible
+title: Make priorities visible enough to act on
 status: active
 horizon: ongoing
 area: systems
-summary: Build and maintain a dashboard that keeps priorities, progress, and next actions visible from start to finish.
+summary: Build a dashboard that keeps active projects, next actions, and useful progress visible without turning into clutter.
 lastUpdated: 2026-03-29
 ---
 
-The goal is not more notes. The goal is a cleaner operating picture.
+The win is not more documentation. The win is less drift, less hunting, and faster motion.

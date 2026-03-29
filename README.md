@@ -46,8 +46,29 @@ Expected published URL:
 
 - `https://bryonsos.github.io/SOABOS-Dashboard-/`
 
+## Source of truth
+
+This repo should be maintained from source files only:
+
+- `content/` for dashboard content
+- `site/` for rendering and styling
+- `.github/workflows/` for deploy automation
+
+Do not treat root-level published artifacts as editable source.
+
 After the first workflow run, enable **Settings → Pages → Build and deployment → GitHub Actions** if GitHub has not already defaulted to it.
+
+## Publish workflow
+
+Recommended publish flow:
+
+1. update files in `content/`
+2. run the site build from `site/`
+3. commit only source changes plus the generated publish output you intentionally keep
+4. let GitHub Actions deploy to Pages
+
+The build now computes project/goal counts from content automatically so the homepage stats stay in sync as the dashboard grows.
 
 ## Next step
 
-Continue expanding the content model and visual sections so future conversations can update the dashboard through structured files.
+Keep replacing scaffold content with real operating details and expand the visible sections only when they help Bryon make decisions faster.

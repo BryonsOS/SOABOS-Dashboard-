@@ -1,14 +1,14 @@
 {
   "site": {
     "title": "SOABOS Dashboard",
-    "tagline": "Visible motion for Bryon’s life, work, and projects.",
-    "description": "A public operating board for goals, projects, current focus, and progress.",
+    "tagline": "A live operating board for Bryon’s real work, projects, and priorities.",
+    "description": "Public-facing where it can be, practical where it matters: one clean place to see what is active, what matters next, and where momentum is building.",
     "owner": "Bryon"
   },
   "stats": {
-    "projects": 1,
-    "goals": 1,
-    "status": "Active"
+    "projects": 4,
+    "goals": 3,
+    "status": "Building"
   },
   "sections": {
     "showAreas": true,

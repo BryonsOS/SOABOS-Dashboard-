@@ -2,11 +2,12 @@
 title: Current Focus
 lastUpdated: 2026-03-29
 primaryFocus:
-  - Stand up the SOABOS Dashboard structure
-  - Turn the dashboard into a visual source of truth for life and work
-currentState: building
+  - Turn SOABOS Dashboard into a clean public operating board
+  - Replace placeholder copy with real current projects and priorities
+  - Make publishing reliable enough that updates can ship without cleanup drama
+currentState: building in public
 ---
 
-This dashboard is the public-facing operating board for Bryon's goals, projects, and progress.
+This dashboard is meant to show real motion, not fake productivity theater.
 
-It should stay simple, visual, and motion-oriented.
+The point is simple: make it obvious what Bryon is building, what is active right now, and what needs the next push.

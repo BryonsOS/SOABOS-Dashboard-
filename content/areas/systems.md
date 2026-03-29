@@ -1,8 +1,8 @@
 ---
 slug: systems
 title: Systems
-summary: Dashboards, workflows, organization, and tools that reduce chaos and keep motion visible.
+summary: The dashboards, workflows, and operating structure that keep chaos from swallowing the important stuff.
 lastUpdated: 2026-03-29
 ---
 
-This area holds the operating systems behind Bryon's work and life visibility.
+This area holds the backbone work: dashboards, routing, process design, and the tools that make the rest of the machine easier to run.

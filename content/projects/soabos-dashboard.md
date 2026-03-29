@@ -4,20 +4,21 @@ title: SOABOS Dashboard
 status: active
 priority: high
 area: systems
-summary: Build a public personal hub that tracks projects, goals, life areas, and visible progress in one clean dashboard.
-nextAction: Scaffold the site app and connect it to the content structure.
+summary: Build a public home base that turns scattered notes, projects, and priorities into one visible operating board.
+nextAction: Tighten the publishing flow and keep replacing generic scaffold content with real operating details.
 lastUpdated: 2026-03-29
 links:
-  repo: git@github.com:BryonsOS/SOABOS-Dashboard-.git
+  repo: https://github.com/BryonsOS/SOABOS-Dashboard-
+  live: https://bryonsos.github.io/SOABOS-Dashboard-/
 ---
 
 ## Why it exists
 
-To replace scattered tools and mental clutter with one visible system that shows what is active, where progress is happening, and what comes next.
+Bryon needs one clean place to see what is in motion across life, work, and active builds without hunting through scattered apps and half-finished notes.
 
 ## Current direction
 
 - content-first architecture
-- public-safe data only
-- website rendered from structured files
-- easy to maintain through conversation-driven updates
+- public-safe by default
+- conversation-driven updates
+- publish fast without hand-rebuilding the site every time

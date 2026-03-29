@@ -5,6 +5,10 @@ node_modules/
 site/dist/
 site/.next/
 site/out/
+assets/
+generated/
+index.html
+.publish-backup/
 
 # Env
 .env
