@@ -5,8 +5,6 @@ node_modules/
 site/dist/
 site/.next/
 site/out/
-assets/
-generated/
 .publish-backup/
 
 # Env
