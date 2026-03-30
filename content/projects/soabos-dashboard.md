@@ -5,11 +5,11 @@ status: active
 priority: high
 area: systems
 summary: Build a public home base that makes active work, real priorities, and the next move easier to see.
-nextAction: Add more real operating detail without making the public board feel cluttered or overexposed.
-lastUpdated: 2026-03-29
+nextAction: Keep folding real operating systems into the board while making the design feel cleaner and easier to scan.
+lastUpdated: 2026-03-30
 links:
-  repo: https://github.com/BryonsOS/SOABOS-Dashboard-
-  live: https://bryonsos.github.io/SOABOS-Dashboard-/
+  repo: https://github.com/BryonsOS/SOABOS-Dashboard
+  live: https://bryonsos.github.io/SOABOS-Dashboard/
 ---
 
 ## Why it exists

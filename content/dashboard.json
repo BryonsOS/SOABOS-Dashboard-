@@ -2,7 +2,7 @@
   "site": {
     "title": "SOABOS Dashboard",
     "tagline": "A clean operating board for real life, real work, and what moves next.",
-    "description": "One place to see what is active, what is coming up, what is blocked, and where momentum is actually building.",
+    "description": "One place to see what is active, what is coming up, what is blocked, where momentum is building, and who matters next.",
     "owner": "Bryon"
   },
   "stats": {
@@ -14,6 +14,7 @@
     "showAreas": true,
     "showGoals": true,
     "showProjects": true,
-    "showUpdates": true
+    "showUpdates": true,
+    "showBirthdays": true
   }
 }

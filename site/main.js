@@ -2,7 +2,7 @@ import './styles.css'
 
 async function init() {
   const content = await fetch('./generated/content.json').then((res) => res.json())
-  const { dashboard, current, projects, goals, areas, updates } = content
+  const { dashboard, current, projects, goals, areas, updates, birthdays } = content
 
   const app = document.querySelector('#app')
   const sortedProjects = [...projects].sort(sortProjects)
@@ -12,8 +12,8 @@ async function init() {
       <section class="hero card">
         <div class="hero-copy">
           <p class="eyebrow">${dashboard.site.title}</p>
-          <h1>A clean operating board for real life and real work.</h1>
-          <p class="lede">See what’s active, what’s blocked, and what moves next.</p>
+          <h1>${dashboard.site.tagline}</h1>
+          <p class="lede">${dashboard.site.description}</p>
         </div>
         <div class="hero-meta">
           <span>Owner: ${dashboard.site.owner}</span>
@@ -57,6 +57,23 @@ async function init() {
         <article class="card stat stat-inline stat-status">
           <span class="stat-label">System status</span>
           <strong>${dashboard.stats.status}</strong>
+        </article>
+      </section>
+
+      ${dashboard.sections?.showBirthdays ? renderBirthdaySection(birthdays) : ''}
+
+      <section class="grid three-up stats-grid stats-grid-secondary">
+        <article class="card stat stat-inline">
+          <span class="stat-label">Birthday radar</span>
+          <strong>${birthdays.summary?.upcomingCount ?? 0}</strong>
+        </article>
+        <article class="card stat stat-inline">
+          <span class="stat-label">Missing birthday details</span>
+          <strong>${birthdays.summary?.needsInfoCount ?? 0}</strong>
+        </article>
+        <article class="card stat stat-inline stat-status">
+          <span class="stat-label">Board posture</span>
+          <strong>Clean / live / useful</strong>
         </article>
       </section>
 
@@ -191,6 +208,73 @@ function renderLaneCard(title, text) {
   `
 }
 
+function renderBirthdaySection(birthdays = {}) {
+  const upcoming = birthdays.upcoming || []
+  const needsInfo = birthdays.needsInfo || []
+  const lookaheadDays = birthdays.settings?.lookaheadDays || 30
+  const title = birthdays.settings?.title || 'Upcoming Birthdays'
+  const subtitle = birthdays.settings?.subtitle || 'People coming up soon and birthdays that still need details.'
+
+  return `
+    <section class="section-block birthday-block">
+      <div class="section-head birthday-head">
+        <div>
+          <p class="section-label">People lane</p>
+          <h2>${title}</h2>
+          <p class="meta">${subtitle}</p>
+        </div>
+        <div class="birthday-summary">
+          <span class="chip">${upcoming.length} in ${lookaheadDays} days</span>
+          <span class="chip chip-muted">${needsInfo.length} need info</span>
+        </div>
+      </div>
+      <div class="grid two-up birthday-grid">
+        <article class="card birthday-card">
+          <p class="section-label">Coming up</p>
+          <div class="birthday-list">
+            ${upcoming.length ? upcoming.map(renderBirthdayItem).join('') : `<p class="meta">No fully dated birthdays land in the next ${lookaheadDays} days yet.</p>`}
+          </div>
+        </article>
+        <article class="card birthday-card birthday-card-muted">
+          <p class="section-label">Needs info</p>
+          <div class="birthday-list">
+            ${needsInfo.length ? needsInfo.map(renderBirthdayNeedsInfoItem).join('') : '<p class="meta">Everything here has the basics filled in.</p>'}
+          </div>
+        </article>
+      </div>
+    </section>
+  `
+}
+
+function renderBirthdayItem(item) {
+  return `
+    <article class="birthday-item birthday-item-${item.urgency || 'upcoming'}">
+      <div>
+        <h3>${item.name}</h3>
+        <p class="meta">${item.dateLabel}${item.relationship ? ` · ${humanizeToken(item.relationship)}` : ''}${item.notes ? ` · ${item.notes}` : ''}</p>
+      </div>
+      <div class="birthday-meta">
+        <span class="birthday-days">${formatDaysAway(item.daysAway)}</span>
+        ${item.age ? `<span class="birthday-age">Turns ${item.age}</span>` : ''}
+      </div>
+    </article>
+  `
+}
+
+function renderBirthdayNeedsInfoItem(item) {
+  return `
+    <article class="birthday-item birthday-item-muted">
+      <div>
+        <h3>${item.name}</h3>
+        <p class="meta">${item.notes || 'Still needs a little detail before it is fully useful.'}</p>
+      </div>
+      <div class="birthday-meta">
+        <span class="birthday-missing">Missing ${item.missing.join(' + ')}</span>
+      </div>
+    </article>
+  `
+}
+
 function renderLinks(links = {}) {
   const entries = Object.entries(links).filter(([, value]) => value)
   if (!entries.length) return ''
@@ -244,6 +328,12 @@ function formatRelativeOrAbsoluteDate(value) {
     month: 'short',
     day: 'numeric'
   })}`
+}
+
+function formatDaysAway(daysAway) {
+  if (daysAway === 0) return 'Today'
+  if (daysAway === 1) return 'Tomorrow'
+  return `${daysAway} days`
 }
 
 init()

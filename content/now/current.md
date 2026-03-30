@@ -1,24 +1,24 @@
 ---
 title: Current Focus
-lastUpdated: 2026-03-29
+lastUpdated: 2026-03-30
 primaryFocus:
-  - Build a public dashboard that actually reflects real life and work
-  - Keep the board simple enough to update and sharp enough to use
-  - Turn active projects into visible next moves instead of mental clutter
-currentState: building in public
+  - Refresh the SOABOS Dashboard so it feels cleaner, sharper, and more alive
+  - Turn recent work into a board that shows real motion instead of placeholder structure
+  - Add the birthday lane so important people and missing details stay visible
+currentState: refreshed and actively evolving
 next:
-  - Add Now / Next / Blockers / Wins to the homepage
-  - Keep tightening the voice so it sounds like Bryon, not a template
-  - Continue replacing generic content with real current priorities
+  - Replace seed birthday entries with real people and complete dates as they are gathered
+  - Keep tightening the visual hierarchy so the homepage reads fast on mobile and desktop
+  - Continue feeding real project updates into the board after working sessions
 blockers:
-  - Public-safe framing still needs to be balanced against useful detail
-  - Repo git identity still needs to be set correctly for future commits
+  - Birthday data is only partially filled in until more real names and dates are added
+  - GitHub remote access still needs clean auth on this machine before direct push can happen here
 wins:
-  - The dashboard now publishes from a cleaner source structure
-  - Real projects, areas, and goals have replaced most of the placeholder shell
-  - The board is starting to feel like an operating system instead of a mockup
+  - The dashboard already has real areas, goals, and projects instead of template filler
+  - Birthday tracking is now part of the public operating board structure
+  - The dashboard can keep getting sharper without rebuilding the whole system each time
 ---
 
 This board is here to make the next move obvious.
 
-Not everything needs to be public. But the right things should be visible enough to keep momentum alive.
+The goal is not just to track things. It is to keep Bryon’s real life, real work, and real priorities visible enough to move.

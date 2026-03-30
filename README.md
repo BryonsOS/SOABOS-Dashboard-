@@ -44,7 +44,7 @@ The repo includes a GitHub Actions workflow for GitHub Pages deployment.
 
 Expected published URL:
 
-- `https://bryonsos.github.io/SOABOS-Dashboard-/`
+- `https://bryonsos.github.io/SOABOS-Dashboard/`
 
 ## Source of truth
 

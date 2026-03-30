@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "lookaheadDays": 45,
+    "title": "Birthday Tracker",
+    "subtitle": "Upcoming birthdays, known gaps, and the people list that still needs to be completed."
+  },
+  "people": [
+    {
+      "name": "Birthday list in progress",
+      "month": null,
+      "day": null,
+      "year": null,
+      "notes": "Tracker section is live. Add real names and dates from the Birthday_Master sheet next.",
+      "relationship": "system"
+    },
+    {
+      "name": "Known birthdays needing full details",
+      "month": null,
+      "day": null,
+      "year": null,
+      "notes": "Use this lane to surface people who are missing month, day, or birth year.",
+      "relationship": "planning"
+    }
+  ]
+}
