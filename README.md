@@ -7,7 +7,7 @@ This repo is structured so conversation-driven updates can become website update
 ## Core idea
 
 - `content/` is the source of truth
-- `site/` renders that content into a dashboard
+- the repo root renders that content into a dashboard
 - updates happen by changing structured files
 - the site can publish those changes as a living visual workspace
 
@@ -48,15 +48,15 @@ Expected published URL:
 
 ## Source of truth
 
-This repo should be maintained from source files only:
+This repo should be maintained from these primary source areas:
 
 - `content/` for dashboard content
-- `site/` for rendering and styling
+- `main.js`, `styles.css`, `scripts/`, and config files at repo root for rendering/build logic
 - `.github/workflows/` for deploy automation
 
-Do not treat root-level published artifacts as editable source.
+The repo currently keeps root-level published artifacts (`index.html`, `404.html`, `assets/`, `generated/`) because GitHub Pages may serve them directly while the Actions deployment path is being stabilized.
 
-After the first workflow run, enable **Settings → Pages → Build and deployment → GitHub Actions** if GitHub has not already defaulted to it.
+If the Pages URL shows **Site not found**, enable **Settings → Pages → Build and deployment → GitHub Actions** for this repo.
 
 ## Publish workflow
 
@@ -76,9 +76,6 @@ From the repo root:
 - `./publish.sh` — build, stage, commit, and push with a clean interactive-style publish flow
 - `./publish.sh "your message"` — same flow with a custom commit message
 - `../scripts/publish-dashboard` or `/root/.openclaw/workspace/scripts/publish-dashboard` — short alias wrapper for publishing
-
-From `site/`:
-
 - `npm run dev-dashboard`
 - `npm run build-dashboard`
 
