@@ -8,9 +8,11 @@
     "prebuild-dashboard": "node scripts/build-content.mjs",
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/render-pages-entry.mjs",
     "preview": "vite preview",
     "dev-dashboard": "vite",
-    "build-dashboard": "vite build"
+    "build-dashboard": "vite build",
+    "sync-gratitude": "node scripts/sync-gratitude.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",

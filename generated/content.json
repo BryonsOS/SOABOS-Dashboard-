@@ -1107,6 +1107,16 @@
     },
     "history": [
       {
+        "date": "2026-03-31",
+        "entryId": "GJ-20260331-0700",
+        "prompt": "What is something in your life right now that would have felt impossible, out of reach, or unreal to an older version of you — and why does having it now matter more than you usually admit?",
+        "status": "pending",
+        "source": "telegram + dashboard",
+        "availableWindow": "morning-to-evening",
+        "note": "Open it in the morning from Telegram or come back to it at night from the dashboard without digging through chat.",
+        "completedLabel": "Waiting for tonight's entry"
+      },
+      {
         "date": "2026-03-30",
         "entryId": "GJ-20260329-0700",
         "prompt": "What’s one person, place, or thing that made you feel quietly supported this week—and what about it hit deeper than usual?",
