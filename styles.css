@@ -67,6 +67,13 @@
     color: var(--color-fire);
   }
 
+  .micro-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+  }
+
   .chip {
     display: inline-flex;
     align-items: center;
@@ -92,6 +99,18 @@
     color: var(--color-copy);
   }
 
+  .hero-pill {
+    border: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 1rem;
+  }
+
+  .hero-pill-primary {
+    border-color: rgba(249, 115, 22, 0.22);
+    background: rgba(249, 115, 22, 0.12);
+  }
+
   .stat-card {
     display: flex;
     align-items: flex-end;
@@ -114,6 +133,34 @@
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+  }
+
+  .priority-card {
+    border: 1px solid rgba(249, 115, 22, 0.16);
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.08), rgba(255, 255, 255, 0.03));
+    border-radius: 28px;
+    padding: 1.25rem;
+  }
+
+  .priority-rank {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(249, 115, 22, 0.24);
+    background: rgba(249, 115, 22, 0.16);
+    color: var(--color-copy);
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .lane-card {
+    border: 1px solid var(--color-line);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 28px;
+    padding: 1.25rem;
   }
 
   .list-dot li::marker {
