@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SITE_DIR="$ROOT/site"
-DASHBOARD_URL="https://bryonsos.github.io/SOABOS-Dashboard-/"
+DASHBOARD_URL="https://bryonsos.github.io/SOABOS-Dashboard/"
 
 BLUE='\033[1;34m'
 GREEN='\033[1;32m'

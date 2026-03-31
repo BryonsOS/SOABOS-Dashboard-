@@ -1,15 +1,15 @@
 {
   "dashboard": {
     "site": {
-      "title": "SOABOS Dashboard",
-      "tagline": "A clean operating board for real life, real work, and what moves next.",
-      "description": "One place to see what is active, what is coming up, what is blocked, where momentum is building, and who matters next.",
+      "title": "Bryon's OS",
+      "tagline": "A living dashboard that turns chaos into motion.",
+      "description": "A public operating board for Bryon's real work, real life, and real next moves — built to make priorities visible, decisions lighter, and momentum easier to keep.",
       "owner": "Bryon"
     },
     "stats": {
       "projects": 7,
       "goals": 5,
-      "status": "Building"
+      "status": "Active"
     },
     "sections": {
       "showAreas": true,
@@ -21,30 +21,30 @@
   },
   "current": {
     "data": {
-      "title": "Current Focus",
-      "lastUpdated": "2026-03-30T00:00:00.000Z",
+      "title": "Command Deck",
+      "lastUpdated": "2026-03-31T00:00:00.000Z",
       "primaryFocus": [
-        "Refresh the SOABOS Dashboard so it feels cleaner, sharper, and more alive",
-        "Turn recent work into a board that shows real motion instead of placeholder structure",
-        "Add the birthday lane so important people and missing details stay visible"
+        "Ship a dashboard that shows the real operating picture at a glance",
+        "Keep active projects, priorities, and next moves visible without clutter",
+        "Use the board as a live command center instead of a static portfolio"
       ],
-      "currentState": "refreshed and actively evolving",
+      "currentState": "live build in motion",
       "next": [
-        "Replace seed birthday entries with real people and complete dates as they are gathered",
-        "Keep tightening the visual hierarchy so the homepage reads fast on mobile and desktop",
-        "Continue feeding real project updates into the board after working sessions"
+        "Keep feeding real project updates into the board after work sessions",
+        "Expand the command view with clearer decision lanes and sharper summaries",
+        "Tighten mobile scan speed so the right move is obvious in seconds"
       ],
       "blockers": [
-        "Birthday data is only partially filled in until more real names and dates are added",
-        "GitHub remote access still needs clean auth on this machine before direct push can happen here"
+        "Some sections still need deeper real-world data instead of seed summaries",
+        "Public-safe publishing means a few internal details need translation before they belong on the board"
       ],
       "wins": [
-        "The dashboard already has real areas, goals, and projects instead of template filler",
-        "Birthday tracking is now part of the public operating board structure",
-        "The dashboard can keep getting sharper without rebuilding the whole system each time"
+        "The dashboard is now structured around real operating lanes instead of filler",
+        "Active projects, goals, areas, updates, and birthday tracking are already wired into one board",
+        "The site can keep evolving from content files without rebuilding the whole system from scratch"
       ]
     },
-    "content": "This board is here to make the next move obvious.\n\nThe goal is not just to track things. It is to keep Bryon’s real life, real work, and real priorities visible enough to move."
+    "content": "This is not supposed to be a pretty dead page.\n\nIt is supposed to be the board Bryon can open and immediately understand: what matters, what is moving, what is stuck, and what deserves the next shot of attention."
   },
   "projects": [
     {
@@ -310,42 +310,780 @@
         "kind": "upgrade"
       },
       "content": "Pulled the birthday system into the dashboard, refreshed the current focus around real motion, and tightened the presentation so the board feels cleaner, newer, and more ready for ongoing updates."
+    },
+    {
+      "data": {
+        "date": "2026-03-31T00:00:00.000Z",
+        "title": "Reframed the dashboard as a live command deck",
+        "kind": "upgrade"
+      },
+      "content": "Shifted the dashboard away from generic project-tracker language and closer to Bryon's actual operating style: cleaner decisions, clearer motion, and one visual board that can steer life, work, and active builds without feeling bloated.\n\nThe focus now is not just listing projects. It is helping the next move stand out fast."
+    },
+    {
+      "data": {
+        "date": "2026-03-31T00:00:00.000Z",
+        "title": "Built phase 2 into a stronger command center",
+        "kind": "upgrade"
+      },
+      "content": "Added a more decisive homepage structure with ranked priority stacking, clearer operating lanes, a tighter updates feed, and a stronger mobile-first scan path.\n\nThe board now behaves more like a live command center and less like a flat collection of cards."
     }
   ],
   "birthdays": {
     "settings": {
-      "lookaheadDays": 45,
-      "title": "Birthday Tracker",
-      "subtitle": "Upcoming birthdays, known gaps, and the people list that still needs to be completed."
+      "lookaheadDays": 7,
+      "title": "Birthday Week",
+      "subtitle": "A simple 7-day birthday view so the next move stays obvious."
     },
-    "upcoming": [],
+    "upcoming": [
+      {
+        "name": "Garrett Olson",
+        "month": 4,
+        "day": 3,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "profile": "Graphic artist at work.",
+        "interests": "Drawing, shooting guns",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 3",
+        "daysAway": 3,
+        "age": null,
+        "urgency": "soon",
+        "sortKey": "04-03"
+      }
+    ],
     "needsInfo": [
       {
-        "name": "Birthday list in progress",
-        "month": null,
-        "day": null,
-        "year": null,
-        "notes": "Tracker section is live. Add real names and dates from the Birthday_Master sheet next.",
-        "relationship": "system",
+        "name": "Adam Stumpf",
+        "month": 2,
+        "day": 4,
+        "relationship": "Old Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Feb 4",
+        "daysAway": 310,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "02-04",
         "missing": [
           "birth year"
         ]
       },
       {
-        "name": "Known birthdays needing full details",
-        "month": null,
-        "day": null,
-        "year": null,
-        "notes": "Use this lane to surface people who are missing month, day, or birth year.",
-        "relationship": "planning",
+        "name": "Aiden Craft",
+        "month": 7,
+        "day": 15,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jul 15",
+        "daysAway": 106,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "07-15",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Andrea Martinec",
+        "month": 6,
+        "day": 2,
+        "relationship": "Close Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jun 2",
+        "daysAway": 63,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "06-02",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Andy Schaad",
+        "month": 6,
+        "day": 8,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jun 8",
+        "daysAway": 69,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "06-08",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Aydan Bailey",
+        "month": 5,
+        "day": 15,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "May 15",
+        "daysAway": 45,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "05-15",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Bob Miller",
+        "month": 1,
+        "day": 28,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jan 28",
+        "daysAway": 303,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "01-28",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Buddy Arrowsmith",
+        "month": 6,
+        "day": 22,
+        "relationship": "Homie",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jun 22",
+        "daysAway": 83,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "06-22",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Caitlin Evans",
+        "month": 2,
+        "day": 6,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Feb 6",
+        "daysAway": 312,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "02-06",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Chett Atwell",
+        "month": 2,
+        "day": 5,
+        "relationship": "Close Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Feb 5",
+        "daysAway": 311,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "02-05",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Craig Rompa",
+        "month": 7,
+        "day": 31,
+        "relationship": "Uncle",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jul 31",
+        "daysAway": 122,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "07-31",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Dave Golen",
+        "month": 10,
+        "day": 26,
+        "relationship": "Close Friend, Homie",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 26",
+        "daysAway": 209,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-26",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "EJ Naegeli",
+        "month": 11,
+        "day": 16,
+        "relationship": "Old Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 16",
+        "daysAway": 230,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-16",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Em Carpenter",
+        "month": 4,
+        "day": 26,
+        "relationship": "Friend",
+        "category": "Text",
+        "profile": "Artist, designer",
+        "interests": "Disc golf",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 26",
+        "daysAway": 26,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "04-26",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Emily Sornson",
+        "month": 1,
+        "day": 20,
+        "relationship": "Family Friend",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jan 20",
+        "daysAway": 295,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "01-20",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Emma Rompa",
+        "month": 10,
+        "day": 12,
+        "relationship": "Daughter",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 12",
+        "daysAway": 195,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-12",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Eric Todd",
+        "month": 1,
+        "day": 26,
+        "relationship": "Close Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jan 26",
+        "daysAway": 301,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "01-26",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Frankie Stone",
+        "month": 4,
+        "day": 25,
+        "relationship": "Grandma",
+        "category": "Both",
+        "profile": "Grandma, great grandma to my kids",
+        "interests": "Crochet, Golden Girls, Flowers",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 25",
+        "daysAway": 25,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "04-25",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Gabrielle Sornson",
+        "month": 3,
+        "day": 20,
+        "relationship": "Family Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 20",
+        "daysAway": 354,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-20",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Garrett Olson",
+        "month": 4,
+        "day": 3,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "profile": "Graphic artist at work.",
+        "interests": "Drawing, shooting guns",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 3",
+        "daysAway": 3,
+        "age": null,
+        "urgency": "soon",
+        "sortKey": "04-03",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Hayden Sornson",
+        "month": 8,
+        "day": 29,
+        "relationship": "Family Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Aug 29",
+        "daysAway": 151,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "08-29",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Jason Pro",
+        "month": 2,
+        "day": 8,
+        "relationship": "DJ Associate",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Feb 8",
+        "daysAway": 314,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "02-08",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Jenna Ball",
+        "month": 11,
+        "day": 4,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 4",
+        "daysAway": 218,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-04",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Joey Utsler",
+        "month": 10,
+        "day": 14,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 14",
+        "daysAway": 197,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-14",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "John Cream",
+        "month": 11,
+        "day": 13,
+        "relationship": "Old Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 13",
+        "daysAway": 227,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-13",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Johnny Dutcher",
+        "month": 6,
+        "day": 9,
+        "relationship": "Friend",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jun 9",
+        "daysAway": 70,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "06-09",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Karlyn Dillard",
+        "month": 12,
+        "day": 15,
+        "relationship": "Mother In Law",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Dec 15",
+        "daysAway": 259,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "12-15",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Lindsey Davis",
+        "month": 4,
+        "day": 30,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 30",
+        "daysAway": 30,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "04-30",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Lorena Wright",
+        "month": 3,
+        "day": 30,
+        "relationship": "Family Friend",
+        "category": "Text",
+        "leadTime": "Same Day",
+        "dateLabel": "Mar 30",
+        "daysAway": 364,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-30",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Mason Martinec",
+        "month": 10,
+        "day": 14,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 14",
+        "daysAway": 197,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-14",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Mat Rompa",
+        "month": 4,
+        "day": 9,
+        "relationship": "Brother",
+        "category": "Both",
+        "interests": "Red Wings, Foodie, Tech, 3D Print",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Apr 9",
+        "daysAway": 9,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "04-09",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Matt Golen",
+        "month": 3,
+        "day": 23,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 23",
+        "daysAway": 357,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-23",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Matthew Martinec",
+        "month": 1,
+        "day": 15,
+        "relationship": "Close Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jan 15",
+        "daysAway": 290,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "01-15",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Meghan Rompa",
+        "month": 3,
+        "day": 23,
+        "relationship": "Wife",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 23",
+        "daysAway": 357,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-23",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Michelle Connelly",
+        "month": 5,
+        "day": 16,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "May 16",
+        "daysAway": 46,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "05-16",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Mike Dillard",
+        "month": 1,
+        "day": 7,
+        "relationship": "Father In Law",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Jan 7",
+        "daysAway": 282,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "01-07",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Patty Beasly",
+        "month": 10,
+        "day": 18,
+        "relationship": "Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 18",
+        "daysAway": 201,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-18",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Rachel Beasley",
+        "month": 11,
+        "day": 18,
+        "relationship": "Sister In Law",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 18",
+        "daysAway": 232,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-18",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Rebecca Sornson",
+        "month": 11,
+        "day": 26,
+        "relationship": "Close Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 26",
+        "daysAway": 240,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-26",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Ron Simmons",
+        "month": 3,
+        "day": 20,
+        "relationship": "Family Uncle",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 20",
+        "daysAway": 354,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-20",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Scott Taylor",
+        "month": 11,
+        "day": 8,
+        "relationship": "Work Friend",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Nov 8",
+        "daysAway": 222,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "11-08",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Sophia Rompa",
+        "month": 3,
+        "day": 26,
+        "relationship": "Daughter",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 26",
+        "daysAway": 360,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-26",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Steve Rompa",
+        "month": 3,
+        "day": 23,
+        "relationship": "Dad",
+        "category": "Both",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Mar 23",
+        "daysAway": 357,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "03-23",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Tina Rompa",
+        "month": 5,
+        "day": 28,
+        "relationship": "Mom",
+        "category": "Both",
+        "profile": "My mom",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "May 28",
+        "daysAway": 58,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "05-28",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "TJ Sornson",
+        "month": 2,
+        "day": 9,
+        "relationship": "Close Friend, Homie",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Feb 9",
+        "daysAway": 315,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "02-09",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Tom Bailey",
+        "month": 10,
+        "day": 8,
+        "relationship": "Boss",
+        "category": "Text",
+        "leadTime": "1 Week, Same Day",
+        "dateLabel": "Oct 8",
+        "daysAway": 191,
+        "age": null,
+        "urgency": "upcoming",
+        "sortKey": "10-08",
         "missing": [
           "birth year"
         ]
       }
     ],
     "summary": {
-      "upcomingCount": 0,
-      "needsInfoCount": 2
+      "upcomingCount": 1,
+      "needsInfoCount": 45
     }
   }
 }

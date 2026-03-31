@@ -4,9 +4,15 @@ import matter from 'gray-matter'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
-const outputDir = path.join(root, 'dist', 'generated')
+const outputDirs = [
+  path.join(root, 'dist', 'generated'),
+  path.join(root, 'generated'),
+  path.join(root, 'public', 'generated')
+]
 
-fs.mkdirSync(outputDir, { recursive: true })
+for (const dir of outputDirs) {
+  fs.mkdirSync(dir, { recursive: true })
+}
 
 const dashboard = JSON.parse(fs.readFileSync(path.join(contentDir, 'dashboard.json'), 'utf8'))
 const current = readMarkdown(path.join(contentDir, 'now', 'current.md'))
@@ -35,7 +41,9 @@ const bundle = {
   birthdays: buildBirthdays(birthdays)
 }
 
-fs.writeFileSync(path.join(outputDir, 'content.json'), JSON.stringify(bundle, null, 2))
+for (const dir of outputDirs) {
+  fs.writeFileSync(path.join(dir, 'content.json'), JSON.stringify(bundle, null, 2))
+}
 
 function readCollection(dir) {
   return fs.readdirSync(dir)
