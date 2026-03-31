@@ -8,6 +8,9 @@ async function init() {
   const sortedProjects = [...projects].sort(sortProjects)
   const spotlightProject = sortedProjects[0]
   const topUpdate = updates.at(-1)
+  const activeProjects = sortedProjects.filter((item) => String(item.data.status || '').toLowerCase() === 'active')
+  const highPriorityProjects = sortedProjects.filter((item) => String(item.data.priority || '').toLowerCase() === 'high')
+  const immediateMoves = buildImmediateMoves(current, sortedProjects)
 
   app.innerHTML = `
     <div class="relative overflow-hidden">
@@ -98,10 +101,27 @@ async function init() {
         </section>
 
         <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          ${renderStatCard('Active projects', dashboard.stats.projects, 'Projects in play right now.')}
-          ${renderStatCard('Active goals', dashboard.stats.goals, 'Targets this system is protecting.')}
+          ${renderStatCard('Active projects', activeProjects.length, 'Projects in play right now.')}
+          ${renderStatCard('High priority', highPriorityProjects.length, 'Projects demanding stronger attention.')}
           ${renderStatCard('Birthday radar', birthdays.summary?.upcomingCount ?? 0, 'People coming up on deck.')}
           ${renderStatCard('System status', dashboard.stats.status, 'Board is live and ready to steer from.')}
+        </section>
+
+        <section class="glass-card p-5 sm:p-6 lg:p-7">
+          <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p class="section-kicker">Decision lane</p>
+              <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy sm:text-3xl">Immediate moves</h2>
+              <p class="mt-3 max-w-2xl text-sm leading-6 text-copy-soft">The board should help the next move jump out. These are the clearest actions on deck right now.</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="chip chip-warm">${immediateMoves.length} moves loaded</span>
+              <span class="chip">Command view</span>
+            </div>
+          </div>
+          <div class="mt-6 grid gap-4 xl:grid-cols-3">
+            ${immediateMoves.map(renderImmediateMoveCard).join('')}
+          </div>
         </section>
 
         ${dashboard.sections?.showBirthdays ? renderBirthdaySection(birthdays) : ''}
@@ -216,6 +236,23 @@ function renderProjectCard(item) {
       <div class="mt-5 flex flex-wrap gap-2">
         <span class="chip">Area · ${humanizeToken(item.data.area)}</span>
         ${renderLinksInline(item.data.links)}
+      </div>
+    </article>
+  `
+}
+
+function renderImmediateMoveCard(item) {
+  return `
+    <article class="rounded-[26px] border border-fire/18 bg-fire-soft p-5">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">${item.lane}</p>
+        <span class="chip">${item.tag}</span>
+      </div>
+      <h3 class="mt-4 text-xl font-semibold tracking-[-0.03em] text-copy">${item.title}</h3>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${item.summary}</p>
+      <div class="mt-5 rounded-[22px] border border-fire/16 bg-black/10 px-4 py-4">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">Action</p>
+        <p class="mt-2 text-sm leading-6 text-copy">${item.action}</p>
       </div>
     </article>
   `
@@ -340,6 +377,36 @@ function renderLinksInline(links = {}) {
   if (!entries.length) return ''
 
   return entries.map(([label, href]) => renderLink(label, href)).join('')
+}
+
+function buildImmediateMoves(current, projects = []) {
+  const moves = []
+  const nextItems = Array.isArray(current?.data?.next) ? current.data.next : []
+
+  nextItems.slice(0, 2).forEach((item, index) => {
+    moves.push({
+      lane: index === 0 ? 'Right now' : 'On deck',
+      tag: 'Board move',
+      title: item,
+      summary: 'Pulled from the live command deck so the homepage keeps the next move visible.',
+      action: item
+    })
+  })
+
+  projects
+    .filter((project) => String(project.data.priority || '').toLowerCase() === 'high')
+    .slice(0, 2)
+    .forEach((project) => {
+      moves.push({
+        lane: humanizeToken(project.data.area || 'project'),
+        tag: `${capitalize(project.data.priority || 'active')} priority`,
+        title: project.data.title,
+        summary: project.data.summary,
+        action: project.data.nextAction
+      })
+    })
+
+  return moves.slice(0, 3)
 }
 
 function renderLink(label, href) {

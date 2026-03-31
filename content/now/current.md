@@ -1,24 +1,24 @@
 ---
-title: Current Focus
-lastUpdated: 2026-03-30
+title: Command Deck
+lastUpdated: 2026-03-31
 primaryFocus:
-  - Refresh the SOABOS Dashboard so it feels cleaner, sharper, and more alive
-  - Turn recent work into a board that shows real motion instead of placeholder structure
-  - Add the birthday lane so important people and missing details stay visible
-currentState: refreshed and actively evolving
+  - Ship a dashboard that shows the real operating picture at a glance
+  - Keep active projects, priorities, and next moves visible without clutter
+  - Use the board as a live command center instead of a static portfolio
+currentState: live build in motion
 next:
-  - Replace seed birthday entries with real people and complete dates as they are gathered
-  - Keep tightening the visual hierarchy so the homepage reads fast on mobile and desktop
-  - Continue feeding real project updates into the board after working sessions
+  - Keep feeding real project updates into the board after work sessions
+  - Expand the command view with clearer decision lanes and sharper summaries
+  - Tighten mobile scan speed so the right move is obvious in seconds
 blockers:
-  - Birthday data is only partially filled in until more real names and dates are added
-  - GitHub remote access still needs clean auth on this machine before direct push can happen here
+  - Some sections still need deeper real-world data instead of seed summaries
+  - Public-safe publishing means a few internal details need translation before they belong on the board
 wins:
-  - The dashboard already has real areas, goals, and projects instead of template filler
-  - Birthday tracking is now part of the public operating board structure
-  - The dashboard can keep getting sharper without rebuilding the whole system each time
+  - The dashboard is now structured around real operating lanes instead of filler
+  - Active projects, goals, areas, updates, and birthday tracking are already wired into one board
+  - The site can keep evolving from content files without rebuilding the whole system from scratch
 ---
 
-This board is here to make the next move obvious.
+This is not supposed to be a pretty dead page.
 
-The goal is not just to track things. It is to keep Bryon’s real life, real work, and real priorities visible enough to move.
+It is supposed to be the board Bryon can open and immediately understand: what matters, what is moving, what is stuck, and what deserves the next shot of attention.

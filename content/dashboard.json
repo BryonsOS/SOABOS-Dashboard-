@@ -1,14 +1,14 @@
 {
   "site": {
-    "title": "SOABOS Dashboard",
-    "tagline": "A clean operating board for real life, real work, and what moves next.",
-    "description": "One place to see what is active, what is coming up, what is blocked, where momentum is building, and who matters next.",
+    "title": "Bryon's OS",
+    "tagline": "A living dashboard that turns chaos into motion.",
+    "description": "A public operating board for Bryon's real work, real life, and real next moves — built to make priorities visible, decisions lighter, and momentum easier to keep.",
     "owner": "Bryon"
   },
   "stats": {
     "projects": 4,
     "goals": 3,
-    "status": "Building"
+    "status": "Active"
   },
   "sections": {
     "showAreas": true,
