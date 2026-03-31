@@ -2,7 +2,6 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SITE_DIR="$ROOT/site"
 DASHBOARD_URL="https://bryonsos.github.io/SOABOS-Dashboard/"
 
 BLUE='\033[1;34m'
@@ -30,12 +29,6 @@ fail() {
   exit 1
 }
 
-require_clean_tree_notice() {
-  if ! git diff --quiet || ! git diff --cached --quiet; then
-    warn "Working tree has changes. I’ll only commit the dashboard source files."
-  fi
-}
-
 MESSAGE="${*:-Publish dashboard update}"
 AMEND=false
 if [[ "${1:-}" == "--amend" ]]; then
@@ -45,18 +38,36 @@ if [[ "${1:-}" == "--amend" ]]; then
 fi
 
 step "Building dashboard"
-cd "$SITE_DIR"
+cd "$ROOT"
 npm run build >/tmp/soabos-dashboard-build.log 2>&1 || {
   cat /tmp/soabos-dashboard-build.log
   fail "Build failed"
 }
-ok "Site build complete"
+ok "Dashboard build complete"
+
+step "Refreshing root Pages artifacts"
+node ./scripts/render-pages-entry.mjs
+ok "Root Pages files synced from dist/"
 
 step "Reviewing repository state"
-cd "$ROOT"
-require_clean_tree_notice
-
-git add content site .github README.md publish.sh
+git add \
+  content \
+  generated/content.json \
+  public/generated/content.json \
+  dist/generated/content.json \
+  dist/index.html \
+  dist/assets \
+  app/index.html \
+  index.html \
+  404.html \
+  assets \
+  main.js \
+  vite.config.js \
+  package.json \
+  .github \
+  README.md \
+  publish.sh \
+  scripts/build-content.mjs
 
 if git diff --cached --quiet; then
   warn "No source changes to publish. Build is already current."
@@ -69,11 +80,29 @@ printf "${DIM}Staged files:${RESET}\n%s\n" "$CHANGED_FILES"
 
 step "Creating publish commit"
 if [[ "$AMEND" == true ]]; then
-  git commit --amend --no-edit
+  GIT_EDITOR=true git commit --amend --no-edit
   ok "Amended previous publish commit"
 else
   git commit -m "$MESSAGE"
   ok "Committed: $MESSAGE"
+fi
+
+step "Updating from remote if needed"
+git fetch origin main
+LOCAL_HEAD="$(git rev-parse HEAD)"
+REMOTE_HEAD="$(git rev-parse origin/main)"
+BASE_HEAD="$(git merge-base HEAD origin/main)"
+
+if [[ "$LOCAL_HEAD" != "$REMOTE_HEAD" ]]; then
+  if [[ "$BASE_HEAD" == "$REMOTE_HEAD" ]]; then
+    ok "Local branch is ahead of remote"
+  elif [[ "$BASE_HEAD" == "$LOCAL_HEAD" ]]; then
+    warn "Remote is ahead. Rebasing local publish commit onto origin/main"
+    GIT_EDITOR=true git rebase origin/main || fail "Rebase failed. Resolve conflicts and rerun publish.sh"
+  else
+    warn "Local and remote both moved. Rebasing onto origin/main"
+    GIT_EDITOR=true git rebase origin/main || fail "Rebase failed. Resolve conflicts and rerun publish.sh"
+  fi
 fi
 
 step "Pushing to GitHub"
