@@ -2,9 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 
-const root = path.resolve(process.cwd(), '..')
+const root = process.cwd()
 const contentDir = path.join(root, 'content')
-const outputDir = path.join(process.cwd(), 'dist', 'generated')
+const outputDir = path.join(root, 'dist', 'generated')
 
 fs.mkdirSync(outputDir, { recursive: true })
 

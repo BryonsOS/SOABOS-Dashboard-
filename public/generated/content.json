@@ -1,0 +1,351 @@
+{
+  "dashboard": {
+    "site": {
+      "title": "SOABOS Dashboard",
+      "tagline": "A clean operating board for real life, real work, and what moves next.",
+      "description": "One place to see what is active, what is coming up, what is blocked, where momentum is building, and who matters next.",
+      "owner": "Bryon"
+    },
+    "stats": {
+      "projects": 7,
+      "goals": 5,
+      "status": "Building"
+    },
+    "sections": {
+      "showAreas": true,
+      "showGoals": true,
+      "showProjects": true,
+      "showUpdates": true,
+      "showBirthdays": true
+    }
+  },
+  "current": {
+    "data": {
+      "title": "Current Focus",
+      "lastUpdated": "2026-03-30T00:00:00.000Z",
+      "primaryFocus": [
+        "Refresh the SOABOS Dashboard so it feels cleaner, sharper, and more alive",
+        "Turn recent work into a board that shows real motion instead of placeholder structure",
+        "Add the birthday lane so important people and missing details stay visible"
+      ],
+      "currentState": "refreshed and actively evolving",
+      "next": [
+        "Replace seed birthday entries with real people and complete dates as they are gathered",
+        "Keep tightening the visual hierarchy so the homepage reads fast on mobile and desktop",
+        "Continue feeding real project updates into the board after working sessions"
+      ],
+      "blockers": [
+        "Birthday data is only partially filled in until more real names and dates are added",
+        "GitHub remote access still needs clean auth on this machine before direct push can happen here"
+      ],
+      "wins": [
+        "The dashboard already has real areas, goals, and projects instead of template filler",
+        "Birthday tracking is now part of the public operating board structure",
+        "The dashboard can keep getting sharper without rebuilding the whole system each time"
+      ]
+    },
+    "content": "This board is here to make the next move obvious.\n\nThe goal is not just to track things. It is to keep Bryon’s real life, real work, and real priorities visible enough to move."
+  },
+  "projects": [
+    {
+      "data": {
+        "slug": "crew-operating-system",
+        "title": "Crew Operating System",
+        "status": "active",
+        "priority": "high",
+        "area": "systems",
+        "summary": "Turn the Sons-of-Anarchy-style crew structure into a usable operating model for home, work, events, and merch support.",
+        "nextAction": "Keep defining roles, routing rules, and practical handoff structure so the system can run cleanly.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "charter": "internal system docs"
+        }
+      },
+      "content": "## Why it exists\n\nThis gives Bryon a more intuitive way to divide responsibilities across recurring parts of life and business.\n\n## Current direction\n\n- role clarity\n- cleaner handoffs\n- system-first thinking\n- motion over chaos"
+    },
+    {
+      "data": {
+        "slug": "dj-event-ops",
+        "title": "DJ Event Ops",
+        "status": "active",
+        "priority": "high",
+        "area": "events",
+        "summary": "Keep DJ events tight from the first detail to the day-of execution.",
+        "nextAction": "Build a cleaner event prep view so important details stay visible before go time.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "support": "booking-agent-led"
+        }
+      },
+      "content": "## Why it exists\n\nEven with bookings coming through an agent, the work still needs a dependable system around it.\n\n## Current direction\n\n- cleaner event prep\n- contact and paperwork support\n- schedule visibility\n- fewer last-minute scrambles"
+    },
+    {
+      "data": {
+        "slug": "gratitude-journal-system",
+        "title": "Gratitude Journal System",
+        "status": "active",
+        "priority": "medium",
+        "area": "personal",
+        "summary": "Keep a daily gratitude rhythm that is easy to answer, easy to log, and meaningful enough to actually stick.",
+        "nextAction": "Continue improving prompt quality and keeping the log clean when entries get messy.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "system": "internal workflow"
+        }
+      },
+      "content": "## Why it exists\n\nA good gratitude system should feel grounding, not corny.\n\n## Current direction\n\n- stronger prompts\n- cleaner logging\n- less repetition\n- durable record over time"
+    },
+    {
+      "data": {
+        "slug": "home-ops",
+        "title": "Home Ops",
+        "status": "active",
+        "priority": "medium",
+        "area": "home-family",
+        "summary": "Build a calmer system for family logistics, recurring responsibilities, and the work that usually disappears into the background.",
+        "nextAction": "Turn recurring household coordination into a visible system that does not feel heavy to maintain.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "owner": "Bobby lane"
+        }
+      },
+      "content": "## Why it exists\n\nHome gets harder than it should when everything lives in somebody's head.\n\n## Current direction\n\n- family calendar clarity\n- recurring task visibility\n- steadier planning\n- less reactive chaos"
+    },
+    {
+      "data": {
+        "slug": "sick-marketing-ops",
+        "title": "Sick Marketing Ops",
+        "status": "active",
+        "priority": "high",
+        "area": "work",
+        "summary": "Help the marketing and e-commerce side of Sick stay sharper, more organized, and easier to move.",
+        "nextAction": "Turn recurring marketing work into a clearer system around email, sales visibility, and useful experiments.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "team": "Sick"
+        }
+      },
+      "content": "## Why it exists\n\nBryon's role at Sick is not just making things. It is helping the work stay organized enough to move.\n\n## Current direction\n\n- sharper marketing support\n- better visibility into what is moving\n- practical systems over overbuilt process\n- real execution, not admin theater"
+    },
+    {
+      "data": {
+        "slug": "sick-retro-tv-guide",
+        "title": "Sick Retro TV Guide",
+        "status": "active",
+        "priority": "high",
+        "area": "work",
+        "summary": "Build a retro-style TV guide experience around Sick's YouTube channel so programming feels curated, fun, and worth browsing.",
+        "nextAction": "Keep hardening the embed/publish path so it behaves cleanly inside the website host.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z",
+        "links": {
+          "context": "https://www.youtube.com/"
+        }
+      },
+      "content": "## Why it exists\n\nThe project turns a regular video feed into something that feels programmed instead of dumped into a list.\n\n## Current direction\n\n- retro TV guide visual language\n- simple user flow\n- website-safe embed behavior\n- practical enough to maintain without babysitting"
+    },
+    {
+      "data": {
+        "slug": "soabos-dashboard",
+        "title": "SOABOS Dashboard",
+        "status": "active",
+        "priority": "high",
+        "area": "systems",
+        "summary": "Build a public home base that makes active work, real priorities, and the next move easier to see.",
+        "nextAction": "Keep folding real operating systems into the board while making the design feel cleaner and easier to scan.",
+        "lastUpdated": "2026-03-30T00:00:00.000Z",
+        "links": {
+          "repo": "https://github.com/BryonsOS/SOABOS-Dashboard",
+          "live": "https://bryonsos.github.io/SOABOS-Dashboard/"
+        }
+      },
+      "content": "## Why it exists\n\nBryon needs one clean place to see what is in motion across life, work, and active builds without hunting through scattered apps and half-finished notes.\n\n## Current direction\n\n- content-first architecture\n- public-safe by default\n- conversation-driven updates\n- publish fast without hand-rebuilding the site every time"
+    }
+  ],
+  "goals": [
+    {
+      "data": {
+        "slug": "protect-momentum",
+        "title": "Protect momentum across work and life",
+        "status": "active",
+        "horizon": "ongoing",
+        "area": "systems",
+        "summary": "Build a practical operating rhythm that supports work, family, and personal systems without making everything feel heavy.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "Momentum compounds when the next move is visible and the system is light enough to keep using."
+    },
+    {
+      "data": {
+        "slug": "publish-cleanly",
+        "title": "Publish updates without cleanup headaches",
+        "status": "active",
+        "horizon": "near-term",
+        "area": "systems",
+        "summary": "Make the dashboard reliable to ship so content changes can go live without broken paths, stray build artifacts, or manual patchwork.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "A system people trust gets updated. A system that feels fragile gets avoided."
+    },
+    {
+      "data": {
+        "slug": "real-details",
+        "title": "Replace placeholders with real operating details",
+        "status": "active",
+        "horizon": "near-term",
+        "area": "systems",
+        "summary": "Fill the dashboard with real projects, real focus, and useful descriptions so it starts feeling like a true working board.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "The dashboard should reflect reality early, even if it is still rough around the edges."
+    },
+    {
+      "data": {
+        "slug": "reduce-drift",
+        "title": "Reduce drift between ideas and execution",
+        "status": "active",
+        "horizon": "ongoing",
+        "area": "systems",
+        "summary": "Create enough structure that important work does not disappear between conversations, context switches, or busy days.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "The target is not maximum organization. It is keeping good work from slipping through the cracks."
+    },
+    {
+      "data": {
+        "slug": "system-visibility",
+        "title": "Make priorities visible enough to act on",
+        "status": "active",
+        "horizon": "ongoing",
+        "area": "systems",
+        "summary": "Build a dashboard that keeps active projects, next actions, and useful progress visible without turning into clutter.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "The win is not more documentation. The win is less drift, less hunting, and faster motion."
+    }
+  ],
+  "areas": [
+    {
+      "data": {
+        "slug": "events",
+        "title": "Events & DJ",
+        "summary": "Planning, prep, logistics, and execution for booked events, DJ work, and the details around making each one run clean.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area is for event-facing work: schedules, contacts, prep, materials, and everything that has to be ready before go time."
+    },
+    {
+      "data": {
+        "slug": "home-family",
+        "title": "Home & Family",
+        "summary": "Family logistics, home operations, and the routines that keep daily life from turning into scramble mode.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area covers the systems that support the household: calendars, kid coordination, groceries, planning, and keeping the basics handled."
+    },
+    {
+      "data": {
+        "slug": "personal",
+        "title": "Personal",
+        "summary": "The routines and systems that help life feel steadier, more intentional, and less reactive.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area is where reflection, habits, and quality-of-life support systems live."
+    },
+    {
+      "data": {
+        "slug": "systems",
+        "title": "Systems",
+        "summary": "The dashboards, workflows, and operating structure that keep chaos from swallowing the important stuff.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area holds the backbone work: dashboards, routing, process design, and the tools that make the rest of the machine easier to run."
+    },
+    {
+      "data": {
+        "slug": "work",
+        "title": "Work",
+        "summary": "Client work, creative experiments, and business-facing projects that need to ship, perform, or stay organized.",
+        "lastUpdated": "2026-03-29T00:00:00.000Z"
+      },
+      "content": "This area covers the projects tied to Bryon's day-to-day output, revenue, and brand-building work."
+    }
+  ],
+  "updates": [
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Initial dashboard scaffold",
+        "kind": "setup"
+      },
+      "content": "Created the initial repo structure for a public dashboard that can track goals, projects, areas, and current focus.\n\nEstablished a content-first model so future updates can be made by editing structured files rather than manually changing the website for every small change."
+    },
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Added sharper operating language and next-move structure",
+        "kind": "refinement"
+      },
+      "content": "Started shaping the dashboard around a more usable rhythm: what matters now, what happens next, what is in the way, and what already moved forward."
+    },
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Publish flow cleanup and first real content pass",
+        "kind": "update"
+      },
+      "content": "Started replacing scaffold copy with real operating details, added more actual projects and goals, and tightened the publish path so future updates can go out with less cleanup."
+    },
+    {
+      "data": {
+        "date": "2026-03-29T00:00:00.000Z",
+        "title": "Expanded dashboard into a real operating board",
+        "kind": "structure"
+      },
+      "content": "Added more actual operating areas, seeded real project tracks across work, events, home, and systems, and moved the dashboard closer to a usable public view instead of a generic scaffold."
+    },
+    {
+      "data": {
+        "date": "2026-03-30T00:00:00.000Z",
+        "title": "Added birthday tracking lane and refreshed the dashboard feel",
+        "kind": "upgrade"
+      },
+      "content": "Pulled the birthday system into the dashboard, refreshed the current focus around real motion, and tightened the presentation so the board feels cleaner, newer, and more ready for ongoing updates."
+    }
+  ],
+  "birthdays": {
+    "settings": {
+      "lookaheadDays": 45,
+      "title": "Birthday Tracker",
+      "subtitle": "Upcoming birthdays, known gaps, and the people list that still needs to be completed."
+    },
+    "upcoming": [],
+    "needsInfo": [
+      {
+        "name": "Birthday list in progress",
+        "month": null,
+        "day": null,
+        "year": null,
+        "notes": "Tracker section is live. Add real names and dates from the Birthday_Master sheet next.",
+        "relationship": "system",
+        "missing": [
+          "birth year"
+        ]
+      },
+      {
+        "name": "Known birthdays needing full details",
+        "month": null,
+        "day": null,
+        "year": null,
+        "notes": "Use this lane to surface people who are missing month, day, or birth year.",
+        "relationship": "planning",
+        "missing": [
+          "birth year"
+        ]
+      }
+    ],
+    "summary": {
+      "upcomingCount": 0,
+      "needsInfoCount": 2
+    }
+  }
+}
