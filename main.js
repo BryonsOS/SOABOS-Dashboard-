@@ -838,8 +838,20 @@ function sortProjects(a, b) {
     || a.data.title.localeCompare(b.data.title)
 }
 
+function parseDisplayDate(value) {
+  if (typeof value === 'string') {
+    const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+    if (match) {
+      const [, year, month, day] = match
+      return new Date(Number(year), Number(month) - 1, Number(day))
+    }
+  }
+
+  return new Date(value)
+}
+
 function formatCalendarDate(value) {
-  const date = new Date(value)
+  const date = parseDisplayDate(value)
   if (Number.isNaN(date.getTime())) return value
 
   return date.toLocaleDateString('en-US', {

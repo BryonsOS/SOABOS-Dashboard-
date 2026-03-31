@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))c(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&c(r)}).observe(document,{childList:!0,subtree:!0});function s(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function c(i){if(i.ep)return;i.ep=!0;const a=s(i);fetch(i.href,a)}})();async function D(){const t=await fetch("./generated/content.json").then(i=>i.json()),e=document.querySelector("#app"),s=O(t);function c(){const i=ct(window.location.hash);e.innerHTML=R(s,i),it(e,s,i)}window.addEventListener("hashchange",c),c()}function O(t){const{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:p,gratitude:o}=t,n=[...c].sort(k),L=n[0]||null,C=r.at(-1)||null,P=n.filter(g=>String(g.data.status||"").toLowerCase()==="active"),S=n.filter(g=>String(g.data.priority||"").toLowerCase()==="high"),B=et(s,n),T=st(a,n),N=n.slice(0,4),A=r.slice().reverse().slice(0,4),u=at(p),U=u.upcoming.slice(0,12),M=dt(o);return{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:p,gratitude:o,sortedProjects:n,spotlightProject:L,topUpdate:C,activeProjects:P,highPriorityProjects:S,immediateMoves:B,laneGroups:T,hotProjects:N,recentUpdates:A,birthdaysState:u,allRecentBirthdays:U,gratitudeCard:M}}function R(t,e){const s=E(t,e);return`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))c(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&c(r)}).observe(document,{childList:!0,subtree:!0});function s(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function c(i){if(i.ep)return;i.ep=!0;const a=s(i);fetch(i.href,a)}})();async function M(){const t=await fetch("./generated/content.json").then(i=>i.json()),e=document.querySelector("#app"),s=O(t);function c(){const i=ct(window.location.hash);e.innerHTML=R(s,i),it(e,s,i)}window.addEventListener("hashchange",c),c()}function O(t){const{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:p,gratitude:o}=t,n=[...c].sort(k),L=n[0]||null,C=r.at(-1)||null,P=n.filter(g=>String(g.data.status||"").toLowerCase()==="active"),S=n.filter(g=>String(g.data.priority||"").toLowerCase()==="high"),B=et(s,n),N=st(a,n),T=n.slice(0,4),A=r.slice().reverse().slice(0,4),u=at(p),D=u.upcoming.slice(0,12),U=pt(o);return{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:p,gratitude:o,sortedProjects:n,spotlightProject:L,topUpdate:C,activeProjects:P,highPriorityProjects:S,immediateMoves:B,laneGroups:N,hotProjects:T,recentUpdates:A,birthdaysState:u,allRecentBirthdays:D,gratitudeCard:U}}function R(t,e){const s=E(t,e);return`
     <div class="relative overflow-hidden">
       <div class="pointer-events-none absolute inset-0 opacity-60">
         <div class="absolute left-[-8rem] top-[-10rem] h-72 w-72 rounded-full bg-fire/12 blur-3xl"></div>
@@ -43,7 +43,7 @@
       </div>
     </section>
   `}function m(t,e,s=!1){return`<a class="nav-chip ${s?"nav-chip-active":""}" href="${t}">${e}</a>`}function b(t){var e;return`
-    ${ot(t.gratitudeCard)}
+    ${nt(t.gratitudeCard)}
 
     <section class="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
       <div class="stack-card compact-card">
@@ -66,10 +66,10 @@
       <aside class="stack-card compact-card">
         <p class="section-kicker">Board status</p>
         <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-          ${h("Active projects",t.activeProjects.length,"Projects in motion right now.")}
-          ${h("High priority",t.highPriorityProjects.length,"Needs stronger attention.")}
-          ${h("Birthday radar",((e=t.birthdays.summary)==null?void 0:e.upcomingCount)??0,"Upcoming birthdays loaded.")}
-          ${h("System status",t.dashboard.stats.status,"Board is live and steerable.")}
+          ${f("Active projects",t.activeProjects.length,"Projects in motion right now.")}
+          ${f("High priority",t.highPriorityProjects.length,"Needs stronger attention.")}
+          ${f("Birthday radar",((e=t.birthdays.summary)==null?void 0:e.upcomingCount)??0,"Upcoming birthdays loaded.")}
+          ${f("System status",t.dashboard.stats.status,"Board is live and steerable.")}
         </div>
       </aside>
     </section>
@@ -106,10 +106,10 @@
           </div>
         </div>
         <div class="grid gap-3 sm:grid-cols-2">
-          ${f("Now",t.current.data.primaryFocus,"orange")}
-          ${f("Next",t.current.data.next||[],"default")}
-          ${f("Blockers",t.current.data.blockers||[],"warning")}
-          ${f("Wins",t.current.data.wins||[],"success")}
+          ${h("Now",t.current.data.primaryFocus,"orange")}
+          ${h("Next",t.current.data.next||[],"default")}
+          ${h("Blockers",t.current.data.blockers||[],"warning")}
+          ${h("Wins",t.current.data.wins||[],"success")}
         </div>
       </section>
     </section>
@@ -380,7 +380,7 @@
       <h3 class="mt-3 text-lg font-semibold tracking-[-0.03em] text-copy">${t.title}</h3>
       <p class="mt-2 text-sm leading-6 text-copy-soft">${t.action}</p>
     </article>
-  `}function h(t,e,s){return`
+  `}function f(t,e,s){return`
     <article class="stat-card compact-stat-card">
       <div>
         <p class="micro-label text-copy-faint">${t}</p>
@@ -423,7 +423,7 @@
       </div>
       <p class="mt-3 text-sm leading-7 text-copy-soft">${t.content}</p>
     </article>
-  `}function f(t,e=[],s="default"){const c=e.length?e:["Nothing loaded yet."],i={orange:"border-fire/25 bg-fire-soft",warning:"border-amber-400/20 bg-amber-400/10",success:"border-emerald-400/20 bg-emerald-400/10",default:"border-line bg-white/5"};return`
+  `}function h(t,e=[],s="default"){const c=e.length?e:["Nothing loaded yet."],i={orange:"border-fire/25 bg-fire-soft",warning:"border-amber-400/20 bg-amber-400/10",success:"border-emerald-400/20 bg-emerald-400/10",default:"border-line bg-white/5"};return`
     <article class="glass-card p-4 ${i[s]||i.default}">
       <p class="section-kicker">${t}</p>
       <ul class="list-dot space-y-2 pl-5 text-sm leading-6 text-copy-soft">
@@ -496,7 +496,7 @@
       <p class="mt-4 text-sm text-fire">Open project detail →</p>
     </a>
   `}function et(t,e=[]){var i;const s=[];return(Array.isArray((i=t==null?void 0:t.data)==null?void 0:i.next)?t.data.next:[]).slice(0,2).forEach((a,r)=>{s.push({lane:r===0?"Right now":"On deck",tag:"Board move",title:a,summary:"Pulled from the live command deck.",action:a})}),e.filter(a=>String(a.data.priority||"").toLowerCase()==="high").slice(0,2).forEach(a=>{s.push({lane:d(a.data.area||"project"),tag:`${l(a.data.priority||"active")} priority`,title:a.data.title,summary:a.data.summary,action:a.data.nextAction})}),s.slice(0,3)}function st(t=[],e=[]){return t.map(s=>({label:"Lane",title:s.data.title,summary:s.data.summary,slug:s.data.slug,projects:e.filter(c=>c.data.area===s.data.slug).sort(k).slice(0,3)})).sort((s,c)=>c.projects.length-s.projects.length||s.title.localeCompare(c.title))}function at(t={}){const e=Array.isArray(t.upcoming)?t.upcoming.slice().sort((i,a)=>i.daysAway-a.daysAway||i.name.localeCompare(a.name)):[],s={};return e.forEach(i=>{const a=$(i.dateLabel);s[a]||(s[a]=[]),s[a].push(i)}),{upcoming:e,byMonth:s,monthOrder:["january","february","march","april","may","june","july","august","september","october","november","december"]}}function it(t,e,s){if(s.name==="home"){const c=t.querySelector("[data-home-scroll]");c&&c.scrollIntoView({block:"start"})}}function ct(t){const s=(String(t||"#/").replace(/^#/,"")||"/").split("/").filter(Boolean);return s.length?s[0]==="birthdays"&&s[1]?{name:"birthdays",month:s[1].toLowerCase()}:s[0]==="birthdays"?{name:"birthdays"}:s[0]==="projects"&&s[1]?{name:"project",slug:s[1]}:s[0]==="projects"?{name:"projects"}:s[0]==="updates"?{name:"updates"}:{name:"home"}:{name:"home"}}function rt(t,e){const s=d(t);return/^https?:\/\//i.test(e)?`<a class="chip hover:border-fire/35 hover:bg-fire-soft" href="${e}" target="_blank" rel="noreferrer">${s}</a>`:`<span class="chip">${s}: ${e}</span>`}function lt(t=""){return t.split(/\n\n+/).map(e=>{const s=e.split(`
-`).map(c=>c.trim()).filter(Boolean);if(!s.length)return"";if(s.every(c=>c.startsWith("- ")))return`<ul class="list-dot space-y-2 pl-5 text-sm leading-7 text-copy-soft">${s.map(c=>`<li>${c.replace(/^-\s*/,"")}</li>`).join("")}</ul>`;if(s[0].startsWith("## ")){const c=s[0].replace(/^##\s*/,""),i=s.slice(1).join(" ");return`<div class="space-y-2"><h3 class="text-lg font-semibold text-copy">${c}</h3>${i?`<p class="text-sm leading-7 text-copy-soft">${i}</p>`:""}</div>`}return`<p class="text-sm leading-7 text-copy-soft">${s.join(" ")}</p>`}).join("")}function $(t=""){return String(t).split(" ")[0].toLowerCase()}function d(t=""){return t.replace(/[-_]/g," ").replace(/\b\w/g,e=>e.toUpperCase())}function l(t=""){return t?t.charAt(0).toUpperCase()+t.slice(1):""}function k(t,e){const s={high:0,medium:1,low:2},c={active:0,queued:1,blocked:2,paused:3,idea:4,complete:5};return(s[String(t.data.priority||"").toLowerCase()]??9)-(s[String(e.data.priority||"").toLowerCase()]??9)||(c[String(t.data.status||"").toLowerCase()]??9)-(c[String(e.data.status||"").toLowerCase()]??9)||t.data.title.localeCompare(e.data.title)}function y(t){const e=new Date(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function x(t){const e=new Date(t);if(Number.isNaN(e.getTime()))return t;const s=new Date,c=new Date(s.getFullYear(),s.getMonth(),s.getDate()),i=new Date(e.getFullYear(),e.getMonth(),e.getDate()),a=Math.round((c-i)/864e5);return a===0?"today":a===1?"yesterday":e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function j(t){return t===0?"Today":t===1?"Tomorrow":`${t} days`}D();function ot(t={}){const e=Array.isArray(t.history)?t.history:[];return`
+`).map(c=>c.trim()).filter(Boolean);if(!s.length)return"";if(s.every(c=>c.startsWith("- ")))return`<ul class="list-dot space-y-2 pl-5 text-sm leading-7 text-copy-soft">${s.map(c=>`<li>${c.replace(/^-\s*/,"")}</li>`).join("")}</ul>`;if(s[0].startsWith("## ")){const c=s[0].replace(/^##\s*/,""),i=s.slice(1).join(" ");return`<div class="space-y-2"><h3 class="text-lg font-semibold text-copy">${c}</h3>${i?`<p class="text-sm leading-7 text-copy-soft">${i}</p>`:""}</div>`}return`<p class="text-sm leading-7 text-copy-soft">${s.join(" ")}</p>`}).join("")}function $(t=""){return String(t).split(" ")[0].toLowerCase()}function d(t=""){return t.replace(/[-_]/g," ").replace(/\b\w/g,e=>e.toUpperCase())}function l(t=""){return t?t.charAt(0).toUpperCase()+t.slice(1):""}function k(t,e){const s={high:0,medium:1,low:2},c={active:0,queued:1,blocked:2,paused:3,idea:4,complete:5};return(s[String(t.data.priority||"").toLowerCase()]??9)-(s[String(e.data.priority||"").toLowerCase()]??9)||(c[String(t.data.status||"").toLowerCase()]??9)-(c[String(e.data.status||"").toLowerCase()]??9)||t.data.title.localeCompare(e.data.title)}function ot(t){if(typeof t=="string"){const e=t.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(e){const[,s,c,i]=e;return new Date(Number(s),Number(c)-1,Number(i))}}return new Date(t)}function y(t){const e=ot(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function x(t){const e=new Date(t);if(Number.isNaN(e.getTime()))return t;const s=new Date,c=new Date(s.getFullYear(),s.getMonth(),s.getDate()),i=new Date(e.getFullYear(),e.getMonth(),e.getDate()),a=Math.round((c-i)/864e5);return a===0?"today":a===1?"yesterday":e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function j(t){return t===0?"Today":t===1?"Tomorrow":`${t} days`}M();function nt(t={}){const e=Array.isArray(t.history)?t.history:[];return`
     <section class="glass-card p-5 sm:p-6 lg:p-7">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -552,13 +552,13 @@
               <span class="chip">${e.length} loaded</span>
             </div>
             <div class="mt-4 space-y-3">
-              ${e.length?e.map(nt).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent gratitude history loaded yet.</p>'}
+              ${e.length?e.map(dt).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent gratitude history loaded yet.</p>'}
             </div>
           </article>
         </div>
       </div>
     </section>
-  `}function nt(t){return`
+  `}function dt(t){return`
     <article class="birthday-week-item birthday-week-item-compact">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -569,4 +569,4 @@
       </div>
       ${t.responseSummary?`<p class="mt-3 text-sm leading-6 text-copy-soft">${t.responseSummary}</p>`:""}
     </article>
-  `}function dt(t={}){var a,r,p;const e=t.today||{},s=Number(((a=t.settings)==null?void 0:a.showHistoryCount)||3),c=Array.isArray(t.history)?t.history.slice(0,s):[],i=String(e.status||"pending").toLowerCase();return{title:((r=t.settings)==null?void 0:r.title)||"Daily gratitude",subtitle:((p=t.settings)==null?void 0:p.subtitle)||"Keep today's prompt visible even when you answer it later at night.",promptTitle:i==="completed"?"Today's reflection is in":"Tonight's prompt is waiting",prompt:e.prompt,entryId:e.entryId,dateLabel:y(e.date),sourceLabel:e.source||"Telegram + dashboard",note:e.note,statusLabel:i==="completed"?"Completed":"Pending",statusDetail:i==="completed"?e.completedLabel||"Answered and logged.":"Visible here until you knock it out.",windowLabel:d(String(e.availableWindow||"morning-to-evening")),history:c.map(o=>({...o,dateLabel:y(o.date),statusLabel:String(o.status||"").toLowerCase()==="completed"?"Completed":l(o.status||"pending")}))}}
+  `}function pt(t={}){var a,r,p;const e=t.today||{},s=Number(((a=t.settings)==null?void 0:a.showHistoryCount)||3),c=Array.isArray(t.history)?t.history.slice(0,s):[],i=String(e.status||"pending").toLowerCase();return{title:((r=t.settings)==null?void 0:r.title)||"Daily gratitude",subtitle:((p=t.settings)==null?void 0:p.subtitle)||"Keep today's prompt visible even when you answer it later at night.",promptTitle:i==="completed"?"Today's reflection is in":"Tonight's prompt is waiting",prompt:e.prompt,entryId:e.entryId,dateLabel:y(e.date),sourceLabel:e.source||"Telegram + dashboard",note:e.note,statusLabel:i==="completed"?"Completed":"Pending",statusDetail:i==="completed"?e.completedLabel||"Answered and logged.":"Visible here until you knock it out.",windowLabel:d(String(e.availableWindow||"morning-to-evening")),history:c.map(o=>({...o,dateLabel:y(o.date),statusLabel:String(o.status||"").toLowerCase()==="completed"?"Completed":l(o.status||"pending")}))}}
