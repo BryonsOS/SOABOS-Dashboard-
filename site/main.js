@@ -6,204 +6,260 @@ async function init() {
 
   const app = document.querySelector('#app')
   const sortedProjects = [...projects].sort(sortProjects)
+  const spotlightProject = sortedProjects[0]
+  const topUpdate = updates.at(-1)
 
   app.innerHTML = `
-    <main class="shell">
-      <section class="hero card">
-        <div class="hero-copy">
-          <p class="eyebrow">${dashboard.site.title}</p>
-          <h1>${dashboard.site.tagline}</h1>
-          <p class="lede">${dashboard.site.description}</p>
-        </div>
-        <div class="hero-meta">
-          <span>Owner: ${dashboard.site.owner}</span>
-          <span>Mode: ${current.data.currentState}</span>
-          <span>${formatRelativeOrAbsoluteDate(current.data.lastUpdated)}</span>
-        </div>
-      </section>
+    <div class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 opacity-60">
+        <div class="absolute left-[-8rem] top-[-10rem] h-72 w-72 rounded-full bg-fire/12 blur-3xl"></div>
+        <div class="absolute right-[-6rem] top-12 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl"></div>
+        <div class="absolute bottom-[-8rem] left-1/3 h-72 w-72 rounded-full bg-amber-300/8 blur-3xl"></div>
+      </div>
 
-      <section class="grid lead-grid">
-        <article class="card action-card action-card-primary">
-          <p class="section-label">Move next</p>
-          <h2>${(current.data.next && current.data.next[0]) || 'Choose the clearest next move and keep it visible.'}</h2>
-          <p>${current.content}</p>
-        </article>
+      <main class="relative mx-auto flex min-h-screen w-full max-w-[1280px] flex-col gap-5 px-4 pb-16 pt-5 sm:px-6 lg:px-8 lg:pb-24 lg:pt-8">
+        <section class="glass-card overflow-hidden p-6 sm:p-8 lg:p-10">
+          <div class="grid gap-8 lg:grid-cols-[1.35fr_0.8fr] lg:items-end">
+            <div>
+              <div class="mb-6 flex flex-wrap items-center gap-3">
+                <span class="chip chip-warm">${dashboard.site.title}</span>
+                <span class="chip">Owner · ${dashboard.site.owner}</span>
+                <span class="chip">Mode · ${current.data.currentState}</span>
+              </div>
+              <p class="section-kicker">Operating board</p>
+              <h1 class="max-w-[12ch] text-4xl font-semibold tracking-[-0.04em] text-copy sm:text-5xl lg:text-7xl">${dashboard.site.tagline}</h1>
+              <p class="mt-5 max-w-3xl text-base leading-7 text-copy-soft sm:text-lg">${dashboard.site.description}</p>
 
-        <article class="card action-card">
-          <p class="section-label">Current focus</p>
-          <h2>${current.data.title}</h2>
-          <ul>
-            ${current.data.primaryFocus.map((item) => `<li>${item}</li>`).join('')}
-          </ul>
-        </article>
-      </section>
+              <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                <div class="rounded-3xl border border-fire/20 bg-fire-soft px-4 py-4">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">Move next</p>
+                  <p class="mt-2 text-sm leading-6 text-copy">${(current.data.next && current.data.next[0]) || 'Choose the clearest next move and keep it visible.'}</p>
+                </div>
+                <div class="rounded-3xl border border-line bg-white/5 px-4 py-4">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Updated</p>
+                  <p class="mt-2 text-sm leading-6 text-copy">${formatRelativeOrAbsoluteDate(current.data.lastUpdated)}</p>
+                </div>
+                <div class="rounded-3xl border border-line bg-white/5 px-4 py-4">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Board posture</p>
+                  <p class="mt-2 text-sm leading-6 text-copy">Clean, visual, and built to keep motion in sight.</p>
+                </div>
+              </div>
+            </div>
 
-      <section class="priority-grid">
-        ${renderListCard('Now', current.data.primaryFocus, 'now')}
-        ${renderListCard('Next', current.data.next || [], 'next')}
-        ${renderListCard('Blockers', current.data.blockers || [], 'blockers')}
-        ${renderListCard('Wins', current.data.wins || [], 'wins')}
-      </section>
+            <div class="rounded-[30px] border border-line bg-panel-strong p-5 sm:p-6">
+              <p class="section-kicker">Current focus</p>
+              <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">${current.data.title}</h2>
+              <p class="mt-3 text-sm leading-6 text-copy-soft">${current.content}</p>
+              <ul class="list-dot mt-5 space-y-3 pl-5 text-sm leading-6 text-copy-soft">
+                ${current.data.primaryFocus.map((item) => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </section>
 
-      <section class="grid three-up stats-grid">
-        <article class="card stat stat-inline">
-          <span class="stat-label">Active projects</span>
-          <strong>${dashboard.stats.projects}</strong>
-        </article>
-        <article class="card stat stat-inline">
-          <span class="stat-label">Active goals</span>
-          <strong>${dashboard.stats.goals}</strong>
-        </article>
-        <article class="card stat stat-inline stat-status">
-          <span class="stat-label">System status</span>
-          <strong>${dashboard.stats.status}</strong>
-        </article>
-      </section>
+        <section class="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+          <div class="grid gap-4 sm:grid-cols-2">
+            ${renderFocusCard('Now', current.data.primaryFocus, 'orange')}
+            ${renderFocusCard('Next', current.data.next || [], 'default')}
+            ${renderFocusCard('Blockers', current.data.blockers || [], 'warning')}
+            ${renderFocusCard('Wins', current.data.wins || [], 'success')}
+          </div>
 
-      ${dashboard.sections?.showBirthdays ? renderBirthdaySection(birthdays) : ''}
+          <aside class="glass-card p-5 sm:p-6">
+            <p class="section-kicker">Spotlight</p>
+            ${spotlightProject ? `
+              <div class="rounded-[24px] border border-line bg-white/5 p-5">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                  <span class="chip chip-warm">${spotlightProject.data.status}</span>
+                  <span class="text-xs uppercase tracking-[0.24em] text-copy-faint">${capitalize(spotlightProject.data.priority)} priority</span>
+                </div>
+                <h3 class="mt-4 text-2xl font-semibold tracking-[-0.03em] text-copy">${spotlightProject.data.title}</h3>
+                <p class="mt-3 text-sm leading-6 text-copy-soft">${spotlightProject.data.summary}</p>
+                <div class="mt-5 rounded-[22px] border border-fire/18 bg-fire-soft px-4 py-4">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">Next move</p>
+                  <p class="mt-2 text-sm leading-6 text-copy">${spotlightProject.data.nextAction}</p>
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="chip">Area · ${humanizeToken(spotlightProject.data.area)}</span>
+                  ${renderLinksInline(spotlightProject.data.links)}
+                </div>
+              </div>
+            ` : '<p class="text-sm text-copy-soft">No spotlight project loaded yet.</p>'}
 
-      <section class="grid three-up stats-grid stats-grid-secondary">
-        <article class="card stat stat-inline">
-          <span class="stat-label">Birthday radar</span>
-          <strong>${birthdays.summary?.upcomingCount ?? 0}</strong>
-        </article>
-        <article class="card stat stat-inline">
-          <span class="stat-label">Missing birthday details</span>
-          <strong>${birthdays.summary?.needsInfoCount ?? 0}</strong>
-        </article>
-        <article class="card stat stat-inline stat-status">
-          <span class="stat-label">Board posture</span>
-          <strong>Clean / live / useful</strong>
-        </article>
-      </section>
+            ${topUpdate ? `
+              <div class="mt-4 rounded-[24px] border border-line bg-black/10 p-5">
+                <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Latest update</p>
+                <h3 class="mt-3 text-lg font-semibold text-copy">${topUpdate.data.title}</h3>
+                <p class="mt-2 text-sm text-copy-faint">${formatRelativeOrAbsoluteDate(topUpdate.data.date)} · ${topUpdate.data.kind}</p>
+                <p class="mt-3 text-sm leading-6 text-copy-soft">${topUpdate.content}</p>
+              </div>
+            ` : ''}
+          </aside>
+        </section>
 
-      <section class="section-block">
-        <div class="section-head">
-          <p class="section-label">Projects</p>
-          <h2>What’s in motion</h2>
-        </div>
-        <div class="grid two-up">
-          ${sortedProjects.map(renderProjectCard).join('')}
-        </div>
-      </section>
+        <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          ${renderStatCard('Active projects', dashboard.stats.projects, 'Projects in play right now.')}
+          ${renderStatCard('Active goals', dashboard.stats.goals, 'Targets this system is protecting.')}
+          ${renderStatCard('Birthday radar', birthdays.summary?.upcomingCount ?? 0, 'People coming up on deck.')}
+          ${renderStatCard('System status', dashboard.stats.status, 'Board is live and ready to steer from.')}
+        </section>
 
-      <section class="section-block">
-        <div class="section-head">
-          <p class="section-label">Goals</p>
-          <h2>What this system is protecting</h2>
-        </div>
-        <div class="grid two-up">
-          ${goals.map(renderGoalCard).join('')}
-        </div>
-      </section>
+        ${dashboard.sections?.showBirthdays ? renderBirthdaySection(birthdays) : ''}
 
-      <section class="section-block">
-        <div class="section-head">
-          <p class="section-label">Areas</p>
-          <h2>Where the work lives</h2>
-        </div>
-        <div class="grid two-up">
-          ${areas.map(renderAreaCard).join('')}
-        </div>
-      </section>
+        <section class="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+          <div class="stack-card">
+            <div class="mb-5 flex items-end justify-between gap-4">
+              <div>
+                <p class="section-kicker">Projects</p>
+                <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy sm:text-3xl">What’s in motion</h2>
+              </div>
+              <span class="chip">${sortedProjects.length} loaded</span>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2">
+              ${sortedProjects.map(renderProjectCard).join('')}
+            </div>
+          </div>
 
-      <section class="section-block">
-        <div class="section-head">
-          <p class="section-label">Focus lanes</p>
-          <h2>The board at a glance</h2>
-        </div>
-        <div class="grid two-up">
-          ${renderLaneCard('Systems', 'Dashboards, routing, structure, and visibility work that keeps everything easier to steer.')}
-          ${renderLaneCard('Work', 'Business, marketing, creative builds, and experiments tied to output and momentum.')}
-          ${renderLaneCard('Events', 'DJ prep, scheduling, paperwork, communication, and event-day readiness.')}
-          ${renderLaneCard('Home & Family', 'Family coordination, recurring logistics, and the systems that reduce domestic scramble.')}
-        </div>
-      </section>
+          <div class="flex flex-col gap-4">
+            <section class="stack-card">
+              <p class="section-kicker">Goals</p>
+              <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">What this protects</h2>
+              <div class="mt-5 space-y-4">
+                ${goals.map(renderGoalCard).join('')}
+              </div>
+            </section>
 
-      <section class="section-block">
-        <div class="section-head">
-          <p class="section-label">Updates</p>
-          <h2>Recent motion</h2>
-        </div>
-        <div class="stack">
-          ${updates.slice().reverse().map(renderUpdateCard).join('')}
-        </div>
-      </section>
-    </main>
+            <section class="stack-card">
+              <p class="section-kicker">Focus lanes</p>
+              <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Board lanes</h2>
+              <div class="mt-5 grid gap-3">
+                ${renderLaneCard('Systems', 'Dashboards, routing, structure, and visibility work that keeps everything easier to steer.')}
+                ${renderLaneCard('Work', 'Business, marketing, creative builds, and experiments tied to output and momentum.')}
+                ${renderLaneCard('Events', 'DJ prep, scheduling, paperwork, communication, and event-day readiness.')}
+                ${renderLaneCard('Home & Family', 'Family coordination, recurring logistics, and the systems that reduce scramble.')}
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+          <section class="stack-card">
+            <p class="section-kicker">Areas</p>
+            <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Where the work lives</h2>
+            <div class="mt-5 grid gap-4">
+              ${areas.map(renderAreaCard).join('')}
+            </div>
+          </section>
+
+          <section class="stack-card">
+            <div class="mb-5 flex items-end justify-between gap-4">
+              <div>
+                <p class="section-kicker">Updates</p>
+                <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Recent motion</h2>
+              </div>
+              <span class="chip">${updates.length} entries</span>
+            </div>
+            <div class="space-y-4">
+              ${updates.slice().reverse().map(renderUpdateCard).join('')}
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
   `
 }
 
-function renderListCard(title, items = [], tone = 'default') {
+function renderFocusCard(title, items = [], tone = 'default') {
   const safeItems = items.length ? items : ['Nothing loaded yet.']
+  const toneMap = {
+    orange: 'border-fire/25 bg-fire-soft',
+    warning: 'border-amber-400/20 bg-amber-400/10',
+    success: 'border-emerald-400/20 bg-emerald-400/10',
+    default: 'border-line bg-white/5'
+  }
 
   return `
-    <article class="card mini-card mini-card-${tone}">
-      <p class="section-label">${title}</p>
-      <ul>
+    <article class="glass-card p-5 ${toneMap[tone] || toneMap.default}">
+      <p class="section-kicker">${title}</p>
+      <ul class="list-dot space-y-3 pl-5 text-sm leading-6 text-copy-soft">
         ${safeItems.map((item) => `<li>${item}</li>`).join('')}
       </ul>
     </article>
   `
 }
 
+function renderStatCard(label, value, helper) {
+  return `
+    <article class="stat-card">
+      <div>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">${label}</p>
+        <p class="mt-3 text-sm leading-6 text-copy-soft">${helper}</p>
+      </div>
+      <strong class="text-right text-3xl font-semibold tracking-[-0.04em] text-copy sm:text-4xl">${value}</strong>
+    </article>
+  `
+}
+
 function renderProjectCard(item) {
   return `
-    <article class="card project-card">
-      <div class="project-topline">
-        <p class="section-label">${item.data.status}</p>
-        <span class="project-priority">${capitalize(item.data.priority)} priority</span>
+    <article class="rounded-[26px] border border-line bg-white/[0.04] p-5">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">${item.data.status}</p>
+        <span class="chip">${capitalize(item.data.priority)} priority</span>
       </div>
-      <h3>${item.data.title}</h3>
-      <p class="project-summary">${item.data.summary}</p>
-      <div class="project-next">
-        <span class="project-next-label">Next move</span>
-        <p>${item.data.nextAction}</p>
+      <h3 class="mt-4 text-xl font-semibold tracking-[-0.03em] text-copy">${item.data.title}</h3>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${item.data.summary}</p>
+      <div class="mt-5 rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Next move</p>
+        <p class="mt-2 text-sm leading-6 text-copy">${item.data.nextAction}</p>
       </div>
-      <p class="meta project-meta"><strong>Area:</strong> ${humanizeToken(item.data.area)}</p>
-      ${renderLinks(item.data.links)}
+      <div class="mt-5 flex flex-wrap gap-2">
+        <span class="chip">Area · ${humanizeToken(item.data.area)}</span>
+        ${renderLinksInline(item.data.links)}
+      </div>
     </article>
   `
 }
 
 function renderGoalCard(item) {
   return `
-    <article class="card">
-      <p class="section-label">${item.data.status}</p>
-      <h3>${item.data.title}</h3>
-      <p>${item.data.summary}</p>
-      <p class="meta"><strong>Horizon:</strong> ${item.data.horizon} · <strong>Area:</strong> ${humanizeToken(item.data.area)}</p>
+    <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">${item.data.status}</p>
+      <h3 class="mt-3 text-lg font-semibold text-copy">${item.data.title}</h3>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${item.data.summary}</p>
+      <p class="mt-4 text-xs uppercase tracking-[0.22em] text-copy-faint">${item.data.horizon} · ${humanizeToken(item.data.area)}</p>
     </article>
   `
 }
 
 function renderAreaCard(item) {
   return `
-    <article class="card">
-      <p class="section-label">Area</p>
-      <h3>${item.data.title}</h3>
-      <p>${item.data.summary}</p>
-      ${item.content ? `<p class="meta">${item.content}</p>` : ''}
+    <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">Area</p>
+      <h3 class="mt-3 text-lg font-semibold text-copy">${item.data.title}</h3>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${item.data.summary}</p>
+      ${item.content ? `<p class="mt-4 text-sm leading-6 text-copy-faint">${item.content}</p>` : ''}
     </article>
   `
 }
 
 function renderUpdateCard(item) {
   return `
-    <article class="card">
-      <p class="section-label">${formatRelativeOrAbsoluteDate(item.data.date)}</p>
-      <h3>${item.data.title}</h3>
-      <p class="meta">${item.data.kind}</p>
-      <p>${item.content}</p>
+    <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">${formatRelativeOrAbsoluteDate(item.data.date)}</p>
+      <h3 class="mt-3 text-lg font-semibold text-copy">${item.data.title}</h3>
+      <p class="mt-2 text-xs uppercase tracking-[0.22em] text-copy-faint">${item.data.kind}</p>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${item.content}</p>
     </article>
   `
 }
 
 function renderLaneCard(title, text) {
   return `
-    <article class="card">
-      <p class="section-label">Lane</p>
-      <h3>${title}</h3>
-      <p>${text}</p>
+    <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Lane</p>
+      <h3 class="mt-3 text-lg font-semibold text-copy">${title}</h3>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${text}</p>
     </article>
   `
 }
@@ -216,29 +272,31 @@ function renderBirthdaySection(birthdays = {}) {
   const subtitle = birthdays.settings?.subtitle || 'People coming up soon and birthdays that still need details.'
 
   return `
-    <section class="section-block birthday-block">
-      <div class="section-head birthday-head">
+    <section class="glass-card p-5 sm:p-6 lg:p-7">
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p class="section-label">People lane</p>
-          <h2>${title}</h2>
-          <p class="meta">${subtitle}</p>
+          <p class="section-kicker">People lane</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy sm:text-3xl">${title}</h2>
+          <p class="mt-3 max-w-2xl text-sm leading-6 text-copy-soft">${subtitle}</p>
         </div>
-        <div class="birthday-summary">
-          <span class="chip">${upcoming.length} in ${lookaheadDays} days</span>
-          <span class="chip chip-muted">${needsInfo.length} need info</span>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip chip-warm">${upcoming.length} in ${lookaheadDays} days</span>
+          <span class="chip">${needsInfo.length} need info</span>
         </div>
       </div>
-      <div class="grid two-up birthday-grid">
-        <article class="card birthday-card">
-          <p class="section-label">Coming up</p>
-          <div class="birthday-list">
-            ${upcoming.length ? upcoming.map(renderBirthdayItem).join('') : `<p class="meta">No fully dated birthdays land in the next ${lookaheadDays} days yet.</p>`}
+
+      <div class="mt-6 grid gap-4 xl:grid-cols-2">
+        <article class="rounded-[26px] border border-fire/18 bg-fire-soft p-5">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-fire">Coming up</p>
+          <div class="mt-4 grid gap-3">
+            ${upcoming.length ? upcoming.map(renderBirthdayItem).join('') : `<p class="text-sm leading-6 text-copy-soft">No fully dated birthdays land in the next ${lookaheadDays} days yet.</p>`}
           </div>
         </article>
-        <article class="card birthday-card birthday-card-muted">
-          <p class="section-label">Needs info</p>
-          <div class="birthday-list">
-            ${needsInfo.length ? needsInfo.map(renderBirthdayNeedsInfoItem).join('') : '<p class="meta">Everything here has the basics filled in.</p>'}
+
+        <article class="rounded-[26px] border border-line bg-white/[0.04] p-5">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-copy-faint">Needs info</p>
+          <div class="mt-4 grid gap-3">
+            ${needsInfo.length ? needsInfo.map(renderBirthdayNeedsInfoItem).join('') : '<p class="text-sm leading-6 text-copy-soft">Everything here has the basics filled in.</p>'}
           </div>
         </article>
       </div>
@@ -248,14 +306,16 @@ function renderBirthdaySection(birthdays = {}) {
 
 function renderBirthdayItem(item) {
   return `
-    <article class="birthday-item birthday-item-${item.urgency || 'upcoming'}">
-      <div>
-        <h3>${item.name}</h3>
-        <p class="meta">${item.dateLabel}${item.relationship ? ` · ${humanizeToken(item.relationship)}` : ''}${item.notes ? ` · ${item.notes}` : ''}</p>
-      </div>
-      <div class="birthday-meta">
-        <span class="birthday-days">${formatDaysAway(item.daysAway)}</span>
-        ${item.age ? `<span class="birthday-age">Turns ${item.age}</span>` : ''}
+    <article class="rounded-[22px] border border-fire/20 bg-black/10 p-4">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-copy">${item.name}</h3>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${item.dateLabel}${item.relationship ? ` · ${humanizeToken(item.relationship)}` : ''}${item.notes ? ` · ${item.notes}` : ''}</p>
+        </div>
+        <div class="flex flex-wrap gap-2 sm:justify-end">
+          <span class="chip chip-warm">${formatDaysAway(item.daysAway)}</span>
+          ${item.age ? `<span class="chip">Turns ${item.age}</span>` : ''}
+        </div>
       </div>
     </article>
   `
@@ -263,27 +323,23 @@ function renderBirthdayItem(item) {
 
 function renderBirthdayNeedsInfoItem(item) {
   return `
-    <article class="birthday-item birthday-item-muted">
-      <div>
-        <h3>${item.name}</h3>
-        <p class="meta">${item.notes || 'Still needs a little detail before it is fully useful.'}</p>
-      </div>
-      <div class="birthday-meta">
-        <span class="birthday-missing">Missing ${item.missing.join(' + ')}</span>
+    <article class="rounded-[22px] border border-dashed border-line bg-black/10 p-4">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h3 class="text-lg font-semibold text-copy">${item.name}</h3>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${item.notes || 'Still needs a little detail before it is fully useful.'}</p>
+        </div>
+        <span class="chip">Missing ${item.missing.join(' + ')}</span>
       </div>
     </article>
   `
 }
 
-function renderLinks(links = {}) {
+function renderLinksInline(links = {}) {
   const entries = Object.entries(links).filter(([, value]) => value)
   if (!entries.length) return ''
 
-  return `
-    <div class="link-row">
-      ${entries.map(([label, href]) => renderLink(label, href)).join('')}
-    </div>
-  `
+  return entries.map(([label, href]) => renderLink(label, href)).join('')
 }
 
 function renderLink(label, href) {
@@ -291,10 +347,10 @@ function renderLink(label, href) {
   const isExternal = /^https?:\/\//i.test(href)
 
   if (isExternal) {
-    return `<a class="chip" href="${href}" target="_blank" rel="noreferrer">${safeLabel}</a>`
+    return `<a class="chip hover:border-fire/35 hover:bg-fire-soft" href="${href}" target="_blank" rel="noreferrer">${safeLabel}</a>`
   }
 
-  return `<span class="chip chip-muted">${safeLabel}: ${href}</span>`
+  return `<span class="chip">${safeLabel}: ${href}</span>`
 }
 
 function humanizeToken(value = '') {

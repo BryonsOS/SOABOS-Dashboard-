@@ -13,7 +13,10 @@
     "build-dashboard": "vite build"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.2",
     "gray-matter": "^4.0.3",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
     "vite": "^5.4.19"
   }
 }
