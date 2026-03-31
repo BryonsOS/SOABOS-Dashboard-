@@ -326,6 +326,14 @@
         "kind": "upgrade"
       },
       "content": "Added a more decisive homepage structure with ranked priority stacking, clearer operating lanes, a tighter updates feed, and a stronger mobile-first scan path.\n\nThe board now behaves more like a live command center and less like a flat collection of cards."
+    },
+    {
+      "data": {
+        "date": "2026-03-31T00:00:00.000Z",
+        "title": "Added phase 3 gratitude lane to the dashboard",
+        "kind": "upgrade"
+      },
+      "content": "Built a dedicated daily gratitude widget into the command deck so today's prompt can live on the site as well as in Telegram.\n\nThe board now shows the active prompt, Entry ID, pending/completed state, and a short recent-history trail so the gratitude system is easier to use at night without scrolling back through chat."
     }
   ],
   "birthdays": {
@@ -1084,6 +1092,46 @@
     "summary": {
       "upcomingCount": 1,
       "needsInfoCount": 45
+    }
+  },
+  "gratitude": {
+    "today": {
+      "date": "2026-03-31",
+      "entryId": "GJ-20260331-0700",
+      "prompt": "What is something in your life right now that would have felt impossible, out of reach, or unreal to an older version of you — and why does having it now matter more than you usually admit?",
+      "status": "pending",
+      "source": "telegram + dashboard",
+      "availableWindow": "morning-to-evening",
+      "note": "Open it in the morning from Telegram or come back to it at night from the dashboard without digging through chat.",
+      "completedLabel": "Waiting for tonight's entry"
+    },
+    "history": [
+      {
+        "date": "2026-03-30",
+        "entryId": "GJ-20260329-0700",
+        "prompt": "What’s one person, place, or thing that made you feel quietly supported this week—and what about it hit deeper than usual?",
+        "status": "completed",
+        "responseSummary": "Being invited to the Red Wings game mattered less than being thought of and included."
+      },
+      {
+        "date": "2026-03-28",
+        "entryId": "GJ-20260328-0700",
+        "prompt": "What’s something that could’ve gone sideways lately—but didn’t—and why are you grateful it broke your way?",
+        "status": "completed",
+        "responseSummary": "The retro TV guide idea landed well at work and felt like a needed win."
+      },
+      {
+        "date": "2026-03-26",
+        "entryId": "GJ-20260326-0700",
+        "prompt": "What routine or small habit keeps your days grounded? Think of something reliable that helps you feel steady — even if it's as simple as your morning coffee or a consistent bedtime.",
+        "status": "completed",
+        "responseSummary": "Coming home for lunch helps reset and recharge the social battery."
+      }
+    ],
+    "settings": {
+      "showHistoryCount": 3,
+      "title": "Daily gratitude",
+      "subtitle": "Keep today's prompt visible even when you answer it later at night."
     }
   }
 }

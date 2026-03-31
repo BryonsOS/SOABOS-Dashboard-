@@ -17,7 +17,7 @@ async function init() {
 }
 
 function buildState(content) {
-  const { dashboard, current, projects, goals, areas, updates, birthdays } = content
+  const { dashboard, current, projects, goals, areas, updates, birthdays, gratitude } = content
   const sortedProjects = [...projects].sort(sortProjects)
   const spotlightProject = sortedProjects[0] || null
   const topUpdate = updates.at(-1) || null
@@ -29,6 +29,7 @@ function buildState(content) {
   const recentUpdates = updates.slice().reverse().slice(0, 4)
   const birthdaysState = buildBirthdayState(birthdays)
   const allRecentBirthdays = birthdaysState.upcoming.slice(0, 12)
+  const gratitudeCard = buildGratitudeCard(gratitude)
 
   return {
     dashboard,
@@ -38,6 +39,7 @@ function buildState(content) {
     areas,
     updates,
     birthdays,
+    gratitude,
     sortedProjects,
     spotlightProject,
     topUpdate,
@@ -48,7 +50,8 @@ function buildState(content) {
     hotProjects,
     recentUpdates,
     birthdaysState,
-    allRecentBirthdays
+    allRecentBirthdays,
+    gratitudeCard
   }
 }
 
@@ -112,6 +115,8 @@ function renderNavLink(href, label, active = false) {
 
 function renderHome(state) {
   return `
+    ${renderGratitudeWidget(state.gratitudeCard)}
+
     <section class="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
       <div class="stack-card compact-card">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -858,3 +863,114 @@ function formatDaysAway(daysAway) {
 }
 
 init()
+
+function renderGratitudeWidget(gratitudeCard = {}) {
+  const history = Array.isArray(gratitudeCard.history) ? gratitudeCard.history : []
+
+  return `
+    <section class="glass-card p-5 sm:p-6 lg:p-7">
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="section-kicker">Daily rhythm</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy sm:text-3xl">${gratitudeCard.title || 'Daily gratitude'}</h2>
+          <p class="mt-3 max-w-2xl text-sm leading-6 text-copy-soft">${gratitudeCard.subtitle || "Keep today's prompt visible even when you answer it later."}</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip chip-warm">${gratitudeCard.statusLabel || 'Pending'}</span>
+          ${gratitudeCard.entryId ? `<span class="chip">${gratitudeCard.entryId}</span>` : ''}
+          ${gratitudeCard.dateLabel ? `<span class="chip">${gratitudeCard.dateLabel}</span>` : ''}
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+        <article class="birthday-widget-hero compact-hero">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <p class="micro-label text-fire">Today's prompt</p>
+            <span class="chip">${gratitudeCard.sourceLabel || 'Telegram + dashboard'}</span>
+          </div>
+          <h3 class="mt-4 text-2xl font-semibold tracking-[-0.03em] text-copy">${gratitudeCard.promptTitle || 'Ready when you are'}</h3>
+          <p class="mt-4 text-base leading-8 text-copy">${gratitudeCard.prompt || 'No prompt loaded yet.'}</p>
+
+          <div class="mt-5 rounded-[22px] border border-fire/18 bg-black/10 p-4">
+            <p class="micro-label text-fire">Use case</p>
+            <p class="mt-2 text-sm leading-6 text-copy-soft">${gratitudeCard.note || 'Check it in the morning from Telegram or knock it out later from the dashboard.'}</p>
+          </div>
+
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <div class="detail-stat">
+              <p class="micro-label text-copy-faint">Status</p>
+              <p class="mt-2 text-sm leading-6 text-copy">${gratitudeCard.statusDetail || 'Pending reply'}</p>
+            </div>
+            <div class="detail-stat">
+              <p class="micro-label text-copy-faint">Availability</p>
+              <p class="mt-2 text-sm leading-6 text-copy">${gratitudeCard.windowLabel || 'Morning to evening'}</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="grid gap-3">
+          <article class="lane-card compact-lane-card">
+            <p class="micro-label text-fire">Why it belongs here</p>
+            <p class="mt-3 text-sm leading-6 text-copy-soft">This gives you the push in Telegram and the clean fallback on the dashboard, so the prompt stays usable at night without digging through old messages.</p>
+          </article>
+
+          <article class="lane-card compact-lane-card">
+            <div class="flex items-end justify-between gap-3">
+              <div>
+                <p class="micro-label text-fire">Recent entries</p>
+                <h3 class="mt-3 text-lg font-semibold text-copy">Momentum trail</h3>
+              </div>
+              <span class="chip">${history.length} loaded</span>
+            </div>
+            <div class="mt-4 space-y-3">
+              ${history.length ? history.map(renderGratitudeHistoryItem).join('') : '<p class="text-sm leading-6 text-copy-soft">No recent gratitude history loaded yet.</p>'}
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  `
+}
+
+function renderGratitudeHistoryItem(item) {
+  return `
+    <article class="birthday-week-item birthday-week-item-compact">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="micro-label text-fire">${item.dateLabel || item.date || ''}</p>
+          <h4 class="mt-2 text-base font-semibold text-copy">${item.statusLabel || 'Completed'}</h4>
+        </div>
+        ${item.entryId ? `<span class="chip chip-warm">${item.entryId}</span>` : ''}
+      </div>
+      ${item.responseSummary ? `<p class="mt-3 text-sm leading-6 text-copy-soft">${item.responseSummary}</p>` : ''}
+    </article>
+  `
+}
+
+function buildGratitudeCard(gratitude = {}) {
+  const today = gratitude.today || {}
+  const historyLimit = Number(gratitude.settings?.showHistoryCount || 3)
+  const history = Array.isArray(gratitude.history) ? gratitude.history.slice(0, historyLimit) : []
+  const status = String(today.status || 'pending').toLowerCase()
+
+  return {
+    title: gratitude.settings?.title || 'Daily gratitude',
+    subtitle: gratitude.settings?.subtitle || "Keep today's prompt visible even when you answer it later at night.",
+    promptTitle: status === 'completed' ? "Today's reflection is in" : "Tonight's prompt is waiting",
+    prompt: today.prompt,
+    entryId: today.entryId,
+    dateLabel: formatCalendarDate(today.date),
+    sourceLabel: today.source || 'Telegram + dashboard',
+    note: today.note,
+    statusLabel: status === 'completed' ? 'Completed' : 'Pending',
+    statusDetail: status === 'completed'
+      ? (today.completedLabel || 'Answered and logged.')
+      : 'Visible here until you knock it out.',
+    windowLabel: humanizeToken(String(today.availableWindow || 'morning-to-evening')),
+    history: history.map((item) => ({
+      ...item,
+      dateLabel: formatCalendarDate(item.date),
+      statusLabel: String(item.status || '').toLowerCase() === 'completed' ? 'Completed' : capitalize(item.status || 'pending')
+    }))
+  }
+}
