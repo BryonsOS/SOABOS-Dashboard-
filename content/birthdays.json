@@ -1,8 +1,8 @@
 {
   "settings": {
-    "lookaheadDays": 45,
-    "title": "Birthday Radar",
-    "subtitle": "Upcoming birthdays from Bryon's tracker, sorted by next date so the next move is obvious."
+    "lookaheadDays": 7,
+    "title": "Birthday Week",
+    "subtitle": "A simple 7-day birthday view so the next move stays obvious."
   },
   "people": [
     {
