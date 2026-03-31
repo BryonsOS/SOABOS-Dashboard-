@@ -368,6 +368,12 @@ function renderBirthdaySection(birthdays = {}) {
   const lookaheadDays = birthdays.settings?.lookaheadDays || 30
   const title = birthdays.settings?.title || 'Upcoming Birthdays'
   const subtitle = birthdays.settings?.subtitle || 'People coming up soon and birthdays that still need details.'
+  const nextUp = upcoming[0]
+  const quickStats = [
+    { label: 'Upcoming', value: upcoming.length, helper: `inside ${lookaheadDays} days` },
+    { label: 'Need details', value: needsInfo.length, helper: 'missing profile or prep info' },
+    { label: 'Next on deck', value: nextUp ? formatDaysAway(nextUp.daysAway) : 'None queued', helper: nextUp ? nextUp.name : 'no dated birthdays in range' }
+  ]
 
   return `
     <section class="glass-card p-5 sm:p-6 lg:p-7">
@@ -383,22 +389,90 @@ function renderBirthdaySection(birthdays = {}) {
         </div>
       </div>
 
-      <div class="mt-6 grid gap-4 xl:grid-cols-2">
-        <article class="rounded-[26px] border border-fire/18 bg-fire-soft p-5">
-          <p class="micro-label text-fire">Coming up</p>
-          <div class="mt-4 grid gap-3">
-            ${upcoming.length ? upcoming.map(renderBirthdayItem).join('') : `<p class="text-sm leading-6 text-copy-soft">No fully dated birthdays land in the next ${lookaheadDays} days yet.</p>`}
+      <div class="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+        <article class="birthday-hero-card">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p class="micro-label text-fire">Birthday snapshot</p>
+              <h3 class="mt-3 text-2xl font-semibold tracking-[-0.03em] text-copy">${nextUp ? `${nextUp.name} is next up` : 'Tracker is ready for the next move'}</h3>
+              <p class="mt-3 max-w-2xl text-sm leading-6 text-copy-soft">${nextUp ? `${nextUp.relationship || 'Contact'} · ${nextUp.dateLabel} · ${formatDaysAway(nextUp.daysAway)}. Keep the next person visible, keep the prep simple, and stop making birthdays a surprise scramble.` : 'The birthday lane is wired in. As real entries are filled out, this snapshot becomes a true at-a-glance reminder board.'}</p>
+            </div>
+            <div class="birthday-badge-stack">
+              <span class="chip chip-warm">${nextUp ? formatDaysAway(nextUp.daysAway) : 'No dated entry'}</span>
+              ${nextUp?.category ? `<span class="chip">${nextUp.category}</span>` : ''}
+            </div>
           </div>
+
+          <div class="mt-6 grid gap-3 sm:grid-cols-3">
+            ${quickStats.map(renderBirthdayQuickStat).join('')}
+          </div>
+
+          ${nextUp ? `
+            <div class="mt-6 rounded-[24px] border border-fire/18 bg-black/10 p-5">
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p class="micro-label text-fire">Prep cue</p>
+                  <h4 class="mt-3 text-xl font-semibold text-copy">${nextUp.name}</h4>
+                  <p class="mt-2 text-sm leading-6 text-copy-soft">${[nextUp.dateLabel, nextUp.relationship, nextUp.leadTime ? `Prep: ${nextUp.leadTime}` : ''].filter(Boolean).join(' · ')}</p>
+                </div>
+                ${nextUp.age ? `<span class="chip">Turns ${nextUp.age}</span>` : ''}
+              </div>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                ${renderBirthdayDetailBlock('Profile', nextUp.profile || 'Add a short line that makes this person immediately recognizable.')}
+                ${renderBirthdayDetailBlock('Interests', nextUp.interests || 'Add gift or vibe clues so ideas land faster.')}
+              </div>
+            </div>
+          ` : ''}
         </article>
 
-        <article class="rounded-[26px] border border-line bg-white/[0.04] p-5">
-          <p class="micro-label text-copy-faint">Needs info</p>
+        <article class="birthday-sidebar-card">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <p class="micro-label text-copy-faint">Gaps to close</p>
+              <h3 class="mt-3 text-xl font-semibold tracking-[-0.03em] text-copy">Needs info</h3>
+            </div>
+            <span class="chip">${needsInfo.length} open</span>
+          </div>
           <div class="mt-4 grid gap-3">
             ${needsInfo.length ? needsInfo.map(renderBirthdayNeedsInfoItem).join('') : '<p class="text-sm leading-6 text-copy-soft">Everything here has the basics filled in.</p>'}
           </div>
         </article>
       </div>
+
+      <div class="mt-6">
+        <div class="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p class="micro-label text-fire">Upcoming queue</p>
+            <h3 class="mt-2 text-xl font-semibold tracking-[-0.03em] text-copy">Who is coming up next</h3>
+          </div>
+          <span class="chip">${upcoming.length} loaded</span>
+        </div>
+        <div class="birthday-grid">
+          ${upcoming.length ? upcoming.map(renderBirthdayItem).join('') : `<p class="text-sm leading-6 text-copy-soft">No fully dated birthdays land in the next ${lookaheadDays} days yet.</p>`}
+        </div>
+      </div>
     </section>
+  `
+}
+
+function renderBirthdayQuickStat(item) {
+  return `
+    <article class="birthday-quick-stat">
+      <p class="micro-label text-copy-faint">${item.label}</p>
+      <div class="mt-3 flex items-end justify-between gap-3">
+        <strong class="text-2xl font-semibold tracking-[-0.04em] text-copy">${item.value}</strong>
+        <span class="text-right text-xs uppercase tracking-[0.22em] text-copy-faint">${item.helper}</span>
+      </div>
+    </article>
+  `
+}
+
+function renderBirthdayDetailBlock(label, value) {
+  return `
+    <div class="rounded-[20px] border border-white/8 bg-white/[0.03] p-4">
+      <p class="micro-label text-copy-faint">${label}</p>
+      <p class="mt-3 text-sm leading-6 text-copy-soft">${value}</p>
+    </div>
   `
 }
 
@@ -417,17 +491,20 @@ function renderBirthdayItem(item) {
   ].filter(Boolean).join(' · ')
 
   return `
-    <article class="rounded-[22px] border border-fire/20 bg-black/10 p-4">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <h3 class="text-lg font-semibold text-copy">${item.name}</h3>
-          <p class="mt-2 text-sm leading-6 text-copy-soft">${meta}</p>
-          ${details ? `<p class="mt-2 text-sm leading-6 text-copy-faint">${details}</p>` : ''}
+    <article class="birthday-card">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p class="micro-label text-fire">${formatDaysAway(item.daysAway)}</p>
+            <h3 class="mt-3 text-xl font-semibold text-copy">${item.name}</h3>
+            <p class="mt-2 text-sm leading-6 text-copy-soft">${meta}</p>
+          </div>
+          <div class="flex flex-wrap gap-2 sm:justify-end">
+            <span class="chip chip-warm">${item.dateLabel}</span>
+            ${item.age ? `<span class="chip">Turns ${item.age}</span>` : ''}
+          </div>
         </div>
-        <div class="flex flex-wrap gap-2 sm:justify-end">
-          <span class="chip chip-warm">${formatDaysAway(item.daysAway)}</span>
-          ${item.age ? `<span class="chip">Turns ${item.age}</span>` : ''}
-        </div>
+        ${details ? `<p class="text-sm leading-6 text-copy-faint">${details}</p>` : ''}
       </div>
     </article>
   `
