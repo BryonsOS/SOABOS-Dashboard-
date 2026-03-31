@@ -403,12 +403,26 @@ function renderBirthdaySection(birthdays = {}) {
 }
 
 function renderBirthdayItem(item) {
+  const meta = [
+    item.dateLabel,
+    item.relationship,
+    item.category,
+    item.leadTime ? `Prep: ${item.leadTime}` : ''
+  ].filter(Boolean).join(' · ')
+
+  const details = [
+    item.profile,
+    item.interests ? `Likes: ${item.interests}` : '',
+    item.notes
+  ].filter(Boolean).join(' · ')
+
   return `
     <article class="rounded-[22px] border border-fire/20 bg-black/10 p-4">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h3 class="text-lg font-semibold text-copy">${item.name}</h3>
-          <p class="mt-2 text-sm leading-6 text-copy-soft">${item.dateLabel}${item.relationship ? ` · ${humanizeToken(item.relationship)}` : ''}${item.notes ? ` · ${item.notes}` : ''}</p>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${meta}</p>
+          ${details ? `<p class="mt-2 text-sm leading-6 text-copy-faint">${details}</p>` : ''}
         </div>
         <div class="flex flex-wrap gap-2 sm:justify-end">
           <span class="chip chip-warm">${formatDaysAway(item.daysAway)}</span>

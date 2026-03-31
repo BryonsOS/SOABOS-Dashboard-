@@ -1,25 +1,377 @@
 {
   "settings": {
     "lookaheadDays": 45,
-    "title": "Birthday Tracker",
-    "subtitle": "Upcoming birthdays, known gaps, and the people list that still needs to be completed."
+    "title": "Birthday Radar",
+    "subtitle": "Upcoming birthdays from Bryon's tracker, sorted by next date so the next move is obvious."
   },
   "people": [
     {
-      "name": "Birthday list in progress",
-      "month": null,
-      "day": null,
-      "year": null,
-      "notes": "Tracker section is live. Add real names and dates from the Birthday_Master sheet next.",
-      "relationship": "system"
+      "name": "Mike Dillard",
+      "month": 1,
+      "day": 7,
+      "relationship": "Father In Law",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
     },
     {
-      "name": "Known birthdays needing full details",
-      "month": null,
-      "day": null,
-      "year": null,
-      "notes": "Use this lane to surface people who are missing month, day, or birth year.",
-      "relationship": "planning"
+      "name": "Matthew Martinec",
+      "month": 1,
+      "day": 15,
+      "relationship": "Close Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Emily Sornson",
+      "month": 1,
+      "day": 20,
+      "relationship": "Family Friend",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Eric Todd",
+      "month": 1,
+      "day": 26,
+      "relationship": "Close Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Bob Miller",
+      "month": 1,
+      "day": 28,
+      "relationship": "Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Adam Stumpf",
+      "month": 2,
+      "day": 4,
+      "relationship": "Old Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Chett Atwell",
+      "month": 2,
+      "day": 5,
+      "relationship": "Close Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Caitlin Evans",
+      "month": 2,
+      "day": 6,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Jason Pro",
+      "month": 2,
+      "day": 8,
+      "relationship": "DJ Associate",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "TJ Sornson",
+      "month": 2,
+      "day": 9,
+      "relationship": "Close Friend, Homie",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Gabrielle Sornson",
+      "month": 3,
+      "day": 20,
+      "relationship": "Family Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Ron Simmons",
+      "month": 3,
+      "day": 20,
+      "relationship": "Family Uncle",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Matt Golen",
+      "month": 3,
+      "day": 23,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Meghan Rompa",
+      "month": 3,
+      "day": 23,
+      "relationship": "Wife",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Steve Rompa",
+      "month": 3,
+      "day": 23,
+      "relationship": "Dad",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Sophia Rompa",
+      "month": 3,
+      "day": 26,
+      "relationship": "Daughter",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Lorena Wright",
+      "month": 3,
+      "day": 30,
+      "relationship": "Family Friend",
+      "category": "Text",
+      "leadTime": "Same Day"
+    },
+    {
+      "name": "Garrett Olson",
+      "month": 4,
+      "day": 3,
+      "relationship": "Work Friend",
+      "category": "Text",
+      "profile": "Graphic artist at work.",
+      "interests": "Drawing, shooting guns",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Mat Rompa",
+      "month": 4,
+      "day": 9,
+      "relationship": "Brother",
+      "category": "Both",
+      "interests": "Red Wings, Foodie, Tech, 3D Print",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Frankie Stone",
+      "month": 4,
+      "day": 25,
+      "relationship": "Grandma",
+      "category": "Both",
+      "profile": "Grandma, great grandma to my kids",
+      "interests": "Crochet, Golden Girls, Flowers",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Em Carpenter",
+      "month": 4,
+      "day": 26,
+      "relationship": "Friend",
+      "category": "Text",
+      "profile": "Artist, designer",
+      "interests": "Disc golf",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Lindsey Davis",
+      "month": 4,
+      "day": 30,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Aydan Bailey",
+      "month": 5,
+      "day": 15,
+      "relationship": "Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Michelle Connelly",
+      "month": 5,
+      "day": 16,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Tina Rompa",
+      "month": 5,
+      "day": 28,
+      "relationship": "Mom",
+      "category": "Both",
+      "profile": "My mom",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Andrea Martinec",
+      "month": 6,
+      "day": 2,
+      "relationship": "Close Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Andy Schaad",
+      "month": 6,
+      "day": 8,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Johnny Dutcher",
+      "month": 6,
+      "day": 9,
+      "relationship": "Friend",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Buddy Arrowsmith",
+      "month": 6,
+      "day": 22,
+      "relationship": "Homie",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Aiden Craft",
+      "month": 7,
+      "day": 15,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Craig Rompa",
+      "month": 7,
+      "day": 31,
+      "relationship": "Uncle",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Hayden Sornson",
+      "month": 8,
+      "day": 29,
+      "relationship": "Family Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Tom Bailey",
+      "month": 10,
+      "day": 8,
+      "relationship": "Boss",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Emma Rompa",
+      "month": 10,
+      "day": 12,
+      "relationship": "Daughter",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Joey Utsler",
+      "month": 10,
+      "day": 14,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Mason Martinec",
+      "month": 10,
+      "day": 14,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Patty Beasly",
+      "month": 10,
+      "day": 18,
+      "relationship": "Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Dave Golen",
+      "month": 10,
+      "day": 26,
+      "relationship": "Close Friend, Homie",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Jenna Ball",
+      "month": 11,
+      "day": 4,
+      "relationship": "Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Scott Taylor",
+      "month": 11,
+      "day": 8,
+      "relationship": "Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "John Cream",
+      "month": 11,
+      "day": 13,
+      "relationship": "Old Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "EJ Naegeli",
+      "month": 11,
+      "day": 16,
+      "relationship": "Old Work Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Rachel Beasley",
+      "month": 11,
+      "day": 18,
+      "relationship": "Sister In Law",
+      "category": "Both",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Rebecca Sornson",
+      "month": 11,
+      "day": 26,
+      "relationship": "Close Friend",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
+    },
+    {
+      "name": "Karlyn Dillard",
+      "month": 12,
+      "day": 15,
+      "relationship": "Mother In Law",
+      "category": "Text",
+      "leadTime": "1 Week, Same Day"
     }
   ]
 }

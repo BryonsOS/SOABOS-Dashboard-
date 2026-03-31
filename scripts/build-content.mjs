@@ -101,7 +101,8 @@ function buildBirthdays(source = {}) {
       dateLabel: formatMonthDay(nextBirthday),
       daysAway,
       age,
-      urgency: daysAway <= 7 ? 'soon' : 'upcoming'
+      urgency: daysAway <= 7 ? 'soon' : 'upcoming',
+      sortKey: `${String(nextBirthday.getMonth() + 1).padStart(2, '0')}-${String(nextBirthday.getDate()).padStart(2, '0')}`
     }
 
     if (!hasYear) {

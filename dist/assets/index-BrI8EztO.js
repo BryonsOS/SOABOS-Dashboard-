@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))l(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&l(r)}).observe(document,{childList:!0,subtree:!0});function e(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function l(i){if(i.ep)return;i.ep=!0;const a=e(i);fetch(i.href,a)}})();async function N(){var w,k;const t=await fetch("./generated/content.json").then(c=>c.json()),{dashboard:s,current:e,projects:l,goals:i,areas:a,updates:r,birthdays:p}=t,g=document.querySelector("#app"),o=[...l].sort(C),n=o[0],m=r.at(-1),L=o.filter(c=>String(c.data.status||"").toLowerCase()==="active"),P=o.filter(c=>String(c.data.priority||"").toLowerCase()==="high"),b=_(e,o),y=G(a,o),v=o.slice(0,4),$=r.slice().reverse().slice(0,4);g.innerHTML=`
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))l(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&l(r)}).observe(document,{childList:!0,subtree:!0});function e(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function l(i){if(i.ep)return;i.ep=!0;const a=e(i);fetch(i.href,a)}})();async function N(){var w,k;const t=await fetch("./generated/content.json").then(c=>c.json()),{dashboard:s,current:e,projects:l,goals:i,areas:a,updates:r,birthdays:p}=t,g=document.querySelector("#app"),o=[...l].sort(C),n=o[0],m=r.at(-1),L=o.filter(c=>String(c.data.status||"").toLowerCase()==="active"),P=o.filter(c=>String(c.data.priority||"").toLowerCase()==="high"),y=_(e,o),b=G(a,o),v=o.slice(0,4),$=r.slice().reverse().slice(0,4);g.innerHTML=`
     <div class="relative overflow-hidden">
       <div class="pointer-events-none absolute inset-0 opacity-60">
         <div class="absolute left-[-8rem] top-[-10rem] h-72 w-72 rounded-full bg-fire/12 blur-3xl"></div>
@@ -62,12 +62,12 @@
                 <p class="mt-3 max-w-2xl text-sm leading-6 text-copy-soft">The board should make the next move obvious. These are the clearest actions on deck right now.</p>
               </div>
               <div class="flex flex-wrap gap-2">
-                <span class="chip chip-warm">${b.length} moves loaded</span>
+                <span class="chip chip-warm">${y.length} moves loaded</span>
                 <span class="chip">Command view</span>
               </div>
             </div>
             <div class="mt-6 grid gap-4 xl:grid-cols-3">
-              ${b.map(I).join("")}
+              ${y.map(I).join("")}
             </div>
           </div>
 
@@ -126,7 +126,7 @@
               <span class="chip">${$.length} latest</span>
             </div>
             <div class="space-y-3">
-              ${$.map(O).join("")}
+              ${$.map(B).join("")}
             </div>
           </section>
         </section>
@@ -137,10 +137,10 @@
               <p class="section-kicker">Operating lanes</p>
               <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy sm:text-3xl">Where the work lives</h2>
             </div>
-            <span class="chip">${y.length} lanes</span>
+            <span class="chip">${b.length} lanes</span>
           </div>
           <div class="grid gap-4 xl:grid-cols-2">
-            ${y.map(B).join("")}
+            ${b.map(O).join("")}
           </div>
         </section>
 
@@ -265,14 +265,14 @@
       <p class="mt-3 text-sm leading-6 text-copy-soft">${t.data.summary}</p>
       ${t.content?`<p class="mt-4 text-sm leading-6 text-copy-faint">${t.content}</p>`:""}
     </article>
-  `}function O(t){return`
+  `}function B(t){return`
     <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
       <p class="micro-label text-fire">${h(t.data.date)}</p>
       <h3 class="mt-3 text-lg font-semibold text-copy">${t.data.title}</h3>
       <p class="mt-2 text-xs uppercase tracking-[0.22em] text-copy-faint">${t.data.kind}</p>
       <p class="mt-3 text-sm leading-6 text-copy-soft">${t.content}</p>
     </article>
-  `}function B(t){return`
+  `}function O(t){return`
     <article class="lane-card">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -324,12 +324,13 @@
         </article>
       </div>
     </section>
-  `}function E(t){return`
+  `}function E(t){const s=[t.dateLabel,t.relationship,t.category,t.leadTime?`Prep: ${t.leadTime}`:""].filter(Boolean).join(" · "),e=[t.profile,t.interests?`Likes: ${t.interests}`:"",t.notes].filter(Boolean).join(" · ");return`
     <article class="rounded-[22px] border border-fire/20 bg-black/10 p-4">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h3 class="text-lg font-semibold text-copy">${t.name}</h3>
-          <p class="mt-2 text-sm leading-6 text-copy-soft">${t.dateLabel}${t.relationship?` · ${d(t.relationship)}`:""}${t.notes?` · ${t.notes}`:""}</p>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${s}</p>
+          ${e?`<p class="mt-2 text-sm leading-6 text-copy-faint">${e}</p>`:""}
         </div>
         <div class="flex flex-wrap gap-2 sm:justify-end">
           <span class="chip chip-warm">${z(t.daysAway)}</span>
