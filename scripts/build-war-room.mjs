@@ -29,15 +29,9 @@ function isMerch(item) {
   return merchTypes.has(type) || title.includes('shirt') || title.includes('tee') || title.includes('sticker') || title.includes('decal') || title.includes('hat') || title.includes('hoodie')
 }
 
-function bucketFor(item) {
-  const inv = item.availableInventory ?? -1
-  const sales90 = item.sales90 ?? 0
-  const price = item.price ?? 0
-
-  if (inv <= 3 || (inv <= 8 && sales90 >= 20)) return 'Protect'
-  if (inv >= 10 && sales90 >= 8 && price >= 28) return 'Push Now'
-  if (inv >= 6) return 'Bundle / Test'
-  return 'Dead / Review'
+function isSticker(item) {
+  const s = `${item.title || ''} ${item.type || ''}`.toLowerCase()
+  return s.includes('sticker') || s.includes('decal')
 }
 
 function scoreItem(item) {
@@ -46,7 +40,19 @@ function scoreItem(item) {
   const inv = item.availableInventory ?? 0
   const price = item.price ?? 0
   const velocity = item.velocity90 ?? 0
-  return (sales * 4) + (revenue / 50) + (velocity * 30) + Math.min(inv, 40) + (price >= 28 ? 20 : 0)
+  return (sales * 2.5) + (revenue / 80) + (velocity * 20) + Math.min(Math.max(inv, 0), 25) + (price >= 28 ? 12 : 0)
+}
+
+function bucketFor(item) {
+  const inv = item.availableInventory ?? -1
+  const sales90 = item.sales90 ?? 0
+  const price = item.price ?? 0
+
+  if (inv <= 0) return 'Out of Stock Winners'
+  if (inv >= 1 && inv <= 3 && sales90 >= 20) return 'Protect / Low Stock'
+  if (inv >= 4 && sales90 >= 8 && price >= 25) return 'Push What Is Left'
+  if (inv >= 1) return 'Bundle / Test'
+  return 'Dead / Review'
 }
 
 let rows = []
@@ -82,11 +88,19 @@ const classified = merch.map((item) => ({
   slug: slugify(`${item.title}-${item.variant}`)
 }))
 
-const byBucket = Object.fromEntries(['Push Now', 'Bundle / Test', 'Protect', 'Dead / Review'].map((bucket) => [bucket, classified.filter((item) => item.bucket === bucket)]))
-const topPush = [...byBucket['Push Now']].sort((a, b) => b.score - a.score).slice(0, 5)
+const bucketNames = ['Push What Is Left', 'Bundle / Test', 'Protect / Low Stock', 'Out of Stock Winners', 'Dead / Review']
+const byBucket = Object.fromEntries(bucketNames.map((bucket) => [bucket, classified.filter((item) => item.bucket === bucket)]))
+
+const actionable = classified
+  .filter((item) => (item.availableInventory ?? 0) >= 1)
+  .sort((a, b) => b.score - a.score)
+
+const hero = actionable.find((item) => !isSticker(item)) || actionable[0] || null
+const addOn = actionable.find((item) => isSticker(item)) || actionable.find((item) => item !== hero) || null
+const topPush = [...byBucket['Push What Is Left']].sort((a, b) => b.score - a.score).slice(0, 5)
 const topBundle = [...byBucket['Bundle / Test']].sort((a, b) => b.score - a.score).slice(0, 5)
-const hero = topPush[0] || null
-const addOn = topBundle.find((item) => /sticker|decal/i.test(`${item.title} ${item.type}`)) || topBundle[0] || null
+const protect = [...byBucket['Protect / Low Stock']].sort((a, b) => b.score - a.score).slice(0, 5)
+const outWinners = [...byBucket['Out of Stock Winners']].sort((a, b) => b.score - a.score).slice(0, 5)
 
 const recommendation = hero ? {
   hero: hero.title,
@@ -94,6 +108,7 @@ const recommendation = hero ? {
   addOn: addOn ? addOn.title : null,
   offer: addOn ? `${hero.title} + ${addOn.title}` : `${hero.title} feature push`,
   channel: 'Homepage + email + IG story',
+  inventoryReality: (hero.availableInventory ?? 0) <= 3 ? 'Low stock: push carefully or use as proof/anchor.' : 'Enough stock to feature now.',
   why: [
     hero.sales90 ? `${hero.sales90} sales in the last 90 days` : null,
     hero.availableInventory != null ? `${hero.availableInventory} units available` : null,
@@ -108,12 +123,15 @@ const output = {
   summary: {
     totalRows: rows.length,
     merchRows: merch.length,
-    buckets: Object.fromEntries(Object.entries(byBucket).map(([k,v]) => [k, v.length]))
+    actionableRows: actionable.length,
+    buckets: Object.fromEntries(Object.entries(byBucket).map(([k, v]) => [k, v.length]))
   },
   recommendation,
   topPush,
   topBundle,
-  buckets: Object.fromEntries(Object.entries(byBucket).map(([k,v]) => [k, v.sort((a,b) => b.score - a.score).slice(0, 12)]))
+  protect,
+  outWinners,
+  buckets: Object.fromEntries(Object.entries(byBucket).map(([k, v]) => [k, v.sort((a, b) => b.score - a.score).slice(0, 12)]))
 }
 
 fs.writeFileSync(outPath, JSON.stringify(output, null, 2))

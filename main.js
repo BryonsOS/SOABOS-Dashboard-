@@ -549,6 +549,8 @@ function renderWarRoomPanel(warRoom = {}) {
   const buckets = warRoom.summary?.buckets || {}
   const topPush = Array.isArray(warRoom.topPush) ? warRoom.topPush.slice(0, 5) : []
   const topBundle = Array.isArray(warRoom.topBundle) ? warRoom.topBundle.slice(0, 5) : []
+  const protect = Array.isArray(warRoom.protect) ? warRoom.protect.slice(0, 5) : []
+  const outWinners = Array.isArray(warRoom.outWinners) ? warRoom.outWinners.slice(0, 5) : []
 
   return `
     <section class="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
@@ -558,7 +560,7 @@ function renderWarRoomPanel(warRoom = {}) {
             <p class="section-kicker">War room data</p>
             <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Current recommendation</h3>
           </div>
-          <span class="chip chip-warm">${warRoom.summary?.merchRows ?? 0} merch rows</span>
+          <span class="chip chip-warm">${warRoom.summary?.actionableRows ?? 0} actionable rows</span>
         </div>
 
         ${recommendation ? `
@@ -568,6 +570,7 @@ function renderWarRoomPanel(warRoom = {}) {
             <p class="mt-2 text-sm leading-6 text-copy-soft">${[recommendation.heroVariant, recommendation.channel].filter(Boolean).join(' · ')}</p>
             ${recommendation.addOn ? `<p class="mt-3 text-sm leading-6 text-copy"><span class="text-copy-faint">Add-on:</span> ${recommendation.addOn}</p>` : ''}
             ${recommendation.offer ? `<p class="mt-2 text-sm leading-6 text-copy"><span class="text-copy-faint">Offer:</span> ${recommendation.offer}</p>` : ''}
+            ${recommendation.inventoryReality ? `<p class="mt-2 text-sm leading-6 text-copy"><span class="text-copy-faint">Inventory read:</span> ${recommendation.inventoryReality}</p>` : ''}
             <div class="mt-4 flex flex-wrap gap-2">
               ${(recommendation.why || []).map((item) => `<span class="chip">${item}</span>`).join('')}
             </div>
@@ -575,10 +578,10 @@ function renderWarRoomPanel(warRoom = {}) {
         ` : '<article class="rounded-[24px] border border-line bg-white/[0.04] p-5"><p class="text-sm leading-6 text-copy-soft">No recommendation generated yet.</p></article>'}
 
         <div class="mt-4 grid gap-3 sm:grid-cols-2">
-          ${renderStatCard('Push Now', buckets['Push Now'] ?? 0, 'Ready for direct campaign weight.')}
-          ${renderStatCard('Bundle / Test', buckets['Bundle / Test'] ?? 0, 'Good candidates for offers and add-ons.')}
-          ${renderStatCard('Protect', buckets['Protect'] ?? 0, 'Strong sellers or low-stock items to defend.')}
-          ${renderStatCard('Dead / Review', buckets['Dead / Review'] ?? 0, 'Needs cleanup, archive, or manual review.')}
+          ${renderStatCard('Push What Is Left', buckets['Push What Is Left'] ?? 0, 'Best remaining in-stock products to feature now.')}
+          ${renderStatCard('Bundle / Test', buckets['Bundle / Test'] ?? 0, 'Use as add-ons, offer fillers, and test candidates.')}
+          ${renderStatCard('Protect / Low Stock', buckets['Protect / Low Stock'] ?? 0, 'Good sellers with thin inventory — use carefully.')}
+          ${renderStatCard('Out of Stock Winners', buckets['Out of Stock Winners'] ?? 0, 'Strong demand signals that need restock or replacement.')}
         </div>
       </section>
 
@@ -591,12 +594,20 @@ function renderWarRoomPanel(warRoom = {}) {
         </div>
         <div class="grid gap-3">
           <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
-            <p class="micro-label text-fire">Push now</p>
-            <div class="mt-3 grid gap-3">${topPush.length ? topPush.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No push-now items found.</p>'}</div>
+            <p class="micro-label text-fire">Push what is left</p>
+            <div class="mt-3 grid gap-3">${topPush.length ? topPush.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No immediate in-stock push items found.</p>'}</div>
           </article>
           <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
             <p class="micro-label text-fire">Bundle / test</p>
             <div class="mt-3 grid gap-3">${topBundle.length ? topBundle.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No bundle candidates found.</p>'}</div>
+          </article>
+          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+            <p class="micro-label text-fire">Protect / low stock</p>
+            <div class="mt-3 grid gap-3">${protect.length ? protect.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No low-stock protect items found.</p>'}</div>
+          </article>
+          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+            <p class="micro-label text-fire">Out of stock winners</p>
+            <div class="mt-3 grid gap-3">${outWinners.length ? outWinners.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No out-of-stock demand signals found.</p>'}</div>
           </article>
         </div>
       </section>
