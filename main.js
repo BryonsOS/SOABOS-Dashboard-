@@ -17,7 +17,7 @@ async function init() {
 }
 
 function buildState(content) {
-  const { dashboard, current, projects, goals, areas, updates, birthdays, gratitude, events, fitness } = content
+  const { dashboard, current, projects, goals, areas, updates, birthdays, gratitude, events, fitness, warRoom } = content
   const sortedProjects = [...projects].sort(sortProjects)
   const spotlightProject = sortedProjects[0] || null
   const topUpdate = updates.at(-1) || null
@@ -44,6 +44,7 @@ function buildState(content) {
     gratitude,
     events,
     fitness,
+    warRoom,
     sortedProjects,
     spotlightProject,
     topUpdate,
@@ -455,6 +456,8 @@ function renderProjectDetailRoute(state, slug) {
     })
     .slice(0, 4)
 
+  const warRoomPanel = slug === 'sick-sales-war-room' ? renderWarRoomPanel(state.warRoom) : ''
+
   return `
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -503,6 +506,8 @@ function renderProjectDetailRoute(state, slug) {
       </section>
     </section>
 
+    ${warRoomPanel}
+
     <section class="grid gap-4 xl:grid-cols-[1fr_1fr]">
       <section class="stack-card compact-card">
         <div class="mb-4 flex items-end justify-between gap-4">
@@ -536,6 +541,87 @@ function renderProjectDetailRoute(state, slug) {
         </div>
       </section>
     </section>
+  `
+}
+
+function renderWarRoomPanel(warRoom = {}) {
+  const recommendation = warRoom.recommendation || null
+  const buckets = warRoom.summary?.buckets || {}
+  const topPush = Array.isArray(warRoom.topPush) ? warRoom.topPush.slice(0, 5) : []
+  const topBundle = Array.isArray(warRoom.topBundle) ? warRoom.topBundle.slice(0, 5) : []
+
+  return `
+    <section class="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
+      <section class="stack-card compact-card">
+        <div class="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p class="section-kicker">War room data</p>
+            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Current recommendation</h3>
+          </div>
+          <span class="chip chip-warm">${warRoom.summary?.merchRows ?? 0} merch rows</span>
+        </div>
+
+        ${recommendation ? `
+          <article class="rounded-[24px] border border-fire/18 bg-fire-soft p-5">
+            <p class="micro-label text-fire">Push today</p>
+            <h4 class="mt-3 text-xl font-semibold text-copy">${recommendation.hero || 'No hero picked'}</h4>
+            <p class="mt-2 text-sm leading-6 text-copy-soft">${[recommendation.heroVariant, recommendation.channel].filter(Boolean).join(' · ')}</p>
+            ${recommendation.addOn ? `<p class="mt-3 text-sm leading-6 text-copy"><span class="text-copy-faint">Add-on:</span> ${recommendation.addOn}</p>` : ''}
+            ${recommendation.offer ? `<p class="mt-2 text-sm leading-6 text-copy"><span class="text-copy-faint">Offer:</span> ${recommendation.offer}</p>` : ''}
+            <div class="mt-4 flex flex-wrap gap-2">
+              ${(recommendation.why || []).map((item) => `<span class="chip">${item}</span>`).join('')}
+            </div>
+          </article>
+        ` : '<article class="rounded-[24px] border border-line bg-white/[0.04] p-5"><p class="text-sm leading-6 text-copy-soft">No recommendation generated yet.</p></article>'}
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          ${renderStatCard('Push Now', buckets['Push Now'] ?? 0, 'Ready for direct campaign weight.')}
+          ${renderStatCard('Bundle / Test', buckets['Bundle / Test'] ?? 0, 'Good candidates for offers and add-ons.')}
+          ${renderStatCard('Protect', buckets['Protect'] ?? 0, 'Strong sellers or low-stock items to defend.')}
+          ${renderStatCard('Dead / Review', buckets['Dead / Review'] ?? 0, 'Needs cleanup, archive, or manual review.')}
+        </div>
+      </section>
+
+      <section class="stack-card compact-card">
+        <div class="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p class="section-kicker">Top products</p>
+            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">What the data says</h3>
+          </div>
+        </div>
+        <div class="grid gap-3">
+          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+            <p class="micro-label text-fire">Push now</p>
+            <div class="mt-3 grid gap-3">${topPush.length ? topPush.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No push-now items found.</p>'}</div>
+          </article>
+          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+            <p class="micro-label text-fire">Bundle / test</p>
+            <div class="mt-3 grid gap-3">${topBundle.length ? topBundle.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No bundle candidates found.</p>'}</div>
+          </article>
+        </div>
+      </section>
+    </section>
+  `
+}
+
+function renderWarRoomItem(item) {
+  return `
+    <article class="phase-lane-item phase-lane-item-compact">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <h4 class="text-base font-semibold text-copy">${item.title}</h4>
+          <p class="mt-1 text-sm leading-6 text-copy-soft">${[item.variant !== 'Default Title' ? item.variant : '', item.type, item.vendor].filter(Boolean).join(' · ')}</p>
+        </div>
+        <span class="chip chip-warm">${item.bucket}</span>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2">
+        ${item.price != null ? `<span class="chip">$${item.price}</span>` : ''}
+        ${item.sales90 != null ? `<span class="chip">90d sales: ${item.sales90}</span>` : ''}
+        ${item.availableInventory != null ? `<span class="chip">inv: ${item.availableInventory}</span>` : ''}
+        ${item.revenue90 != null ? `<span class="chip">rev: $${Math.round(item.revenue90)}</span>` : ''}
+      </div>
+      ${item.note ? `<p class="mt-2 text-sm leading-6 text-copy-faint">${item.note}</p>` : ''}
+    </article>
   `
 }
 

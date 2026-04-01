@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "prebuild": "node scripts/build-content.mjs",
-    "prebuild-dashboard": "node scripts/build-content.mjs",
+    "prebuild": "node scripts/build-war-room.mjs && node scripts/build-content.mjs",
+    "prebuild-dashboard": "node scripts/build-war-room.mjs && node scripts/build-content.mjs",
     "dev": "vite",
     "build": "vite build",
     "postbuild": "node scripts/render-pages-entry.mjs",
