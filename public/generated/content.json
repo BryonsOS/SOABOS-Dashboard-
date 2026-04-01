@@ -374,7 +374,7 @@
         "title": "Built the Sick sales war room into the dashboard",
         "kind": "build"
       },
-      "content": "Added a dedicated Sick Sales War Room project plus a practical operating layer behind it: sales system notes, scorecard template, experiment log, and offer calendar.\n\nThe goal is simple: make shirts and stickers easier to push by turning the sales attack into a visible daily system instead of a vague intention."
+      "content": "Added a dedicated Sick Sales War Room project plus a practical operating layer behind it: sales system notes, scorecard template, experiment log, offer calendar, and a concrete merch triage model.\n\nThe goal is simple: make shirts and stickers easier to push by turning the sales attack into a visible daily system instead of a vague intention.\n\nThe merch triage pass reframes the product sheet from a narrow promo-eligibility filter into an operator action board with four buckets:\n- Push Now\n- Bundle / Test\n- Protect\n- Dead / Review\n\nA rough dry run against the current workspace export produced:\n- Push Now: 32\n- Bundle / Test: 258\n- Protect: 83\n- Dead / Review: 48"
     }
   ],
   "birthdays": {

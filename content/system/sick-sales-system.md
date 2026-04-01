@@ -110,3 +110,99 @@ Use angles like:
 - do not confuse awareness content with sell-now content
 - if shirts are the goal, make shirts the hero and stickers the easy add-on
 - if conversion is weak, fix merch presentation before demanding more traffic
+
+## Merch triage model
+
+Use the product list as an action board, not just a promo gate.
+
+### Buckets
+
+- Push Now
+- Bundle / Test
+- Protect
+- Dead / Review
+
+### Decision order
+
+Run classification in this order so low-stock winners do not get incorrectly promoted:
+
+1. Protect
+2. Push Now
+3. Bundle / Test
+4. Dead / Review
+
+### Working field map from current export
+
+Current merch export appears to include these useful fields:
+
+- SKU
+- Product Title
+- Variant
+- Product Type
+- Price
+- Available Inventory
+- Recent Sales
+- 90 Day Sales
+- 90 Day Revenue
+- 90 Day Daily Velocity
+- Current Auto Note
+
+### Bucket logic
+
+#### Protect
+Use when:
+- Available Inventory <= 3
+- OR Available Inventory <= 8 and 90 Day Sales >= 20
+- OR stock is clearly constrained and demand is already proven
+
+Meaning:
+- do not spend promotion on things likely to stock out
+- defend winners and low-stock items
+
+#### Push Now
+Use when all are true:
+- Available Inventory >= 10
+- 90 Day Sales >= 8
+- Price >= 28
+- not already in Protect
+
+Meaning:
+- enough stock
+- enough demand proof
+- enough ticket value to justify featured placement
+
+#### Bundle / Test
+Use when:
+- Available Inventory >= 6
+- not already in Protect or Push Now
+- item is not clearly dead
+
+Meaning:
+- use as bundle filler, homepage test, collection feature, email test, or add-on push
+
+#### Dead / Review
+Use when:
+- not captured above
+- low inventory and weak demand
+- stale or unclear bundle rows
+- low-confidence rows that should not get automatic campaign weight
+
+Meaning:
+- markdown, archive, relaunch, rename, combine, or manually review
+
+### Current dry-run outcome from workspace export
+
+Using the current merch-only export in `tmp_war_room_products_master.json`, a rough triage pass produced:
+
+- Push Now: 32
+- Bundle / Test: 258
+- Protect: 83
+- Dead / Review: 48
+
+That is much more usable than a strict promo-eligibility model that collapses almost everything into Protect.
+
+### Naming cleanup
+
+Recommended:
+- rename `Campaign_Candidates` to `Merch_Triage`
+- keep `Dashboard_Summary` as the rollup tab
