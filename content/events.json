@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "title": "Event lane",
+    "subtitle": "Upcoming DJ work, prep pressure, and the next thing that needs attention before go time.",
+    "showUpcomingCount": 3
+  },
+  "summary": {
+    "status": "active",
+    "season": "Spring run",
+    "note": "Keep booked work visible early enough that prep stays calm."
+  },
+  "upcoming": [
+    {
+      "date": "2026-04-04",
+      "title": "Wedding reception",
+      "location": "Metro Detroit",
+      "status": "booked",
+      "prepStage": "final checks",
+      "daysOutLabel": "This week",
+      "nextMove": "Lock final timeline, confirm special songs, and verify load-in details.",
+      "notes": "Treat this as the model event-prep lane for the dashboard.",
+      "type": "private event"
+    },
+    {
+      "date": "2026-04-11",
+      "title": "Club set",
+      "location": "Detroit",
+      "status": "booked",
+      "prepStage": "set planning",
+      "daysOutLabel": "Next week",
+      "nextMove": "Tighten set energy arc and prep a fast backup crate.",
+      "notes": "Good candidate for a repeatable pre-show checklist later.",
+      "type": "club"
+    },
+    {
+      "date": "2026-04-18",
+      "title": "Corporate party",
+      "location": "Ann Arbor",
+      "status": "holding",
+      "prepStage": "info gathering",
+      "daysOutLabel": "Two weeks out",
+      "nextMove": "Get final schedule, contact, and paperwork in one visible place.",
+      "notes": "Useful lane for agent-led bookings that still need Bryon-side visibility.",
+      "type": "corporate"
+    }
+  ]
+}

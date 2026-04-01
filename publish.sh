@@ -55,19 +55,22 @@ git add \
   generated/content.json \
   public/generated/content.json \
   dist/generated/content.json \
-  dist/index.html \
+  dist/app/index.html \
   dist/assets \
   app/index.html \
   index.html \
   404.html \
   assets \
   main.js \
+  styles.css \
   vite.config.js \
   package.json \
+  package-lock.json \
   .github \
   README.md \
   publish.sh \
-  scripts/build-content.mjs
+  scripts/build-content.mjs \
+  scripts/render-pages-entry.mjs
 
 if git diff --cached --quiet; then
   warn "No source changes to publish. Build is already current."

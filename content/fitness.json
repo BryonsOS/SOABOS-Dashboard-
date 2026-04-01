@@ -1,0 +1,40 @@
+{
+  "settings": {
+    "title": "Workout lane",
+    "subtitle": "Training momentum, consistency streak, and the next session that keeps the body moving.",
+    "showRecentCount": 3
+  },
+  "summary": {
+    "status": "rebuilding momentum",
+    "streakLabel": "2 sessions this week",
+    "focus": "Consistency over perfection",
+    "note": "The goal is to keep motion visible so skipping one day does not become losing the thread."
+  },
+  "nextSession": {
+    "targetDate": "2026-04-01",
+    "title": "Lower body + conditioning",
+    "window": "Tomorrow morning",
+    "goal": "Get back into rhythm with one solid session, not an all-out reset.",
+    "nextMove": "Lay out a simple 45-minute session and start moving before overthinking it."
+  },
+  "recent": [
+    {
+      "date": "2026-03-30",
+      "title": "Upper body reset",
+      "type": "gym",
+      "note": "Got a clean session in and broke inertia."
+    },
+    {
+      "date": "2026-03-28",
+      "title": "Conditioning + core",
+      "type": "home",
+      "note": "Shorter session, but it kept the week from going dead."
+    },
+    {
+      "date": "2026-03-25",
+      "title": "Full body circuit",
+      "type": "gym",
+      "note": "Proof that simpler sessions are easier to repeat right now."
+    }
+  ]
+}

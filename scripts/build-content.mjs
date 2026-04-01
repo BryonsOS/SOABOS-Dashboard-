@@ -22,6 +22,8 @@ const areas = readCollection(path.join(contentDir, 'areas'))
 const updates = readCollection(path.join(contentDir, 'updates'))
 const birthdays = readJson(path.join(contentDir, 'birthdays.json'))
 const gratitude = readJson(path.join(contentDir, 'gratitude.json'))
+const events = readJson(path.join(contentDir, 'events.json'))
+const fitness = readJson(path.join(contentDir, 'fitness.json'))
 
 const computedStats = {
   projects: projects.length,
@@ -40,7 +42,9 @@ const bundle = {
   areas,
   updates,
   birthdays: buildBirthdays(birthdays),
-  gratitude
+  gratitude,
+  events,
+  fitness
 }
 
 for (const dir of outputDirs) {

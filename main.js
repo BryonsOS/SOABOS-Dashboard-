@@ -17,7 +17,7 @@ async function init() {
 }
 
 function buildState(content) {
-  const { dashboard, current, projects, goals, areas, updates, birthdays, gratitude } = content
+  const { dashboard, current, projects, goals, areas, updates, birthdays, gratitude, events, fitness } = content
   const sortedProjects = [...projects].sort(sortProjects)
   const spotlightProject = sortedProjects[0] || null
   const topUpdate = updates.at(-1) || null
@@ -30,6 +30,8 @@ function buildState(content) {
   const birthdaysState = buildBirthdayState(birthdays)
   const allRecentBirthdays = birthdaysState.upcoming.slice(0, 12)
   const gratitudeCard = buildGratitudeCard(gratitude)
+  const eventsCard = buildEventsCard(events)
+  const fitnessCard = buildFitnessCard(fitness)
 
   return {
     dashboard,
@@ -40,6 +42,8 @@ function buildState(content) {
     updates,
     birthdays,
     gratitude,
+    events,
+    fitness,
     sortedProjects,
     spotlightProject,
     topUpdate,
@@ -51,7 +55,9 @@ function buildState(content) {
     recentUpdates,
     birthdaysState,
     allRecentBirthdays,
-    gratitudeCard
+    gratitudeCard,
+    eventsCard,
+    fitnessCard
   }
 }
 
@@ -116,6 +122,11 @@ function renderNavLink(href, label, active = false) {
 function renderHome(state) {
   return `
     ${renderGratitudeWidget(state.gratitudeCard)}
+
+    <section class="grid gap-4 xl:grid-cols-[1fr_1fr]">
+      ${renderEventsWidget(state.eventsCard)}
+      ${renderFitnessWidget(state.fitnessCard)}
+    </section>
 
     <section class="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
       <div class="stack-card compact-card">
@@ -993,6 +1004,164 @@ function buildGratitudeCard(gratitude = {}) {
       ...item,
       dateLabel: formatCalendarDate(item.date),
       statusLabel: String(item.status || '').toLowerCase() === 'completed' ? 'Completed' : capitalize(item.status || 'pending')
+    }))
+  }
+}
+
+function renderEventsWidget(eventsCard = {}) {
+  const items = Array.isArray(eventsCard.upcoming) ? eventsCard.upcoming : []
+
+  return `
+    <section class="stack-card compact-card">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="section-kicker">Events & DJ</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">${eventsCard.title || 'Event lane'}</h2>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${eventsCard.subtitle || 'Upcoming event prep and booked-work visibility.'}</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          ${eventsCard.statusLabel ? `<span class="chip chip-warm">${eventsCard.statusLabel}</span>` : ''}
+          ${eventsCard.seasonLabel ? `<span class="chip">${eventsCard.seasonLabel}</span>` : ''}
+        </div>
+      </div>
+
+      <div class="mt-4 grid gap-3">
+        ${eventsCard.nextMove ? `
+          <article class="rounded-[22px] border border-fire/18 bg-fire-soft p-4">
+            <p class="micro-label text-fire">Lane note</p>
+            <p class="mt-2 text-sm leading-6 text-copy">${eventsCard.nextMove}</p>
+          </article>
+        ` : ''}
+        ${items.length ? items.map(renderEventItem).join('') : '<article class="rounded-[22px] border border-line bg-white/[0.04] p-4"><p class="text-sm leading-6 text-copy-soft">No upcoming events loaded yet.</p></article>'}
+      </div>
+    </section>
+  `
+}
+
+function renderEventItem(item) {
+  return `
+    <article class="phase-lane-item">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="micro-label text-fire">${item.dateLabel || ''}</p>
+          <h3 class="mt-2 text-lg font-semibold text-copy">${item.title || 'Upcoming event'}</h3>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${[item.type, item.location].filter(Boolean).join(' · ')}</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          ${item.statusLabel ? `<span class="chip chip-warm">${item.statusLabel}</span>` : ''}
+          ${item.prepStageLabel ? `<span class="chip">${item.prepStageLabel}</span>` : ''}
+        </div>
+      </div>
+      ${item.nextMove ? `<p class="mt-3 text-sm leading-6 text-copy"><span class="text-copy-faint">Next:</span> ${item.nextMove}</p>` : ''}
+      ${item.note ? `<p class="mt-2 text-sm leading-6 text-copy-faint">${item.note}</p>` : ''}
+    </article>
+  `
+}
+
+function renderFitnessWidget(fitnessCard = {}) {
+  const recent = Array.isArray(fitnessCard.recent) ? fitnessCard.recent : []
+
+  return `
+    <section class="stack-card compact-card">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="section-kicker">Personal lane</p>
+          <h2 class="text-2xl font-semibold tracking-[-0.03em] text-copy">${fitnessCard.title || 'Workout lane'}</h2>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${fitnessCard.subtitle || 'Training momentum, consistency, and the next session.'}</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          ${fitnessCard.statusLabel ? `<span class="chip chip-warm">${fitnessCard.statusLabel}</span>` : ''}
+          ${fitnessCard.streakLabel ? `<span class="chip">${fitnessCard.streakLabel}</span>` : ''}
+        </div>
+      </div>
+
+      <div class="mt-4 grid gap-3 lg:grid-cols-[0.9fr_1.1fr]">
+        <article class="birthday-widget-hero compact-hero">
+          <p class="micro-label text-fire">Next session</p>
+          <h3 class="mt-3 text-xl font-semibold tracking-[-0.03em] text-copy">${fitnessCard.nextTitle || 'Keep moving'}</h3>
+          <p class="mt-2 text-sm leading-6 text-copy-soft">${[fitnessCard.nextWindow, fitnessCard.nextDateLabel].filter(Boolean).join(' · ')}</p>
+          ${fitnessCard.nextGoal ? `<p class="mt-4 text-sm leading-6 text-copy">${fitnessCard.nextGoal}</p>` : ''}
+          ${fitnessCard.nextMove ? `<div class="mt-4 rounded-[20px] border border-fire/18 bg-black/10 px-4 py-4"><p class="micro-label text-fire">Next move</p><p class="mt-2 text-sm leading-6 text-copy-soft">${fitnessCard.nextMove}</p></div>` : ''}
+        </article>
+
+        <div class="grid gap-3">
+          <article class="lane-card compact-lane-card">
+            <p class="micro-label text-fire">Why this lane matters</p>
+            <p class="mt-3 text-sm leading-6 text-copy-soft">${fitnessCard.note || 'Keep the body in the operating picture so momentum stays real instead of abstract.'}</p>
+          </article>
+
+          <article class="lane-card compact-lane-card">
+            <div class="flex items-end justify-between gap-3">
+              <div>
+                <p class="micro-label text-fire">Recent sessions</p>
+                <h3 class="mt-3 text-lg font-semibold text-copy">Consistency trail</h3>
+              </div>
+              <span class="chip">${recent.length} loaded</span>
+            </div>
+            <div class="mt-4 space-y-3">
+              ${recent.length ? recent.map(renderFitnessHistoryItem).join('') : '<p class="text-sm leading-6 text-copy-soft">No recent workouts loaded yet.</p>'}
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  `
+}
+
+function renderFitnessHistoryItem(item) {
+  return `
+    <article class="phase-lane-item phase-lane-item-compact">
+      <div class="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p class="micro-label text-fire">${item.dateLabel || ''}</p>
+          <h4 class="mt-2 text-base font-semibold text-copy">${item.title || 'Session'}</h4>
+        </div>
+        ${item.typeLabel ? `<span class="chip chip-warm">${item.typeLabel}</span>` : ''}
+      </div>
+      ${item.note ? `<p class="mt-3 text-sm leading-6 text-copy-soft">${item.note}</p>` : ''}
+    </article>
+  `
+}
+
+function buildEventsCard(events = {}) {
+  const showCount = Number(events.settings?.showUpcomingCount || 3)
+  const upcoming = Array.isArray(events.upcoming) ? events.upcoming.slice(0, showCount) : []
+
+  return {
+    title: events.settings?.title || 'Event lane',
+    subtitle: events.settings?.subtitle || 'Upcoming DJ work, prep pressure, and the next thing that needs attention before go time.',
+    statusLabel: humanizeToken(String(events.summary?.status || 'active')),
+    seasonLabel: events.summary?.season,
+    nextMove: events.summary?.note,
+    upcoming: upcoming.map((item) => ({
+      ...item,
+      dateLabel: formatCalendarDate(item.date),
+      statusLabel: humanizeToken(String(item.status || 'booked')),
+      prepStageLabel: humanizeToken(String(item.prepStage || 'prep'))
+    }))
+  }
+}
+
+function buildFitnessCard(fitness = {}) {
+  const showCount = Number(fitness.settings?.showRecentCount || 3)
+  const recent = Array.isArray(fitness.recent) ? fitness.recent.slice(0, showCount) : []
+  const nextSession = fitness.nextSession || {}
+
+  return {
+    title: fitness.settings?.title || 'Workout lane',
+    subtitle: fitness.settings?.subtitle || 'Training momentum, consistency streak, and the next session that keeps the body moving.',
+    statusLabel: humanizeToken(String(fitness.summary?.status || 'active')),
+    streakLabel: fitness.summary?.streakLabel,
+    note: fitness.summary?.note,
+    nextTitle: nextSession.title,
+    nextWindow: nextSession.window,
+    nextDateLabel: formatCalendarDate(nextSession.targetDate),
+    nextGoal: nextSession.goal,
+    nextMove: nextSession.nextMove,
+    recent: recent.map((item) => ({
+      ...item,
+      dateLabel: formatCalendarDate(item.date),
+      typeLabel: humanizeToken(String(item.type || 'session'))
     }))
   }
 }
