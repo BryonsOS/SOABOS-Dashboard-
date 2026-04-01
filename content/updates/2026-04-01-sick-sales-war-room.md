@@ -36,3 +36,10 @@ Current recommended merch push:
 - Channel focus: Homepage + email + IG story
 
 Bottom line: the war room is no longer just a smart analysis or just a merch worksheet. It is now framed as a working board that connects revenue priorities, inventory reality, and daily action.
+
+Follow-up pass: added a scan-first today board shape to wire directly into the dashboard detail view:
+- Now
+- Next
+- Watch
+- Problems
+- Moves

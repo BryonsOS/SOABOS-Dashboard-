@@ -123,6 +123,20 @@ Based on the current export:
 - Offer: Straw Hat + sticker
 - Channel focus: Homepage + email + IG story
 
+## Today board shape
+
+The dashboard now treats the war room like a live operating board, not just a report.
+
+It should answer five things fast:
+
+- Now
+- Next
+- Watch
+- Problems
+- Moves
+
+That gives the project a scan-first layer Bryon can use immediately without rereading all the reasoning every time.
+
 ## Main war room read
 
 The business is not strongest when every product gets equal emotional importance.

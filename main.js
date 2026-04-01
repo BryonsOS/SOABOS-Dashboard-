@@ -546,6 +546,7 @@ function renderProjectDetailRoute(state, slug) {
 
 function renderWarRoomPanel(warRoom = {}) {
   const recommendation = warRoom.recommendation || null
+  const todayBoard = warRoom.todayBoard || {}
   const buckets = warRoom.summary?.buckets || {}
   const topPush = Array.isArray(warRoom.topPush) ? warRoom.topPush.slice(0, 5) : []
   const topBundle = Array.isArray(warRoom.topBundle) ? warRoom.topBundle.slice(0, 5) : []
@@ -588,29 +589,45 @@ function renderWarRoomPanel(warRoom = {}) {
       <section class="stack-card compact-card">
         <div class="mb-4 flex items-end justify-between gap-4">
           <div>
-            <p class="section-kicker">Top products</p>
-            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">What the data says</h3>
+            <p class="section-kicker">Today board</p>
+            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Now / next / watch / problems / moves</h3>
           </div>
         </div>
-        <div class="grid gap-3">
-          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
-            <p class="micro-label text-fire">Push what is left</p>
-            <div class="mt-3 grid gap-3">${topPush.length ? topPush.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No immediate in-stock push items found.</p>'}</div>
-          </article>
-          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
-            <p class="micro-label text-fire">Bundle / test</p>
-            <div class="mt-3 grid gap-3">${topBundle.length ? topBundle.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No bundle candidates found.</p>'}</div>
-          </article>
-          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
-            <p class="micro-label text-fire">Protect / low stock</p>
-            <div class="mt-3 grid gap-3">${protect.length ? protect.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No low-stock protect items found.</p>'}</div>
-          </article>
-          <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
-            <p class="micro-label text-fire">Out of stock winners</p>
-            <div class="mt-3 grid gap-3">${outWinners.length ? outWinners.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No out-of-stock demand signals found.</p>'}</div>
-          </article>
+        <div class="grid gap-3 sm:grid-cols-2">
+          ${renderFocusCard('Now', todayBoard.now || [], 'orange')}
+          ${renderFocusCard('Next', todayBoard.next || [], 'default')}
+          ${renderFocusCard('Watch', todayBoard.watch || [], 'warning')}
+          ${renderFocusCard('Problems', todayBoard.problems || [], 'warning')}
+          <div class="sm:col-span-2">${renderFocusCard('Moves', todayBoard.moves || [], 'success')}</div>
         </div>
       </section>
+    </section>
+
+    <section class="stack-card compact-card">
+      <div class="mb-4 flex items-end justify-between gap-4">
+        <div>
+          <p class="section-kicker">Top products</p>
+          <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">What the data says</h3>
+        </div>
+      </div>
+      <div class="grid gap-3 xl:grid-cols-2">
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Push what is left</p>
+          <div class="mt-3 grid gap-3">${topPush.length ? topPush.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No immediate in-stock push items found.</p>'}</div>
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Bundle / test</p>
+          <div class="mt-3 grid gap-3">${topBundle.length ? topBundle.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No bundle candidates found.</p>'}</div>
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Protect / low stock</p>
+          <div class="mt-3 grid gap-3">${protect.length ? protect.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No low-stock protect items found.</p>'}</div>
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Out of stock winners</p>
+          <div class="mt-3 grid gap-3">${outWinners.length ? outWinners.map((item) => renderWarRoomItem(item)).join('') : '<p class="text-sm leading-6 text-copy-soft">No out-of-stock demand signals found.</p>'}</div>
+        </article>
+      </div>
     </section>
   `
 }
