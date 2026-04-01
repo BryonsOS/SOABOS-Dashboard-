@@ -1137,9 +1137,9 @@
   },
   "gratitude": {
     "today": {
-      "date": "2026-03-31",
-      "entryId": "GJ-20260331-0700",
-      "prompt": "What is something in your life right now that would have felt impossible, out of reach, or unreal to an older version of you — and why does having it now matter more than you usually admit?",
+      "date": "2026-04-01",
+      "entryId": "GJ-20260401-0700",
+      "prompt": "What is one object, spot, or creature in your day-to-day world that quietly makes life better every time you notice it — and what would feel missing if it were suddenly gone?",
       "status": "pending",
       "source": "telegram + dashboard",
       "availableWindow": "morning-to-evening",

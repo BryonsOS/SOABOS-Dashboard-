@@ -1,4 +1,4 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))c(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&c(r)}).observe(document,{childList:!0,subtree:!0});function s(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function c(i){if(i.ep)return;i.ep=!0;const a=s(i);fetch(i.href,a)}})();async function W(){const t=await fetch("./generated/content.json").then(i=>i.json()),e=document.querySelector("#app"),s=E(t);function c(){const i=nt(window.location.hash);e.innerHTML=_(s,i),ot(e,s,i)}window.addEventListener("hashchange",c),c()}function E(t){const{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:n,gratitude:l,events:p,fitness:x}=t,m=[...c].sort(L),P=m[0]||null,N=r.at(-1)||null,B=m.filter(b=>String(b.data.status||"").toLowerCase()==="active"),T=m.filter(b=>String(b.data.priority||"").toLowerCase()==="high"),A=ct(s,m),M=rt(a,m),C=m.slice(0,4),D=r.slice().reverse().slice(0,4),v=lt(n),U=v.upcoming.slice(0,12),R=ft(l),O=vt(p),I=wt(x);return{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:n,gratitude:l,events:p,fitness:x,sortedProjects:m,spotlightProject:P,topUpdate:N,activeProjects:B,highPriorityProjects:T,immediateMoves:A,laneGroups:M,hotProjects:C,recentUpdates:D,birthdaysState:v,allRecentBirthdays:U,gratitudeCard:R,eventsCard:O,fitnessCard:I}}function _(t,e){const s=J(t,e);return`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))c(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const r of a.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&c(r)}).observe(document,{childList:!0,subtree:!0});function s(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function c(i){if(i.ep)return;i.ep=!0;const a=s(i);fetch(i.href,a)}})();async function E(){const t=await fetch("./generated/content.json").then(i=>i.json()),e=document.querySelector("#app"),s=_(t);function c(){const i=dt(window.location.hash);e.innerHTML=F(s,i),pt(e,s,i)}window.addEventListener("hashchange",c),c()}function _(t){const{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:n,gratitude:l,events:p,fitness:x}=t,m=[...c].sort(L),N=m[0]||null,B=r.at(-1)||null,A=m.filter(b=>String(b.data.status||"").toLowerCase()==="active"),T=m.filter(b=>String(b.data.priority||"").toLowerCase()==="high"),C=lt(s,m),D=ot(a,m),M=m.slice(0,4),U=r.slice().reverse().slice(0,4),v=nt(n),R=v.upcoming.slice(0,12),O=gt(l),I=wt(p),W=$t(x);return{dashboard:e,current:s,projects:c,goals:i,areas:a,updates:r,birthdays:n,gratitude:l,events:p,fitness:x,sortedProjects:m,spotlightProject:N,topUpdate:B,activeProjects:A,highPriorityProjects:T,immediateMoves:C,laneGroups:D,hotProjects:M,recentUpdates:U,birthdaysState:v,allRecentBirthdays:R,gratitudeCard:O,eventsCard:I,fitnessCard:W}}function F(t,e){const s=V(t,e);return`
     <div class="relative overflow-hidden">
       <div class="pointer-events-none absolute inset-0 opacity-60">
         <div class="absolute left-[-8rem] top-[-10rem] h-72 w-72 rounded-full bg-fire/12 blur-3xl"></div>
@@ -7,11 +7,11 @@
       </div>
 
       <main class="relative mx-auto flex min-h-screen w-full max-w-[1280px] flex-col gap-4 px-4 pb-16 pt-4 sm:px-6 lg:px-8 lg:pb-24 lg:pt-6">
-        ${F(t,e)}
+        ${G(t,e)}
         ${e.name==="home"?w(t):s}
       </main>
     </div>
-  `}function F(t,e){return`
+  `}function G(t,e){return`
     <section class="glass-card overflow-hidden p-4 sm:p-5 lg:p-6">
       <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
         <div class="min-w-0">
@@ -35,19 +35,20 @@
         </div>
 
         <nav class="grid gap-2 sm:grid-cols-2 xl:w-[360px]">
-          ${f("#/","Overview",e.name==="home")}
-          ${f("#/birthdays","Birthdays",e.name==="birthdays")}
-          ${f("#/projects","Projects",e.name==="projects"||e.name==="project")}
-          ${f("#/updates","Updates",e.name==="updates")}
+          ${h("#/","Overview",e.name==="home")}
+          ${h("#/prompt","Daily prompt",e.name==="prompt")}
+          ${h("#/birthdays","Birthdays",e.name==="birthdays")}
+          ${h("#/projects","Projects",e.name==="projects"||e.name==="project")}
+          ${h("#/updates","Updates",e.name==="updates")}
         </nav>
       </div>
     </section>
-  `}function f(t,e,s=!1){return`<a class="nav-chip ${s?"nav-chip-active":""}" href="${t}">${e}</a>`}function w(t){var e;return`
-    ${xt(t.gratitudeCard)}
+  `}function h(t,e,s=!1){return`<a class="nav-chip ${s?"nav-chip-active":""}" href="${t}">${e}</a>`}function w(t){var e;return`
+    ${P(t.gratitudeCard)}
 
     <section class="grid gap-4 xl:grid-cols-[1fr_1fr]">
-      ${gt(t.eventsCard)}
-      ${yt(t.fitnessCard)}
+      ${ut(t.eventsCard)}
+      ${bt(t.fitnessCard)}
     </section>
 
     <section class="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
@@ -64,7 +65,7 @@
           </div>
         </div>
         <div class="mt-4 grid gap-3 md:grid-cols-3">
-          ${t.immediateMoves.map(X).join("")}
+          ${t.immediateMoves.map(tt).join("")}
         </div>
       </div>
 
@@ -80,13 +81,13 @@
     </section>
 
     <section class="grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
-      ${G(t)}
       ${H(t)}
+      ${K(t)}
     </section>
 
     <section class="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
-      ${K(t)}
       ${q(t)}
+      ${J(t)}
     </section>
 
     <section class="grid gap-4 xl:grid-cols-[1fr_1fr]">
@@ -99,7 +100,7 @@
           <span class="chip">${t.laneGroups.length} lanes</span>
         </div>
         <div class="grid gap-3">
-          ${t.laneGroups.map(et).join("")}
+          ${t.laneGroups.map(at).join("")}
         </div>
       </section>
 
@@ -118,7 +119,7 @@
         </div>
       </section>
     </section>
-  `}function G(t){var i;const e=t.allRecentBirthdays.slice(0,4),s=e[0],c=(t.birthdaysState.byMonth.april||[]).length;return`
+  `}function H(t){var i;const e=t.allRecentBirthdays.slice(0,4),s=e[0],c=(t.birthdaysState.byMonth.april||[]).length;return`
     <section class="stack-card compact-card">
       <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -148,7 +149,7 @@
         </div>
       </div>
     </section>
-  `}function H(t){return`
+  `}function K(t){return`
     <section class="stack-card compact-card">
       <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -159,10 +160,10 @@
         <a class="chip chip-warm" href="#/projects">Open all projects</a>
       </div>
       <div class="grid gap-3">
-        ${t.hotProjects.map((e,s)=>Z(e,s+1)).join("")}
+        ${t.hotProjects.map((e,s)=>et(e,s+1)).join("")}
       </div>
     </section>
-  `}function K(t){const e=t.spotlightProject;return`
+  `}function q(t){const e=t.spotlightProject;return`
     <section class="stack-card compact-card">
       <div class="mb-4 flex items-end justify-between gap-4">
         <div>
@@ -187,7 +188,7 @@
         </article>
       `:'<p class="text-sm text-copy-soft">No spotlight project loaded yet.</p>'}
     </section>
-  `}function q(t){return`
+  `}function J(t){return`
     <section class="stack-card compact-card">
       <div class="mb-4 flex items-end justify-between gap-4">
         <div>
@@ -200,7 +201,22 @@
         ${t.recentUpdates.map($).join("")}
       </div>
     </section>
-  `}function J(t,e){return e.name==="birthdays"?V(t,e):e.name==="projects"?z(t):e.name==="project"?Y(t,e.slug):e.name==="updates"?Q(t):w(t)}function V(t,e){const s=e.month?d(e.month):null,c=e.month?t.birthdaysState.byMonth[e.month]||[]:[],i=t.birthdaysState.monthOrder.filter(a=>(t.birthdaysState.byMonth[a]||[]).length);return`
+  `}function V(t,e){return e.name==="prompt"?z(t):e.name==="birthdays"?Y(t,e):e.name==="projects"?Q(t):e.name==="project"?X(t,e.slug):e.name==="updates"?Z(t):w(t)}function z(t){return`
+    <section class="stack-card compact-card">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="section-kicker">Daily rhythm</p>
+          <h2 class="text-3xl font-semibold tracking-[-0.03em] text-copy">Daily prompt</h2>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-copy-soft">A clean direct view for today’s gratitude prompt without needing to scroll the whole dashboard.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a class="chip" href="#/">Back to overview</a>
+        </div>
+      </div>
+    </section>
+
+    ${P(t.gratitudeCard)}
+  `}function Y(t,e){const s=e.month?d(e.month):null,c=e.month?t.birthdaysState.byMonth[e.month]||[]:[],i=t.birthdaysState.monthOrder.filter(a=>(t.birthdaysState.byMonth[a]||[]).length);return`
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -225,7 +241,7 @@
           <span class="chip chip-warm">${c.length} people</span>
         </div>
         <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          ${c.map(a=>at(a)).join("")}
+          ${c.map(a=>ct(a)).join("")}
         </div>
       </section>
     `:`
@@ -251,12 +267,12 @@
             </div>
           </div>
           <div class="grid gap-3 sm:grid-cols-2">
-            ${i.map(a=>st(a,t.birthdaysState.byMonth[a])).join("")}
+            ${i.map(a=>it(a,t.birthdaysState.byMonth[a])).join("")}
           </div>
         </section>
       </section>
     `}
-  `}function z(t){return`
+  `}function Q(t){return`
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -269,9 +285,9 @@
     </section>
 
     <section class="grid gap-4 md:grid-cols-2">
-      ${t.sortedProjects.map(e=>it(e)).join("")}
+      ${t.sortedProjects.map(e=>rt(e)).join("")}
     </section>
-  `}function Y(t,e){const s=t.sortedProjects.find(i=>i.data.slug===e);if(!s)return`
+  `}function X(t,e){const s=t.sortedProjects.find(i=>i.data.slug===e);if(!s)return`
       <section class="stack-card compact-card">
         <p class="section-kicker">Project</p>
         <h2 class="text-3xl font-semibold tracking-[-0.03em] text-copy">Project not found</h2>
@@ -290,7 +306,7 @@
         </div>
         <div class="flex flex-wrap gap-2">
           <a class="chip" href="#/projects">Back to projects</a>
-          ${Object.entries(s.data.links||{}).map(([i,a])=>pt(i,a)).join("")}
+          ${Object.entries(s.data.links||{}).map(([i,a])=>mt(i,a)).join("")}
         </div>
       </div>
     </section>
@@ -324,7 +340,7 @@
 
       <section class="stack-card compact-card">
         <p class="section-kicker">Why it exists</p>
-        <div class="project-copy">${dt(s.content)}</div>
+        <div class="project-copy">${xt(s.content)}</div>
       </section>
     </section>
 
@@ -361,7 +377,7 @@
         </div>
       </section>
     </section>
-  `}function Q(t){return`
+  `}function Z(t){return`
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -374,9 +390,9 @@
     </section>
 
     <section class="grid gap-3">
-      ${t.updates.slice().reverse().map(tt).join("")}
+      ${t.updates.slice().reverse().map(st).join("")}
     </section>
-  `}function X(t){return`
+  `}function tt(t){return`
     <article class="rounded-[24px] border border-fire/18 bg-fire-soft p-4">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <p class="micro-label text-fire">${t.lane}</p>
@@ -393,7 +409,7 @@
       </div>
       <strong class="text-right text-2xl font-semibold tracking-[-0.04em] text-copy sm:text-3xl">${e}</strong>
     </article>
-  `}function Z(t,e){return`
+  `}function et(t,e){return`
     <a class="project-row" href="#/projects/${t.data.slug}">
       <div class="project-row-rank">${e}</div>
       <div class="min-w-0 flex-1">
@@ -417,7 +433,7 @@
       <h3 class="mt-3 text-lg font-semibold text-copy">${t.data.title}</h3>
       <p class="mt-2 text-sm leading-6 text-copy-soft">${t.content}</p>
     </article>
-  `}function tt(t){return`
+  `}function st(t){return`
     <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -435,7 +451,7 @@
         ${c.map(a=>`<li>${a}</li>`).join("")}
       </ul>
     </article>
-  `}function et(t){return`
+  `}function at(t){return`
     <article class="lane-card compact-lane-card">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -461,7 +477,7 @@
       </div>
       ${t.interests||t.profile||t.leadTime?`<p class="mt-3 text-sm leading-6 text-copy-faint">${[t.leadTime?`Prep: ${t.leadTime}`:"",t.interests?`Likes: ${t.interests}`:"",t.profile].filter(Boolean).join(" · ")}</p>`:""}
     </a>
-  `}function st(t,e=[]){var c;const s=((c=e[0])==null?void 0:c.name)||"No one loaded";return`
+  `}function it(t,e=[]){var c;const s=((c=e[0])==null?void 0:c.name)||"No one loaded";return`
     <a class="month-card" href="#/birthdays/${t}">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
@@ -472,7 +488,7 @@
       </div>
       <p class="mt-3 text-sm leading-6 text-copy-soft">Next listed: ${s}</p>
     </a>
-  `}function at(t){return`
+  `}function ct(t){return`
     <article class="rounded-[24px] border border-line bg-white/[0.04] p-5">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <p class="micro-label text-fire">${t.dateLabel}</p>
@@ -486,7 +502,7 @@
         ${t.leadTime?`<p><span class="text-copy">Prep:</span> ${t.leadTime}</p>`:""}
       </div>
     </article>
-  `}function it(t){return`
+  `}function rt(t){return`
     <a class="rounded-[26px] border border-line bg-white/[0.04] p-5 transition duration-150 hover:border-fire/25 hover:bg-fire-soft" href="#/projects/${t.data.slug}">
       <div class="flex flex-wrap items-center justify-between gap-3">
         <span class="chip chip-warm">${t.data.status}</span>
@@ -500,8 +516,8 @@
       </div>
       <p class="mt-4 text-sm text-fire">Open project detail →</p>
     </a>
-  `}function ct(t,e=[]){var i;const s=[];return(Array.isArray((i=t==null?void 0:t.data)==null?void 0:i.next)?t.data.next:[]).slice(0,2).forEach((a,r)=>{s.push({lane:r===0?"Right now":"On deck",tag:"Board move",title:a,summary:"Pulled from the live command deck.",action:a})}),e.filter(a=>String(a.data.priority||"").toLowerCase()==="high").slice(0,2).forEach(a=>{s.push({lane:o(a.data.area||"project"),tag:`${d(a.data.priority||"active")} priority`,title:a.data.title,summary:a.data.summary,action:a.data.nextAction})}),s.slice(0,3)}function rt(t=[],e=[]){return t.map(s=>({label:"Lane",title:s.data.title,summary:s.data.summary,slug:s.data.slug,projects:e.filter(c=>c.data.area===s.data.slug).sort(L).slice(0,3)})).sort((s,c)=>c.projects.length-s.projects.length||s.title.localeCompare(c.title))}function lt(t={}){const e=Array.isArray(t.upcoming)?t.upcoming.slice().sort((i,a)=>i.daysAway-a.daysAway||i.name.localeCompare(a.name)):[],s={};return e.forEach(i=>{const a=j(i.dateLabel);s[a]||(s[a]=[]),s[a].push(i)}),{upcoming:e,byMonth:s,monthOrder:["january","february","march","april","may","june","july","august","september","october","november","december"]}}function ot(t,e,s){if(s.name==="home"){const c=t.querySelector("[data-home-scroll]");c&&c.scrollIntoView({block:"start"})}}function nt(t){const s=(String(t||"#/").replace(/^#/,"")||"/").split("/").filter(Boolean);return s.length?s[0]==="birthdays"&&s[1]?{name:"birthdays",month:s[1].toLowerCase()}:s[0]==="birthdays"?{name:"birthdays"}:s[0]==="projects"&&s[1]?{name:"project",slug:s[1]}:s[0]==="projects"?{name:"projects"}:s[0]==="updates"?{name:"updates"}:{name:"home"}:{name:"home"}}function pt(t,e){const s=o(t);return/^https?:\/\//i.test(e)?`<a class="chip hover:border-fire/35 hover:bg-fire-soft" href="${e}" target="_blank" rel="noreferrer">${s}</a>`:`<span class="chip">${s}: ${e}</span>`}function dt(t=""){return t.split(/\n\n+/).map(e=>{const s=e.split(`
-`).map(c=>c.trim()).filter(Boolean);if(!s.length)return"";if(s.every(c=>c.startsWith("- ")))return`<ul class="list-dot space-y-2 pl-5 text-sm leading-7 text-copy-soft">${s.map(c=>`<li>${c.replace(/^-\s*/,"")}</li>`).join("")}</ul>`;if(s[0].startsWith("## ")){const c=s[0].replace(/^##\s*/,""),i=s.slice(1).join(" ");return`<div class="space-y-2"><h3 class="text-lg font-semibold text-copy">${c}</h3>${i?`<p class="text-sm leading-7 text-copy-soft">${i}</p>`:""}</div>`}return`<p class="text-sm leading-7 text-copy-soft">${s.join(" ")}</p>`}).join("")}function j(t=""){return String(t).split(" ")[0].toLowerCase()}function o(t=""){return t.replace(/[-_]/g," ").replace(/\b\w/g,e=>e.toUpperCase())}function d(t=""){return t?t.charAt(0).toUpperCase()+t.slice(1):""}function L(t,e){const s={high:0,medium:1,low:2},c={active:0,queued:1,blocked:2,paused:3,idea:4,complete:5};return(s[String(t.data.priority||"").toLowerCase()]??9)-(s[String(e.data.priority||"").toLowerCase()]??9)||(c[String(t.data.status||"").toLowerCase()]??9)-(c[String(e.data.status||"").toLowerCase()]??9)||t.data.title.localeCompare(e.data.title)}function mt(t){if(typeof t=="string"){const e=t.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(e){const[,s,c,i]=e;return new Date(Number(s),Number(c)-1,Number(i))}}return new Date(t)}function h(t){const e=mt(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function y(t){const e=new Date(t);if(Number.isNaN(e.getTime()))return t;const s=new Date,c=new Date(s.getFullYear(),s.getMonth(),s.getDate()),i=new Date(e.getFullYear(),e.getMonth(),e.getDate()),a=Math.round((c-i)/864e5);return a===0?"today":a===1?"yesterday":e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function S(t){return t===0?"Today":t===1?"Tomorrow":`${t} days`}W();function xt(t={}){const e=Array.isArray(t.history)?t.history:[];return`
+  `}function lt(t,e=[]){var i;const s=[];return(Array.isArray((i=t==null?void 0:t.data)==null?void 0:i.next)?t.data.next:[]).slice(0,2).forEach((a,r)=>{s.push({lane:r===0?"Right now":"On deck",tag:"Board move",title:a,summary:"Pulled from the live command deck.",action:a})}),e.filter(a=>String(a.data.priority||"").toLowerCase()==="high").slice(0,2).forEach(a=>{s.push({lane:o(a.data.area||"project"),tag:`${d(a.data.priority||"active")} priority`,title:a.data.title,summary:a.data.summary,action:a.data.nextAction})}),s.slice(0,3)}function ot(t=[],e=[]){return t.map(s=>({label:"Lane",title:s.data.title,summary:s.data.summary,slug:s.data.slug,projects:e.filter(c=>c.data.area===s.data.slug).sort(L).slice(0,3)})).sort((s,c)=>c.projects.length-s.projects.length||s.title.localeCompare(c.title))}function nt(t={}){const e=Array.isArray(t.upcoming)?t.upcoming.slice().sort((i,a)=>i.daysAway-a.daysAway||i.name.localeCompare(a.name)):[],s={};return e.forEach(i=>{const a=j(i.dateLabel);s[a]||(s[a]=[]),s[a].push(i)}),{upcoming:e,byMonth:s,monthOrder:["january","february","march","april","may","june","july","august","september","october","november","december"]}}function pt(t,e,s){if(s.name==="home"){const c=t.querySelector("[data-home-scroll]");c&&c.scrollIntoView({block:"start"})}}function dt(t){const s=(String(t||"#/").replace(/^#/,"")||"/").split("/").filter(Boolean);return s.length?s[0]==="prompt"?{name:"prompt"}:s[0]==="birthdays"&&s[1]?{name:"birthdays",month:s[1].toLowerCase()}:s[0]==="birthdays"?{name:"birthdays"}:s[0]==="projects"&&s[1]?{name:"project",slug:s[1]}:s[0]==="projects"?{name:"projects"}:s[0]==="updates"?{name:"updates"}:{name:"home"}:{name:"home"}}function mt(t,e){const s=o(t);return/^https?:\/\//i.test(e)?`<a class="chip hover:border-fire/35 hover:bg-fire-soft" href="${e}" target="_blank" rel="noreferrer">${s}</a>`:`<span class="chip">${s}: ${e}</span>`}function xt(t=""){return t.split(/\n\n+/).map(e=>{const s=e.split(`
+`).map(c=>c.trim()).filter(Boolean);if(!s.length)return"";if(s.every(c=>c.startsWith("- ")))return`<ul class="list-dot space-y-2 pl-5 text-sm leading-7 text-copy-soft">${s.map(c=>`<li>${c.replace(/^-\s*/,"")}</li>`).join("")}</ul>`;if(s[0].startsWith("## ")){const c=s[0].replace(/^##\s*/,""),i=s.slice(1).join(" ");return`<div class="space-y-2"><h3 class="text-lg font-semibold text-copy">${c}</h3>${i?`<p class="text-sm leading-7 text-copy-soft">${i}</p>`:""}</div>`}return`<p class="text-sm leading-7 text-copy-soft">${s.join(" ")}</p>`}).join("")}function j(t=""){return String(t).split(" ")[0].toLowerCase()}function o(t=""){return t.replace(/[-_]/g," ").replace(/\b\w/g,e=>e.toUpperCase())}function d(t=""){return t?t.charAt(0).toUpperCase()+t.slice(1):""}function L(t,e){const s={high:0,medium:1,low:2},c={active:0,queued:1,blocked:2,paused:3,idea:4,complete:5};return(s[String(t.data.priority||"").toLowerCase()]??9)-(s[String(e.data.priority||"").toLowerCase()]??9)||(c[String(t.data.status||"").toLowerCase()]??9)-(c[String(e.data.status||"").toLowerCase()]??9)||t.data.title.localeCompare(e.data.title)}function ht(t){if(typeof t=="string"){const e=t.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(e){const[,s,c,i]=e;return new Date(Number(s),Number(c)-1,Number(i))}}return new Date(t)}function f(t){const e=ht(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function y(t){const e=new Date(t);if(Number.isNaN(e.getTime()))return t;const s=new Date,c=new Date(s.getFullYear(),s.getMonth(),s.getDate()),i=new Date(e.getFullYear(),e.getMonth(),e.getDate()),a=Math.round((c-i)/864e5);return a===0?"today":a===1?"yesterday":e.toLocaleDateString("en-US",{month:"short",day:"numeric"})}function S(t){return t===0?"Today":t===1?"Tomorrow":`${t} days`}E();function P(t={}){const e=Array.isArray(t.history)?t.history:[];return`
     <section class="glass-card p-5 sm:p-6 lg:p-7">
       <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -557,13 +573,13 @@
               <span class="chip">${e.length} loaded</span>
             </div>
             <div class="mt-4 space-y-3">
-              ${e.length?e.map(ht).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent gratitude history loaded yet.</p>'}
+              ${e.length?e.map(ft).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent gratitude history loaded yet.</p>'}
             </div>
           </article>
         </div>
       </div>
     </section>
-  `}function ht(t){return`
+  `}function ft(t){return`
     <article class="birthday-week-item birthday-week-item-compact">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -574,7 +590,7 @@
       </div>
       ${t.responseSummary?`<p class="mt-3 text-sm leading-6 text-copy-soft">${t.responseSummary}</p>`:""}
     </article>
-  `}function ft(t={}){var a,r,n;const e=t.today||{},s=Number(((a=t.settings)==null?void 0:a.showHistoryCount)||3),c=Array.isArray(t.history)?t.history.slice(0,s):[],i=String(e.status||"pending").toLowerCase();return{title:((r=t.settings)==null?void 0:r.title)||"Daily gratitude",subtitle:((n=t.settings)==null?void 0:n.subtitle)||"Keep today's prompt visible even when you answer it later at night.",promptTitle:i==="completed"?"Today's reflection is in":"Tonight's prompt is waiting",prompt:e.prompt,entryId:e.entryId,dateLabel:h(e.date),sourceLabel:e.source||"Telegram + dashboard",note:e.note,statusLabel:i==="completed"?"Completed":"Pending",statusDetail:i==="completed"?e.completedLabel||"Answered and logged.":"Visible here until you knock it out.",windowLabel:o(String(e.availableWindow||"morning-to-evening")),history:c.map(l=>({...l,dateLabel:h(l.date),statusLabel:String(l.status||"").toLowerCase()==="completed"?"Completed":d(l.status||"pending")}))}}function gt(t={}){const e=Array.isArray(t.upcoming)?t.upcoming:[];return`
+  `}function gt(t={}){var a,r,n;const e=t.today||{},s=Number(((a=t.settings)==null?void 0:a.showHistoryCount)||3),c=Array.isArray(t.history)?t.history.slice(0,s):[],i=String(e.status||"pending").toLowerCase();return{title:((r=t.settings)==null?void 0:r.title)||"Daily gratitude",subtitle:((n=t.settings)==null?void 0:n.subtitle)||"Keep today's prompt visible even when you answer it later at night.",promptTitle:i==="completed"?"Today's reflection is in":"Tonight's prompt is waiting",prompt:e.prompt,entryId:e.entryId,dateLabel:f(e.date),sourceLabel:e.source||"Telegram + dashboard",note:e.note,statusLabel:i==="completed"?"Completed":"Pending",statusDetail:i==="completed"?e.completedLabel||"Answered and logged.":"Visible here until you knock it out.",windowLabel:o(String(e.availableWindow||"morning-to-evening")),history:c.map(l=>({...l,dateLabel:f(l.date),statusLabel:String(l.status||"").toLowerCase()==="completed"?"Completed":d(l.status||"pending")}))}}function ut(t={}){const e=Array.isArray(t.upcoming)?t.upcoming:[];return`
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -595,10 +611,10 @@
             <p class="mt-2 text-sm leading-6 text-copy">${t.nextMove}</p>
           </article>
         `:""}
-        ${e.length?e.map(ut).join(""):'<article class="rounded-[22px] border border-line bg-white/[0.04] p-4"><p class="text-sm leading-6 text-copy-soft">No upcoming events loaded yet.</p></article>'}
+        ${e.length?e.map(yt).join(""):'<article class="rounded-[22px] border border-line bg-white/[0.04] p-4"><p class="text-sm leading-6 text-copy-soft">No upcoming events loaded yet.</p></article>'}
       </div>
     </section>
-  `}function ut(t){return`
+  `}function yt(t){return`
     <article class="phase-lane-item">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -614,7 +630,7 @@
       ${t.nextMove?`<p class="mt-3 text-sm leading-6 text-copy"><span class="text-copy-faint">Next:</span> ${t.nextMove}</p>`:""}
       ${t.note?`<p class="mt-2 text-sm leading-6 text-copy-faint">${t.note}</p>`:""}
     </article>
-  `}function yt(t={}){const e=Array.isArray(t.recent)?t.recent:[];return`
+  `}function bt(t={}){const e=Array.isArray(t.recent)?t.recent:[];return`
     <section class="stack-card compact-card">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -652,13 +668,13 @@
               <span class="chip">${e.length} loaded</span>
             </div>
             <div class="mt-4 space-y-3">
-              ${e.length?e.map(bt).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent workouts loaded yet.</p>'}
+              ${e.length?e.map(vt).join(""):'<p class="text-sm leading-6 text-copy-soft">No recent workouts loaded yet.</p>'}
             </div>
           </article>
         </div>
       </div>
     </section>
-  `}function bt(t){return`
+  `}function vt(t){return`
     <article class="phase-lane-item phase-lane-item-compact">
       <div class="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -669,4 +685,4 @@
       </div>
       ${t.note?`<p class="mt-3 text-sm leading-6 text-copy-soft">${t.note}</p>`:""}
     </article>
-  `}function vt(t={}){var c,i,a,r,n,l;const e=Number(((c=t.settings)==null?void 0:c.showUpcomingCount)||3),s=Array.isArray(t.upcoming)?t.upcoming.slice(0,e):[];return{title:((i=t.settings)==null?void 0:i.title)||"Event lane",subtitle:((a=t.settings)==null?void 0:a.subtitle)||"Upcoming DJ work, prep pressure, and the next thing that needs attention before go time.",statusLabel:o(String(((r=t.summary)==null?void 0:r.status)||"active")),seasonLabel:(n=t.summary)==null?void 0:n.season,nextMove:(l=t.summary)==null?void 0:l.note,upcoming:s.map(p=>({...p,dateLabel:h(p.date),statusLabel:o(String(p.status||"booked")),prepStageLabel:o(String(p.prepStage||"prep"))}))}}function wt(t={}){var i,a,r,n,l,p;const e=Number(((i=t.settings)==null?void 0:i.showRecentCount)||3),s=Array.isArray(t.recent)?t.recent.slice(0,e):[],c=t.nextSession||{};return{title:((a=t.settings)==null?void 0:a.title)||"Workout lane",subtitle:((r=t.settings)==null?void 0:r.subtitle)||"Training momentum, consistency streak, and the next session that keeps the body moving.",statusLabel:o(String(((n=t.summary)==null?void 0:n.status)||"active")),streakLabel:(l=t.summary)==null?void 0:l.streakLabel,note:(p=t.summary)==null?void 0:p.note,nextTitle:c.title,nextWindow:c.window,nextDateLabel:h(c.targetDate),nextGoal:c.goal,nextMove:c.nextMove,recent:s.map(x=>({...x,dateLabel:h(x.date),typeLabel:o(String(x.type||"session"))}))}}
+  `}function wt(t={}){var c,i,a,r,n,l;const e=Number(((c=t.settings)==null?void 0:c.showUpcomingCount)||3),s=Array.isArray(t.upcoming)?t.upcoming.slice(0,e):[];return{title:((i=t.settings)==null?void 0:i.title)||"Event lane",subtitle:((a=t.settings)==null?void 0:a.subtitle)||"Upcoming DJ work, prep pressure, and the next thing that needs attention before go time.",statusLabel:o(String(((r=t.summary)==null?void 0:r.status)||"active")),seasonLabel:(n=t.summary)==null?void 0:n.season,nextMove:(l=t.summary)==null?void 0:l.note,upcoming:s.map(p=>({...p,dateLabel:f(p.date),statusLabel:o(String(p.status||"booked")),prepStageLabel:o(String(p.prepStage||"prep"))}))}}function $t(t={}){var i,a,r,n,l,p;const e=Number(((i=t.settings)==null?void 0:i.showRecentCount)||3),s=Array.isArray(t.recent)?t.recent.slice(0,e):[],c=t.nextSession||{};return{title:((a=t.settings)==null?void 0:a.title)||"Workout lane",subtitle:((r=t.settings)==null?void 0:r.subtitle)||"Training momentum, consistency streak, and the next session that keeps the body moving.",statusLabel:o(String(((n=t.summary)==null?void 0:n.status)||"active")),streakLabel:(l=t.summary)==null?void 0:l.streakLabel,note:(p=t.summary)==null?void 0:p.note,nextTitle:c.title,nextWindow:c.window,nextDateLabel:f(c.targetDate),nextGoal:c.goal,nextMove:c.nextMove,recent:s.map(x=>({...x,dateLabel:f(x.date),typeLabel:o(String(x.type||"session"))}))}}

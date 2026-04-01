@@ -106,6 +106,7 @@ function renderTopBar(state, route) {
 
         <nav class="grid gap-2 sm:grid-cols-2 xl:w-[360px]">
           ${renderNavLink('#/', 'Overview', route.name === 'home')}
+          ${renderNavLink('#/prompt', 'Daily prompt', route.name === 'prompt')}
           ${renderNavLink('#/birthdays', 'Birthdays', route.name === 'birthdays')}
           ${renderNavLink('#/projects', 'Projects', route.name === 'projects' || route.name === 'project')}
           ${renderNavLink('#/updates', 'Updates', route.name === 'updates')}
@@ -304,6 +305,10 @@ function renderCompactUpdatesCard(state) {
 }
 
 function renderRouteDetail(state, route) {
+  if (route.name === 'prompt') {
+    return renderPromptRoute(state)
+  }
+
   if (route.name === 'birthdays') {
     return renderBirthdaysRoute(state, route)
   }
@@ -321,6 +326,25 @@ function renderRouteDetail(state, route) {
   }
 
   return renderHome(state)
+}
+
+function renderPromptRoute(state) {
+  return `
+    <section class="stack-card compact-card">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="section-kicker">Daily rhythm</p>
+          <h2 class="text-3xl font-semibold tracking-[-0.03em] text-copy">Daily prompt</h2>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-copy-soft">A clean direct view for today’s gratitude prompt without needing to scroll the whole dashboard.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a class="chip" href="#/">Back to overview</a>
+        </div>
+      </div>
+    </section>
+
+    ${renderGratitudeWidget(state.gratitudeCard)}
+  `
 }
 
 function renderBirthdaysRoute(state, route) {
@@ -789,6 +813,7 @@ function parseRoute(hash) {
   const parts = cleaned.split('/').filter(Boolean)
 
   if (!parts.length) return { name: 'home' }
+  if (parts[0] === 'prompt') return { name: 'prompt' }
   if (parts[0] === 'birthdays' && parts[1]) return { name: 'birthdays', month: parts[1].toLowerCase() }
   if (parts[0] === 'birthdays') return { name: 'birthdays' }
   if (parts[0] === 'projects' && parts[1]) return { name: 'project', slug: parts[1] }
