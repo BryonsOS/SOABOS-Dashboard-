@@ -1,24 +1,26 @@
 ---
-title: Command Deck
-lastUpdated: 2026-03-31
+title: Sick Sales Command Deck
+lastUpdated: 2026-04-01
 primaryFocus:
-  - Ship a dashboard that shows the real operating picture at a glance
-  - Keep active projects, priorities, and next moves visible without clutter
-  - Use the board as a live command center instead of a static portfolio
-currentState: live build in motion
+  - Build a daily operating system that moves more shirts and stickers
+  - Make the hero SKU, offer, channel, and KPI visible in one place
+  - Turn merch pushes into repeatable attacks instead of random swings
+currentState: sales war room live and ready
 next:
-  - Keep feeding real project updates into the board after work sessions
-  - Expand the command view with clearer decision lanes and sharper summaries
-  - Tighten mobile scan speed so the right move is obvious in seconds
+  - Pick the hero shirt and matching sticker add-on for the next push
+  - Use one hook across homepage, email, and social on the same day
+  - Start filling the scorecard and experiment log daily so winners compound
 blockers:
-  - Some sections still need deeper real-world data instead of seed summaries
-  - Public-safe publishing means a few internal details need translation before they belong on the board
+  - Real store metrics and live SKU choices still need to be plugged into the system
+  - Final execution inside the actual store and marketing tools depends on platform access
 wins:
-  - The dashboard is now structured around real operating lanes instead of filler
-  - Active projects, goals, areas, updates, and birthday tracking are already wired into one board
-  - The site can keep evolving from content files without rebuilding the whole system from scratch
+  - The dashboard now has a real Sick sales war room instead of a vague marketing placeholder
+  - Sales system, offer calendar, scorecard, and experiment log are built and ready to use
+  - The structure is simple enough to run daily without turning into admin theater
 ---
 
-This is not supposed to be a pretty dead page.
+This is the merch attack board.
 
-It is supposed to be the board Bryon can open and immediately understand: what matters, what is moving, what is stuck, and what deserves the next shot of attention.
+The point is not to admire the system.
+
+The point is to know what is being sold, why it should move today, where it is being pushed, and what number proves the push worked.

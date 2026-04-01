@@ -57,6 +57,7 @@ git add \
   dist/generated/content.json \
   dist/app/index.html \
   dist/assets \
+  src-index.html \
   app/index.html \
   index.html \
   404.html \

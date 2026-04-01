@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/SOABOS-Dashboard/',
   build: {
     rollupOptions: {
-      input: resolve(__dirname, 'app/index.html')
+      input: resolve(__dirname, 'src-index.html')
     }
   }
 })
