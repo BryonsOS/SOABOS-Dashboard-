@@ -1,21 +1,38 @@
 ---
 date: 2026-04-01
-title: Built the Sick sales war room into the dashboard
+title: Reconciled the Sick sales war room strategy with the operating layer
 kind: build
 ---
 
-Added a dedicated Sick Sales War Room project plus a practical operating layer behind it: sales system notes, scorecard template, experiment log, offer calendar, and a concrete merch triage model.
+Reconciled the original Sick War Room strategy read with the newer dashboard operating layer so the project now reflects both the business-level revenue view and the day-to-day merch decision system.
 
-The goal is simple: make shirts and stickers easier to push by turning the sales attack into a visible daily system instead of a vague intention.
+The strategic side says Sick is strongest when it organizes around:
+- event launches
+- subscription growth
+- impulse add-on merch
+- hero merch SKUs
+- clean offer structure
 
-The merch triage pass reframes the product sheet from a narrow promo-eligibility filter into an operator action board with four buckets:
-- Push Now
-- Bundle / Test
-- Protect
-- Dead / Review
+The operational side now turns that into a visible daily board with:
+- revenue-now lane
+- retention / recurring lane
+- merch-winner lane
+- cleanup lane
+- a current hero offer recommendation
+- a simple scorecard / experiment rhythm
 
-A rough dry run against the current workspace export produced:
-- Push Now: 32
-- Bundle / Test: 258
-- Protect: 83
-- Dead / Review: 48
+The current merch read from the workspace export now points to a tighter reality:
+- actionable merch rows: 64
+- Push What Is Left: 3
+- Bundle / Test: 19
+- Protect / Low Stock: 42
+- Out of Stock Winners: 2067
+- Dead / Review: 0
+
+Current recommended merch push:
+- Hero: Sick The Mag Straw Hat
+- Add-on: Sick The Mag Die Cut 5x5 Stickers
+- Offer: Straw Hat + sticker
+- Channel focus: Homepage + email + IG story
+
+Bottom line: the war room is no longer just a smart analysis or just a merch worksheet. It is now framed as a working board that connects revenue priorities, inventory reality, and daily action.
