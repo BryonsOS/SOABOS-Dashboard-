@@ -374,7 +374,7 @@
         "title": "Reconciled the Sick sales war room strategy with the operating layer",
         "kind": "build"
       },
-      "content": "Reconciled the original Sick War Room strategy read with the newer dashboard operating layer so the project now reflects both the business-level revenue view and the day-to-day merch decision system.\n\nThe strategic side says Sick is strongest when it organizes around:\n- event launches\n- subscription growth\n- impulse add-on merch\n- hero merch SKUs\n- clean offer structure\n\nThe operational side now turns that into a visible daily board with:\n- revenue-now lane\n- retention / recurring lane\n- merch-winner lane\n- cleanup lane\n- a current hero offer recommendation\n- a simple scorecard / experiment rhythm\n\nThe current merch read from the workspace export now points to a tighter reality:\n- actionable merch rows: 64\n- Push What Is Left: 3\n- Bundle / Test: 19\n- Protect / Low Stock: 42\n- Out of Stock Winners: 2067\n- Dead / Review: 0\n\nCurrent recommended merch push:\n- Hero: Sick The Mag Straw Hat\n- Add-on: Sick The Mag Die Cut 5x5 Stickers\n- Offer: Straw Hat + sticker\n- Channel focus: Homepage + email + IG story\n\nBottom line: the war room is no longer just a smart analysis or just a merch worksheet. It is now framed as a working board that connects revenue priorities, inventory reality, and daily action.\n\nFollow-up pass: added a scan-first today board shape to wire directly into the dashboard detail view:\n- Now\n- Next\n- Watch\n- Problems\n- Moves"
+      "content": "Reconciled the original Sick War Room strategy read with the newer dashboard operating layer so the project now reflects both the business-level revenue view and the day-to-day merch decision system.\n\nThe strategic side says Sick is strongest when it organizes around:\n- event launches\n- subscription growth\n- impulse add-on merch\n- hero merch SKUs\n- clean offer structure\n\nThe operational side now turns that into a visible daily board with:\n- revenue-now lane\n- retention / recurring lane\n- merch-winner lane\n- cleanup lane\n- a current hero offer recommendation\n- a simple scorecard / experiment rhythm\n\nThe current merch read from the workspace export now points to a tighter reality:\n- actionable merch rows: 64\n- Push What Is Left: 3\n- Bundle / Test: 19\n- Protect / Low Stock: 42\n- Out of Stock Winners: 2067\n- Dead / Review: 0\n\nCurrent recommended merch push:\n- Hero: Sick The Mag Straw Hat\n- Add-on: Sick The Mag Die Cut 5x5 Stickers\n- Offer: Straw Hat + sticker\n- Channel focus: Homepage + email + IG story\n\nBottom line: the war room is no longer just a smart analysis or just a merch worksheet. It is now framed as a working board that connects revenue priorities, inventory reality, and daily action.\n\nFollow-up pass: added a scan-first today board shape to wire directly into the dashboard detail view:\n- Now\n- Next\n- Watch\n- Problems\n- Moves\n\nNext pass: added execution assets directly into the war room detail view so the board now carries ready-to-use campaign pieces too:\n- homepage slot copy\n- email angle\n- IG story frame sequence\n- KPI target line"
     }
   ],
   "birthdays": {
@@ -1273,7 +1273,7 @@
     ]
   },
   "warRoom": {
-    "generatedAt": "2026-04-01T20:07:48.267Z",
+    "generatedAt": "2026-04-01T20:10:21.423Z",
     "source": "tmp_war_room_products_master.json",
     "summary": {
       "totalRows": 2563,
@@ -1328,6 +1328,32 @@
         "IG story: mirror the same offer — Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
         "Cleanup lane: separate restock winners, protected low-stock items, and true push candidates."
       ]
+    },
+    "executionAssets": {
+      "homepage": {
+        "title": "Feature Sick The Mag Straw Hat",
+        "kicker": "Revenue now",
+        "headline": "Sick The Mag Straw Hat is the lead push.",
+        "subhead": "Pair it with Sick The Mag Die Cut 5x5 Stickers and keep the offer simple: Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
+        "cta": "Shop the feature"
+      },
+      "email": {
+        "subject": "Sick The Mag Straw Hat is up today",
+        "preview": "Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers — simple, clean, and easy to buy.",
+        "angle": "Sick The Mag Straw Hat gets the spotlight today. Keep the message tight, mirror the homepage, and use the add-on as the easy cart lift.",
+        "body": "Today's move is simple: put Sick The Mag Straw Hat in the lead slot, pair it with Sick The Mag Die Cut 5x5 Stickers, and make the ask about the offer instead of the whole store."
+      },
+      "igStory": [
+        "Frame 1: Sick The Mag Straw Hat is the move today.",
+        "Frame 2: Add Sick The Mag Die Cut 5x5 Stickers as the easy extra.",
+        "Frame 3: Offer stack — Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
+        "Frame 4: urgency / stock / tap-through push."
+      ],
+      "kpi": {
+        "title": "Tonight's read",
+        "target": "Track Sick The Mag Straw Hat units, sticker attach rate, and bundle orders.",
+        "rule": "Pick one number that decides whether the push stays tomorrow."
+      }
     },
     "topPush": [
       {

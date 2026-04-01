@@ -43,3 +43,9 @@ Follow-up pass: added a scan-first today board shape to wire directly into the d
 - Watch
 - Problems
 - Moves
+
+Next pass: added execution assets directly into the war room detail view so the board now carries ready-to-use campaign pieces too:
+- homepage slot copy
+- email angle
+- IG story frame sequence
+- KPI target line

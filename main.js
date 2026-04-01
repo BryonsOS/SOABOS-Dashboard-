@@ -547,6 +547,7 @@ function renderProjectDetailRoute(state, slug) {
 function renderWarRoomPanel(warRoom = {}) {
   const recommendation = warRoom.recommendation || null
   const todayBoard = warRoom.todayBoard || {}
+  const executionAssets = warRoom.executionAssets || {}
   const buckets = warRoom.summary?.buckets || {}
   const topPush = Array.isArray(warRoom.topPush) ? warRoom.topPush.slice(0, 5) : []
   const topBundle = Array.isArray(warRoom.topBundle) ? warRoom.topBundle.slice(0, 5) : []
@@ -601,6 +602,42 @@ function renderWarRoomPanel(warRoom = {}) {
           <div class="sm:col-span-2">${renderFocusCard('Moves', todayBoard.moves || [], 'success')}</div>
         </div>
       </section>
+    </section>
+
+    <section class="stack-card compact-card">
+      <div class="mb-4 flex items-end justify-between gap-4">
+        <div>
+          <p class="section-kicker">Execution assets</p>
+          <h3 class="text-2xl font-semibold tracking-[-0.03em] text-copy">Ready-to-use moves</h3>
+        </div>
+      </div>
+      <div class="grid gap-3 xl:grid-cols-2">
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Homepage slot</p>
+          <h4 class="mt-3 text-lg font-semibold text-copy">${executionAssets.homepage?.headline || 'No homepage slot loaded.'}</h4>
+          ${executionAssets.homepage?.subhead ? `<p class="mt-2 text-sm leading-6 text-copy-soft">${executionAssets.homepage.subhead}</p>` : ''}
+          <div class="mt-3 flex flex-wrap gap-2">
+            ${executionAssets.homepage?.kicker ? `<span class="chip chip-warm">${executionAssets.homepage.kicker}</span>` : ''}
+            ${executionAssets.homepage?.cta ? `<span class="chip">CTA: ${executionAssets.homepage.cta}</span>` : ''}
+          </div>
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4">
+          <p class="micro-label text-fire">Email angle</p>
+          ${executionAssets.email?.subject ? `<p class="mt-3 text-sm leading-6 text-copy"><span class="text-copy-faint">Subject:</span> ${executionAssets.email.subject}</p>` : ''}
+          ${executionAssets.email?.preview ? `<p class="mt-2 text-sm leading-6 text-copy"><span class="text-copy-faint">Preview:</span> ${executionAssets.email.preview}</p>` : ''}
+          ${executionAssets.email?.body ? `<p class="mt-3 text-sm leading-6 text-copy-soft">${executionAssets.email.body}</p>` : ''}
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4 xl:col-span-2">
+          <p class="micro-label text-fire">IG story frames</p>
+          <ul class="mt-3 list-dot space-y-2 pl-5 text-sm leading-6 text-copy-soft">${(executionAssets.igStory || []).map((item) => `<li>${item}</li>`).join('')}</ul>
+        </article>
+        <article class="rounded-[22px] border border-line bg-white/[0.04] p-4 xl:col-span-2">
+          <p class="micro-label text-fire">KPI target</p>
+          <h4 class="mt-3 text-lg font-semibold text-copy">${executionAssets.kpi?.title || 'Tonight\'s read'}</h4>
+          ${executionAssets.kpi?.target ? `<p class="mt-2 text-sm leading-6 text-copy-soft">${executionAssets.kpi.target}</p>` : ''}
+          ${executionAssets.kpi?.rule ? `<p class="mt-2 text-sm leading-6 text-copy"><span class="text-copy-faint">Rule:</span> ${executionAssets.kpi.rule}</p>` : ''}
+        </article>
+      </div>
     </section>
 
     <section class="stack-card compact-card">

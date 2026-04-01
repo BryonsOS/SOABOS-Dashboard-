@@ -146,6 +146,39 @@ const todayBoard = {
   ]
 }
 
+const executionAssets = {
+  homepage: {
+    title: recommendation?.hero ? `Feature ${recommendation.hero}` : 'Feature the clearest hero SKU',
+    kicker: 'Revenue now',
+    headline: recommendation?.hero ? `${recommendation.hero} is the lead push.` : 'Today needs one clear hero offer.',
+    subhead: recommendation?.offer
+      ? `Pair it with ${recommendation.addOn || 'a low-friction add-on'} and keep the offer simple: ${recommendation.offer}.`
+      : 'Pair the hero with one easy add-on and one clear reason to buy today.',
+    cta: 'Shop the feature'
+  },
+  email: {
+    subject: recommendation?.hero ? `${recommendation.hero} is up today` : 'Today\'s Sick feature is live',
+    preview: recommendation?.offer ? `${recommendation.offer} — simple, clean, and easy to buy.` : 'One clear hero offer, not a mixed catalog push.',
+    angle: recommendation?.hero
+      ? `${recommendation.hero} gets the spotlight today. Keep the message tight, mirror the homepage, and use the add-on as the easy cart lift.`
+      : 'Lead with one hero offer and keep the rest of the catalog quiet.',
+    body: recommendation?.offer
+      ? `Today\'s move is simple: put ${recommendation.hero} in the lead slot, pair it with ${recommendation.addOn || 'a low-friction add-on'}, and make the ask about the offer instead of the whole store.`
+      : 'Today\'s move is simple: one hero product, one add-on, one reason to buy now.'
+  },
+  igStory: [
+    recommendation?.hero ? `Frame 1: ${recommendation.hero} is the move today.` : 'Frame 1: one clean hero product for today.',
+    recommendation?.addOn ? `Frame 2: Add ${recommendation.addOn} as the easy extra.` : 'Frame 2: Add one easy low-friction extra.',
+    recommendation?.offer ? `Frame 3: Offer stack — ${recommendation.offer}.` : 'Frame 3: Show the offer stack clearly.',
+    'Frame 4: urgency / stock / tap-through push.'
+  ],
+  kpi: {
+    title: 'Tonight\'s read',
+    target: recommendation?.hero ? `Track ${recommendation.hero} units, sticker attach rate, and bundle orders.` : 'Track hero units, sticker attach rate, and bundle orders.',
+    rule: 'Pick one number that decides whether the push stays tomorrow.'
+  }
+}
+
 const output = {
   generatedAt: new Date().toISOString(),
   source: path.basename(sourcePath),
@@ -157,6 +190,7 @@ const output = {
   },
   recommendation,
   todayBoard,
+  executionAssets,
   topPush,
   topBundle,
   protect,

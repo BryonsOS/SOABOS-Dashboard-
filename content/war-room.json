@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-01T20:07:48.267Z",
+  "generatedAt": "2026-04-01T20:10:21.423Z",
   "source": "tmp_war_room_products_master.json",
   "summary": {
     "totalRows": 2563,
@@ -54,6 +54,32 @@
       "IG story: mirror the same offer — Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
       "Cleanup lane: separate restock winners, protected low-stock items, and true push candidates."
     ]
+  },
+  "executionAssets": {
+    "homepage": {
+      "title": "Feature Sick The Mag Straw Hat",
+      "kicker": "Revenue now",
+      "headline": "Sick The Mag Straw Hat is the lead push.",
+      "subhead": "Pair it with Sick The Mag Die Cut 5x5 Stickers and keep the offer simple: Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
+      "cta": "Shop the feature"
+    },
+    "email": {
+      "subject": "Sick The Mag Straw Hat is up today",
+      "preview": "Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers — simple, clean, and easy to buy.",
+      "angle": "Sick The Mag Straw Hat gets the spotlight today. Keep the message tight, mirror the homepage, and use the add-on as the easy cart lift.",
+      "body": "Today's move is simple: put Sick The Mag Straw Hat in the lead slot, pair it with Sick The Mag Die Cut 5x5 Stickers, and make the ask about the offer instead of the whole store."
+    },
+    "igStory": [
+      "Frame 1: Sick The Mag Straw Hat is the move today.",
+      "Frame 2: Add Sick The Mag Die Cut 5x5 Stickers as the easy extra.",
+      "Frame 3: Offer stack — Sick The Mag Straw Hat + Sick The Mag Die Cut 5x5 Stickers.",
+      "Frame 4: urgency / stock / tap-through push."
+    ],
+    "kpi": {
+      "title": "Tonight's read",
+      "target": "Track Sick The Mag Straw Hat units, sticker attach rate, and bundle orders.",
+      "rule": "Pick one number that decides whether the push stays tomorrow."
+    }
   },
   "topPush": [
     {
