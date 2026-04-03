@@ -1,8 +1,8 @@
 {
   "today": {
-    "date": "2026-04-01",
-    "entryId": "GJ-20260401-0700",
-    "prompt": "What is one object, spot, or creature in your day-to-day world that quietly makes life better every time you notice it — and what would feel missing if it were suddenly gone?",
+    "date": "2026-04-03",
+    "entryId": "GJ-20260403-0700",
+    "prompt": "What is one part of your normal day that feels small on the surface but actually holds a lot of your peace together — and why are you more grateful for it than you used to be?",
     "status": "pending",
     "source": "telegram + dashboard",
     "availableWindow": "morning-to-evening",
@@ -10,6 +10,26 @@
     "completedLabel": "Waiting for tonight's entry"
   },
   "history": [
+    {
+      "date": "2026-04-02",
+      "entryId": "GJ-20260402-0700",
+      "prompt": "What is one moment in the last few days when somebody showed up for you, made something lighter, or gave you a break at exactly the right time—and why did that hit harder than it might've looked from the outside?",
+      "status": "pending",
+      "source": "telegram + dashboard",
+      "availableWindow": "morning-to-evening",
+      "note": "Open it in the morning from Telegram or come back to it at night from the dashboard without digging through chat.",
+      "completedLabel": "Waiting for tonight's entry"
+    },
+    {
+      "date": "2026-04-01",
+      "entryId": "GJ-20260401-0700",
+      "prompt": "What is one object, spot, or creature in your day-to-day world that quietly makes life better every time you notice it — and what would feel missing if it were suddenly gone?",
+      "status": "pending",
+      "source": "telegram + dashboard",
+      "availableWindow": "morning-to-evening",
+      "note": "Open it in the morning from Telegram or come back to it at night from the dashboard without digging through chat.",
+      "completedLabel": "Waiting for tonight's entry"
+    },
     {
       "date": "2026-03-31",
       "entryId": "GJ-20260331-0700",

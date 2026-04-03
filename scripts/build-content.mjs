@@ -32,7 +32,14 @@ const computedStats = {
   status: dashboard.stats?.status || inferOverallStatus(projects, goals)
 }
 
+const bundleGeneratedAt = new Date().toISOString()
+const buildId = Date.now()
+
 const bundle = {
+  meta: {
+    generatedAt: bundleGeneratedAt,
+    buildId
+  },
   dashboard: {
     ...dashboard,
     stats: computedStats
@@ -86,8 +93,7 @@ function readJson(filePath) {
 
 function buildBirthdays(source = {}) {
   const lookaheadDays = Number(source.settings?.lookaheadDays || 30)
-  const today = new Date()
-  const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+  const todayStart = startOfEasternDay(new Date())
   const people = Array.isArray(source.people) ? source.people : []
 
   const upcoming = []
@@ -114,11 +120,11 @@ function buildBirthdays(source = {}) {
 
     const normalized = {
       ...person,
-      dateLabel: formatMonthDay(nextBirthday),
+      dateLabel: formatMonthDayParts(month, day),
       daysAway,
       age,
       urgency: daysAway <= 7 ? 'soon' : 'upcoming',
-      sortKey: `${String(nextBirthday.getMonth() + 1).padStart(2, '0')}-${String(nextBirthday.getDate()).padStart(2, '0')}`
+      sortKey: `${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
     }
 
     if (!hasYear) {
@@ -167,11 +173,26 @@ function getNextBirthday(today, month, day) {
   return candidate
 }
 
-function formatMonthDay(date) {
-  return date.toLocaleDateString('en-US', {
+function formatMonthDayParts(month, day) {
+  const ref = new Date(2000, month - 1, day)
+  return ref.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric'
   })
+}
+
+function startOfEasternDay(date) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date)
+
+  const year = Number(parts.find((part) => part.type === 'year')?.value)
+  const month = Number(parts.find((part) => part.type === 'month')?.value)
+  const day = Number(parts.find((part) => part.type === 'day')?.value)
+  return new Date(year, month - 1, day)
 }
 
 function missingFields(person = {}) {

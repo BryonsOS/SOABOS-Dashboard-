@@ -11,7 +11,7 @@ const args = Object.fromEntries(
   })
 )
 
-const date = args.date || formatDateLocal(new Date())
+const date = args.date || formatDateEastern(new Date())
 const prompt = args.prompt
 const status = args.status || 'pending'
 const source = args.source || 'telegram + dashboard'
@@ -60,9 +60,16 @@ gratitude.settings = {
 fs.writeFileSync(gratitudePath, `${JSON.stringify(gratitude, null, 2)}\n`)
 console.log(`Updated gratitude prompt for ${date} (${nextToday.entryId})`)
 
-function formatDateLocal(date) {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
+function formatDateEastern(date) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date)
+
+  const year = parts.find((part) => part.type === 'year')?.value
+  const month = parts.find((part) => part.type === 'month')?.value
+  const day = parts.find((part) => part.type === 'day')?.value
   return `${year}-${month}-${day}`
 }
