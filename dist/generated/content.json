@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-04-19T12:00:19.891Z",
-    "buildId": 1776600019892
+    "generatedAt": "2026-04-19T12:30:26.976Z",
+    "buildId": 1776601826977
   },
   "dashboard": {
     "site": {
@@ -1312,7 +1312,7 @@
     ]
   },
   "warRoom": {
-    "generatedAt": "2026-04-19T12:00:19.802Z",
+    "generatedAt": "2026-04-19T12:30:26.799Z",
     "source": "tmp_war_room_products_master.json",
     "summary": {
       "totalRows": 0,
